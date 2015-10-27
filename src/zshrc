@@ -56,7 +56,7 @@ ZSH_THEME="af-magic"
 # cp :          show a bar as the %
 # vi-mode:      start vi mode in zsh, but default is insert mode;
 # Z :           jump to you frequent dir : z zsh plugins z
-plugins=(git colored-man cp vi-mode Z)
+plugins=(git colored-man-pages cp vi-mode Z zsh-syntax-highlighting)
 
 # User configuration
 
