@@ -73,7 +73,7 @@ set formatoptions+=mM
 nmap <C-t>   :tabnew<cr>
 nmap <C-p>   :tabprevious<cr>
 nmap <C-n>   :tabnext<cr>
-nmap <C-e>   :tabclose<cr>
+nmap <C-e>   :close<cr>
 nmap <C-b>   :sp<cr>
 nmap <C-c>   :vsp<cr>
 nmap <C-h>   :res
@@ -97,6 +97,7 @@ Plugin 'gmarik/Vundle.vim'
 " Plugin 'rust-lang/rust.vim'
 " go
 Plugin 'fatih/vim-go'
+Plugin 'nsf/gocode', {'rtp': 'vim/'}
 " python
 " Plugin 'klen/python-mode'
 " neocomplete
@@ -160,6 +161,9 @@ autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+
+setlocal omnifunc=gocode#Complete
 
 " -------------------for neosnippet------------------------------"
 " Plugin key-mappings.

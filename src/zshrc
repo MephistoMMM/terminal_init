@@ -65,12 +65,14 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 # set for arcanist
 export PATH="$PATH:$ARCAN/arcanist/bin"
 #path for go
-export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH:$GOROOT/bin"
 
 # python3 pack pythonPath
 export PYTHONPATH="$HOME/pypack"
 # go work path
+export GOROOT="/usr/local/go"
 export GOPATH="$HOME/Desktop/work/go"
+export PATH="$PATH:$GOPATH/bin"
 
 # node manager
 export NVM_DIR=~/.nvm
