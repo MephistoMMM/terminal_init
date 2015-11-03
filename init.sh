@@ -25,7 +25,7 @@ apt-get install python3 \
 apt-get install -y w3m
 
 #add powerline font
-git clone https://github.com/powerline/fonts.git ./src/ \
+git clone https://github.com/powerline/fonts.git ./src/fonts \
     && ./src/fonts/install.sh
 
 
