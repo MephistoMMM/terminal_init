@@ -1,8 +1,5 @@
 
 filetype on
-filetype plugin on 
-filetype indent on
-
 " Don't write backup file if vim is being called by "crontab -e"
 au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
 " Don't write backup file if vim is being called by "chpass"
@@ -79,7 +76,6 @@ nmap <C-n>   :tabnext<cr>
 nmap <C-e>   :tabclose<cr>
 nmap <C-b>   :sp<cr>
 nmap <C-c>   :vsp<cr>
-nmap <C-Tab> :tabnext<cr> 
 nmap <C-h>   :res
 nmap <C-l>   :vertical res 
 nmap <C-f>   :NERDTree<cr>
@@ -98,7 +94,15 @@ Plugin 'gmarik/Vundle.vim'
 " commonlisp
 " Plugin 'kovisoft/slimv'
 " rust
-Plugin 'rust-lang/rust.vim'
+" Plugin 'rust-lang/rust.vim'
+" go
+Plugin 'fatih/vim-go'
+" python
+" Plugin 'klen/python-mode'
+" neocomplete
+Plugin 'Shougo/neocomplete.vim'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
 " 注释
 Plugin 'scrooloose/nerdcommenter'
 " 代码提示
@@ -131,6 +135,7 @@ filetype plugin indent on    " required
 " " Put your non-Plugin stuff after this line
 "
 
+" for airline
 let g:airline_powerline_fonts = 1
 let g:airline_theme = "murmur"
 let g:airline#extensions#tabline#enabled = 1
@@ -142,3 +147,53 @@ let g:airline_section_b = airline#section#create_left(['PWD','%{getcwd()}'])
 let g:airline_section_c = airline#section#create_left(['FILE','file'])
 endfunction
 autocmd User AirlineAfterInit call AirlineInit()
+
+" -------------------for neocomplete------------------------------"
+" https://github.com/Shougo/neocomplete.vim
+let g:neocomplete#enable_at_startup = 1
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+
+" -------------------for neosnippet------------------------------"
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+"
+" " SuperTab like snippets behavior.
+" "imap <expr><TAB>
+" " \ pumvisible() ? "\<C-n>" :
+" " \ neosnippet#expandable_or_jumpable() ?
+" " \    "\<TAB>" : "\<Plug>(neosnippet_expand_or_jump)"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+"
+" " For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+" "
+
+" -------------------------for go ------------------------------"
+" https://github.com/fatih/vim-go
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1 
+
