@@ -59,6 +59,12 @@ ZSH_THEME="af-magic"
 plugins=(git colored-man-pages cp vi-mode Z zsh-syntax-highlighting)
 
 # User configuration
+# go work path
+export GOROOT="/usr/local/go"
+export GOPATH="$HOME/Desktop/work/go"
+
+# python3 pack pythonPath
+export PYTHONPATH="$HOME/pypack"
 
 # set convenient path
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
@@ -67,11 +73,6 @@ export PATH="$PATH:$ARCAN/arcanist/bin"
 #path for go
 export PATH="$PATH:$GOROOT/bin"
 
-# python3 pack pythonPath
-export PYTHONPATH="$HOME/pypack"
-# go work path
-export GOROOT="/usr/local/go"
-export GOPATH="$HOME/Desktop/work/go"
 export PATH="$PATH:$GOPATH/bin"
 
 # node manager
@@ -103,7 +104,7 @@ export SSH_KEY_PATH="~/.ssh/dsa_id"
 # run while zsh init
 # make fuck rather than fuck
 # use node4.0.0 default
-eval "nvm use 4.0.0"
+eval "nvm use 5.0.0"
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.

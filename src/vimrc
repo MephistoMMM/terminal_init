@@ -95,11 +95,21 @@ Plugin 'gmarik/Vundle.vim'
 " Plugin 'kovisoft/slimv'
 " rust
 " Plugin 'rust-lang/rust.vim'
+" |-------------------go----------------------------|
 " go
 Plugin 'fatih/vim-go'
+" when your change your GOPATH or start a new project , exec: 
+"   go get -u github.com/nsf/gocode 
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
+" a local func jamp
+"     go get -v code.google.com/p/rog-go/exp/cmd/godef
+"     go install -v code.google.com/p/rog-go/exp/cmd/godef
+Plugin 'dgryski/vim-godef'
 " python
 " Plugin 'klen/python-mode'
+" |-------------------------------------------------|
+"
+" |-------------------comman------------------------|
 " neocomplete
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'Shougo/neosnippet'
@@ -111,13 +121,26 @@ Plugin 'vim-scripts/AutoComplPop'
 " 文件树
 Plugin 'scrooloose/nerdtree'
 Plugin 'Raimondi/delimitMate'
-" 括号
-Plugin 'jiangmiao/auto-pairs'
-" js更漂亮
-Plugin 'pangloss/vim-javascript'
-Plugin 'bling/vim-airline'
+" add surrounding char for a word
+" ys -> create surround  + range [iw, aw, i], i), i", i', ip] + sigal
+" cs -> change surround  + sigal
+" ds -> delete surround  + sigal
+Plugin 'tpope/vim-surround'
 " rename {new name}
 Plugin 'danro/rename.vim'
+Plugin 'bling/vim-airline'
+" 括号
+Plugin 'jiangmiao/auto-pairs'
+" |-------------------------------------------------|
+"
+" |-------------------------js----------------------|
+" jsfmt :
+"   it dependence: npm install -g jsfmt
+Plugin 'mephux/vim-jsfmt'
+" js更漂亮
+Plugin 'pangloss/vim-javascript'
+" |-------------------------------------------------|
+"
 " " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -189,15 +212,27 @@ endif
 " https://github.com/fatih/vim-go
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>i :GoInstall<cr>
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>e <Plug>(go-rename)
 au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1 
+" godef https://github.com/dgryski/vim-godef
+let g:godef_split = 2
 
+" -------------------------for go ------------------------------"
+"  https://github.com/mephux/vim-jsfmt
+let g:js_fmt_autosave = 1
+let g:js_fmt_command = "jsfmt"
+let g:js_fmt_options = '--no-format'
+
+" ------------------------for auto close preview--------------------------------"
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
