@@ -5,7 +5,7 @@ apt-get install -y git zsh vim
 
 
 #vim and vimrc and vundle
-ls ~/.vim $$ rm -rf ~/.vim
+ls ~/.vim && rm -rf ~/.vim
 mkdir ~/.vim\
     && cp ./src/vimrc ~/.vim/vimrc \
     && chown -R $USER:$USER ~/.vim \
@@ -14,7 +14,7 @@ mkdir ~/.vim\
 
 
 #zsh and oh my zsh
-ls ~/.oh-my-zsh $$ rm -rf ~/.oh-my-zsh
+ls ~/.oh-my-zsh && rm -rf ~/.oh-my-zsh
 ls ~/.zshrc && rm ~/.zshrc
 git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh\
     && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting\
