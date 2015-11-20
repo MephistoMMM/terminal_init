@@ -123,7 +123,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Raimondi/delimitMate'
 " add surrounding char for a word
 " ys -> create surround  + range [iw, aw, i], i), i", i', ip] + sigal
-" cs -> change surround  + sigal
+" cs -> change surround  + origin_sigal + new_sigal
 " ds -> delete surround  + sigal
 Plugin 'tpope/vim-surround'
 " rename {new name}

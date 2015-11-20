@@ -16,7 +16,7 @@ mkdir ~/.vim\
 #zsh and oh my zsh
 ls ~/.oh-my-zsh && rm -rf ~/.oh-my-zsh
 ls ~/.zshrc && rm ~/.zshrc
-git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh\
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"\
     && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting\
     && cp ./src/zshrc ~/.zshrc\
     && chown $USER:$USER ~/.zshrc \
