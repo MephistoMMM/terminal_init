@@ -6,7 +6,7 @@ apt-get install -y git zsh wget
 #vim and vimrc and vundle
 VIM_TAR=v7.4.900.tar.gz
 VIM_PATH=vim-7.4.900
-apt-get install -y libncurses5-dev && apt-get remove -y vim
+apt-get install -y libncurses5-dev lua-dev && apt-get remove -y vim
 wget https://github.com/vim/vim/archive/$VIM_TAR \
     && tar -xzv -f ./$VIM_TAR \
     && cd ./$VIM_PATH && ./configure --with-features=huge --enable-rubyinterp --enable-cscope --enable-python3interp --enable-luainterp \
