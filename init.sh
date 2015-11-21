@@ -6,10 +6,11 @@ apt-get install -y git zsh wget
 #vim and vimrc and vundle
 VIM_TAR=v7.4.900.tar.gz
 VIM_PATH=vim-7.4.900
-apt-get install -y libncurses5-dev lua-dev && apt-get remove -y vim
+apt-get remove --purge vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common \
+    && apt-get install -y libncurses5-dev liblua5.1-dev luajit libluajit-5.1 
 wget https://github.com/vim/vim/archive/$VIM_TAR \
     && tar -xzv -f ./$VIM_TAR \
-    && cd ./$VIM_PATH && ./configure --with-features=huge --enable-rubyinterp --enable-cscope --enable-python3interp --enable-luainterp \
+    && cd ./$VIM_PATH && ./configure --with-features=huge --enable-rubyinterp --enable-cscope --enable-python3interp --enable-luainterp --with-luajit\
     && make \
     && make install && cd ../
 ls ~/.vim && rm -rf ~/.vim
