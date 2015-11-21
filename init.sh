@@ -1,10 +1,15 @@
 #/bin/bash
 
 apt-get update
-apt-get install -y git zsh vim 
+apt-get install -y git zsh wget
 
 
 #vim and vimrc and vundle
+wget https://github.com/vim/vim/archive/v7.4.900.tar.gz \
+    && tar -xzv -f ./v7.4.900.tar.gz \
+    && ./v7.4.900/configure --with-features=huge --enable-rubyinterp --enable-cscope --enable-python3interp --enable-luainterp
+    && make -C ./v7.4.900
+    && make -C ./v7.4.900 install
 ls ~/.vim && rm -rf ~/.vim
 mkdir ~/.vim\
     && cp ./src/vimrc ~/.vim/vimrc \
