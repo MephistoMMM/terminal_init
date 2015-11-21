@@ -26,7 +26,7 @@ ls ~/.oh-my-zsh && rm -rf ~/.oh-my-zsh
 ls ~/.zshrc && rm ~/.zshrc
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"\
     && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting\
-    && cp ./src/zshrc ~/.zshrc\
+    && cp ./src/zshrc.linux ~/.zshrc\
     && chown $USER:$USER ~/.zshrc \
     && chsh -s /bin/zsh
 

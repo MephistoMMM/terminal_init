@@ -1,7 +1,6 @@
 # Path to your oh-my-zsh installation.
 # font color (237,204,56)
 export ZSH=~/.oh-my-zsh
-export ARCAN=/usr/local/share/arcanist
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -78,8 +77,6 @@ export PATH="$PATH:$GOBIN"
 
 
 source $ZSH/oh-my-zsh.sh
-#set up tab completion for arcanist
-source $ARCAN/arcanist/resources/shell/bash-completion
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -98,12 +95,7 @@ source $ARCAN/arcanist/resources/shell/bash-completion
 export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # run while zsh init
-# node manager
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
 # export MANPATH="/usr/local/man:$MANPATH"
-# use node4.0.0 default
-eval "nvm use 5.0.0"
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -111,7 +103,7 @@ eval "nvm use 5.0.0"
 #
 # Example aliases
 alias p3='python3'
-alias netpart='sudo netstat -an | grep'
+alias netpart='sudo netstat -anp | grep'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
