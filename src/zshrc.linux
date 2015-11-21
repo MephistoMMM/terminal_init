@@ -69,8 +69,6 @@ export PYTHONPATH="$HOME/pypack"
 
 # set convenient path
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
-# set for arcanist
-export PATH="$PATH:$ARCAN/arcanist/bin"
 #path for go
 export PATH="$PATH:$GOROOT/bin"
 export PATH="$PATH:$GOBIN"
