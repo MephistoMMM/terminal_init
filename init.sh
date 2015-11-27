@@ -10,7 +10,14 @@ apt-get remove --purge vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-com
     && apt-get install -y libncurses5-dev liblua5.1-dev luajit libluajit-5.1 
 wget https://github.com/vim/vim/archive/$VIM_TAR \
     && tar -xzv -f ./$VIM_TAR \
-    && cd ./$VIM_PATH && ./configure --with-features=huge --enable-rubyinterp --enable-cscope --enable-python3interp --enable-luainterp --with-luajit\
+    && cd ./$VIM_PATH && ./configure \
+        --with-features=huge \
+        --enable-rubyinterp \
+        --enable-cscope \
+        --enable-python3interp \
+        --enable-pythoninterp \
+        --enable-luainterp \
+        --with-luajit \
     && make \
     && make install && cd ../
 ls ~/.vim && rm -rf ~/.vim

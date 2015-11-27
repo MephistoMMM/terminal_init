@@ -18,6 +18,9 @@ set autoread
 set nocompatible        " Use Vim defaults instead of 100% vi compatibility
 set backspace=2         " more powerful backspacing
 
+set mouse=a " allow mouse
+set scrolloff=10 " 光标在屏幕倒数10行时自动向下移
+
 " 代码着色
 syntax enable
 syntax on
@@ -41,13 +44,6 @@ set smartindent
 " 代码折叠
 "set foldmethod=marker
 
-"设置快速编辑.vimrc文件 ,e 编辑.vimrc
-" 快速修改 vimrc 文件
-map <silent> <leader>e :e $HOME/.vim/vimrc<cr>
-"保存.vimrc文件后会自动调用新的.vimrc
-autocmd! bufwritepost _vimrc source $HOME/.vim/_vimrc
-
-
 " 行号和标尺
 set number
 set ruler
@@ -56,16 +52,20 @@ set rulerformat=%15(%c%V\ %p%%%)
 " 命令行于状态行
 set ch=2
 set ls=2 " 始终显示状态行
+set wildmenu " 命令补全， 显示补全菜单
+set showcmd  " 右下角显示已输入的命令
 
 " Search Option
 set hlsearch  " Highlight search things
+set ignorecase " search时忽略大小写
+set smartcase  " search时，如果搜索命令中有大写，则记入大小写
           
-set encoding=utf-8
 "set fenc=cp936
 " English messages only
 "language messages zh_CN.utf-8
 set fencs=utf-8,gbk,chinese,latin1
 set formatoptions+=mM
+set encoding=utf-8
 
 " =============
 " " Key Shortcut
@@ -73,13 +73,16 @@ set formatoptions+=mM
 nmap <C-t>   :tabnew<cr>
 nmap <C-p>   :tabprevious<cr>
 nmap <C-n>   :tabnext<cr>
-nmap <C-e>   :close<cr>
-nmap <C-b>   :sp<cr>
-nmap <C-c>   :vsp<cr>
-nmap <C-h>   :res
-nmap <C-l>   :vertical res 
+nmap <C-c>   :close<cr>
+nmap <C-b>   :vsp<cr>
+nmap <C-h>   :sp<cr>
 nmap <C-f>   :NERDTree<cr>
 
+"设置快速编辑.vimrc文件 ,\e 编辑.vimrc
+" 快速修改 vimrc 文件
+map <silent> <leader>e :e $HOME/.vim/vimrc<cr>
+"保存.vimrc文件后会自动调用新的.vimrc
+autocmd! bufwritepost .vimrc source $HOME/.vim/.vimrc
 
 
 
@@ -114,6 +117,10 @@ Plugin 'dgryski/vim-godef'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
+" Track the engine.
+"Plugin 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
 " 注释
 Plugin 'scrooloose/nerdcommenter'
 " 代码提示
@@ -129,6 +136,7 @@ Plugin 'tpope/vim-surround'
 " rename {new name}
 Plugin 'danro/rename.vim'
 Plugin 'bling/vim-airline'
+Plugin 'easymotion/vim-easymotion'
 " 括号
 Plugin 'jiangmiao/auto-pairs'
 " |-------------------------------------------------|
@@ -159,7 +167,7 @@ filetype plugin indent on    " required
 " " Put your non-Plugin stuff after this line
 "
 
-" for airline
+" -------------------for airline------------------------------"
 let g:airline_powerline_fonts = 1
 let g:airline_theme = "murmur"
 let g:airline#extensions#tabline#enabled = 1
@@ -171,7 +179,27 @@ let g:airline_section_b = airline#section#create_left(['PWD','%{getcwd()}'])
 let g:airline_section_c = airline#section#create_left(['FILE','file'])
 endfunction
 autocmd User AirlineAfterInit call AirlineInit()
-
+" -------------------for airline------------------------------"
+"
+" -------------------for nerdtree------------------------------"
+" https://github.com/scrooloose/nerdtree
+"
+let NERDTreeShowLineNumbers=1
+let NERDTreeMouseMode=2
+let NERDTreeBookmarksSort=1
+let NERDTreeShowBookmarks=1
+" start nerdtree when vim startup if no file is open
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"
+" close nerdtree if nerdtree is the only window in vim
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" -------------------for nerdtree------------------------------"
+"
+" -------------------for auto-pairs-------------------------------"
+let g:AutoPairsShortcutJump='<C-l>'
+" -------------------for auto-pairs-------------------------------"
+"
 " -------------------for neocomplete------------------------------"
 " https://github.com/Shougo/neocomplete.vim
 let g:neocomplete#enable_at_startup = 1
@@ -187,27 +215,29 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 setlocal omnifunc=gocode#Complete
+" -------------------for neocomplete------------------------------"
 
 " -------------------for neosnippet------------------------------"
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
-"
-" " SuperTab like snippets behavior.
-" "imap <expr><TAB>
-" " \ pumvisible() ? "\<C-n>" :
-" " \ neosnippet#expandable_or_jumpable() ?
-" " \    "\<TAB>" : "\<Plug>(neosnippet_expand_or_jump)"
+
+ " SuperTab like snippets behavior.
+"imap <expr><TAB>
+ "\ pumvisible() ? 
+ "\ "\<C-n>" : neosnippet#expandable_or_jumpable() ?
+ "\ "\<TAB>": "\<Plug>(neosnippet_expand_or_jump)"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-"
-" " For conceal markers.
+
+ " For conceal markers.
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 " "
-
+" -------------------for neosnippet------------------------------"
+"
 " -------------------------for go ------------------------------"
 " https://github.com/fatih/vim-go
 au FileType go nmap <leader>r <Plug>(go-run)
@@ -226,13 +256,25 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1 
 " godef https://github.com/dgryski/vim-godef
 let g:godef_split = 2
-
-" -------------------------for jsfmt ------------------------------"
-"  https://github.com/mephux/vim-jsfmt
-"let g:js_fmt_autosave = 1
-"let g:js_fmt_command = "jsfmt"
-" let g:js_fmt_options = '--no-format' "no space with variable and '='
-
+" -------------------------for go ------------------------------"
+"
+" ------------------------for easymotion ------------------------------------"
+"  https://github.com/easymotion/vim-easymotion
+" Gif config
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+"
+" " These `n` & `N` mappings are options. You do not have to map `n` & `N` to
+" EasyMotion.
+" " Without these mappings, `n` & `N` works fine. (These mappings just provide
+" " different highlight method and have some other features )
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)")
+let g:EasyMotion_smartcase = 1
+" ------------------------for easymotion ------------------------------------"
+"
 " ------------------------for auto close preview--------------------------------"
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+" ------------------------for auto close preview--------------------------------"
+"

@@ -116,3 +116,5 @@ alias netpart='sudo netstat -an | grep'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 #. ~/.vim/bundle/powerline/powerline/bindings/zsh/powerline.zsh
+#
+#this just for django mysql 
