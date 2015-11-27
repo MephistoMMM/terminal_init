@@ -189,8 +189,9 @@ let NERDTreeMouseMode=2
 let NERDTreeBookmarksSort=1
 let NERDTreeShowBookmarks=1
 " start nerdtree when vim startup if no file is open
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"
 " close nerdtree if nerdtree is the only window in vim
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " -------------------for nerdtree------------------------------"
