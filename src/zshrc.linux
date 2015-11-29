@@ -59,7 +59,7 @@ plugins=(git colored-man-pages cp vi-mode Z zsh-syntax-highlighting)
 
 # User configuration
 # go work path
-export GOROOT="/usr/local/go"
+export GOROOT="/usr/lib/go"
 export GOPATH="$HOME/Desktop/work/go"
 export GOBIN="$GOPATH/bin"
 export GOPATH="$GOPATH/lib:$GOPATH"
@@ -101,7 +101,8 @@ export SSH_KEY_PATH="~/.ssh/dsa_id"
 #
 # Example aliases
 alias p3='python3'
-alias netpart='sudo netstat -anp | grep'
+alias netsgrep='sudo netstat -anp | grep'
+alias netsocks='sudo netstat -atulnp'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
