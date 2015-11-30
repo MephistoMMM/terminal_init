@@ -39,8 +39,8 @@ wget -O $VIM_PATH/$VIM_TAR https://github.com/vim/vim/archive/$VIM_TAR \
 test -e $INIT_HOME/.vim && -rf $INIT_HOME/.vim
 mkdir $INIT_HOME/.vim\
     && cp $GENPATH/src/vimrc $INIT_HOME/.vim/vimrc \
-    && chown -R $INIT_USER:$INIT_USER $INIT_HOME/.vim \
     && git clone https://github.com/VundleVim/Vundle.vim.git $INIT_HOME/.vim/bundle/Vundle.vim \
+    && chown -R $INIT_USER:$INIT_USER $INIT_HOME/.vim \
     && vim +source$INIT_HOME/.vim/vimrc +PluginInstall +qall
 
 rm -rf $VIM_PATH

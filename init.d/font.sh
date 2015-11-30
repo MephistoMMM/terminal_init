@@ -16,3 +16,5 @@ fi
 
 git clone https://github.com/powerline/fonts.git $FONTS_PATH/powerlinefonts \
         && $FONTS_PATH/powerlinefonts/install.sh
+
+rm -rf $FONTS_PATH/powerlinefonts

@@ -15,5 +15,6 @@
 
 source $GENPATH/lib/package.sh
 
-install_packages python3 python3-pip python-pip
+install_packages python3 
+install_packages python3-pip python-pip
 install_packages w3m
