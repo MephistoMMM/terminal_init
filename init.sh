@@ -1,106 +1,52 @@
 #!/bin/sh
 # This is a script to init a linux sys's base env
 #
+# You should put your init script in ./init.d
+# but your script name should be *.sh
+# and make them execuable!(chmod u+x ./init.d/yourscript.sh)
+# 
+# the dir tmp is created for cache tmpfile
+# the dir src is created for useful init file like config file(e.g. vimrc)
+# 
+# this init script init things for a user, so we need a parament to expact username
+# if you do this, the INIT_USER=username , INIT_HOME=/home/username, otherwise 
+# INIT_USER=root, INIT_HOME=/root
+#
 # Usage: 
-#      init.sh {username} 
+#      init.sh [ username ] 
 #
 # Author Mephis Pheies
 # Email mephistommm@gmail.com
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
-[ $1 == "" ] && export INIT_USER=root || export INIT_USER=$1
+[ $1 == "" ] && export INIT_USER="root" || export INIT_USER=$1
+[ $INIT_USER == "root" ] && export INIT_HOME=/root || export INIT_HOME=/home/$INIT_USER
 
-#define package manager method
-export PACKAGE_UPDATE="apt-get update"
-export PACKAGE_INSTALL="apt-get install -y"
-export PACKAGE_REMOVE="apt-get remove -y"
-export PACKAGE_REMOVE_STRICT="apt-get remove --purge -y"
+#check user 
+if [ $(cut -d ':' -f1 /etc/passwd | grep `$INIT_USER` ) == "" ];then
+    echo -e "User $INIT_USER don't exist!"
+    exit 1
+fi
 
-function change_pkg_manager_by_sys(){ 
-    #other sys use other package manager
+#get genpath
+cd $(dirname $0)
+export GENPATH=$(pwd)
 
-    if [ $(uname -r | grep 'ARCH') != "" ] ; then
-        export PACKAGE_UPDATE="pacman -Syy --noconfirm"
-        export PACKAGE_INSTALL="pacman -S --noconfirm"
-        export PACKAGE_REMOVE="pacman -R --noconfirm"
-        export PACKAGE_REMOVE_STRICT="pacman -Rnc --noconfirm"
-    fi
+#create tmp dir
+if [ ! -e $GENPATH/tmp ]; then
+    mkdir $GENPATH/tmp
+fi
 
-}
-function install_packages(){
-    sh -c "$PACKAGE_INSTALL $@"
-}
-function remove_packages(){
-    # $1 == "1" , use strict mode
-    # else normal mode
-    if [ $1 == "1" ]; then
-        FUNC_REMOVE_PACKAGE=$PACKAGE_REMOVE_STRICT
-    else
-        FUNC_REMOVE_PACKAGE=$PACKAGE_REMOVE
-    fi
-    # delete $1
-    shift 
-    sh -c "$FUNC_REMOVE_PACKAGE $@"
-}
-function update_packages(){
-    sh -c "$PACKAGE_UPDATE $@"
-}
-function init_vim(){
-    #vim and vimrc and vundle
-    VIM_TAR=v7.4.900.tar.gz
-    VIM_PATH=vim-7.4.900
-    remove_packages 1 vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common
-    install_packages libncurses5-dev liblua5.1-dev luajit libluajit-5.1 
-    wget https://github.com/vim/vim/archive/$VIM_TAR \
-        && tar -xzv -f ./$VIM_TAR \
-        && cd ./$VIM_PATH && ./configure \
-            --with-features=huge \
-            --enable-rubyinterp \
-            --enable-cscope \
-            --enable-python3interp \
-            --enable-pythoninterp \
-            --enable-luainterp \
-            --with-luajit \
-        && make \
-        && make install && cd ../
-    test -e ~/.vim && -rf ~/.vim
-    mkdir ~/.vim\
-        && cp ./src/vimrc ~/.vim/vimrc \
-        && chown -R $INIT_USER:$INIT_USER ~/.vim \
-        && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim \
-        && vim +source~/.vim/vimrc +PluginInstall +qall
-}
-function init_zsh(){
-    #zsh and oh my zsh
-    test -e ~/.oh-my-zsh && rm -rf ~/.oh-my-zsh
-    test -e ~/.zshrc && rm ~/.zshrc
-    #TODO change curl way to git clone
-    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"\
-        && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting\
-        && cp ./src/zshrc.linux ~/.zshrc\
-        && chown $INIT_USER:$INIT_USER ~/.zshrc \
-        && chsh -s /bin/zsh
+#add package function lib
+source $GENPATH/lib/package.sh
 
-}
-function init_font(){
-    #add powerline font
-    git clone https://github.com/powerline/fonts.git ./src/powerlinefonts \
-        && ./src/powerlinefonts/install.sh
-}
-
-# install base solf
-change_pkg_manager_by_sys
 update_packages
-install_packages git zsh wget
+install_packages git wget curl
 
-# install python3
-# install python-pip and python3-pip
-install_packages python3 python-pip python3-pip
+for init_script in $GENPATH/init.d/*.sh; do
+    if [ -x $GENPATH/init.d/$init_script ]; then
+        $GENPATH/init.d/$init_script
+    fi
+done
 
-# install w3m
-install_packages w3m
-
-init_vim
-init_font
-init_zsh
-
+echo -e "Congratulation!"; exit 0
