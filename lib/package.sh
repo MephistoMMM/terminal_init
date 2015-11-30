@@ -27,7 +27,7 @@ function change_pkg_manager_by_sys(){
 
 }
 function install_packages(){
-    sh -c "$PACKAGE_INSTALL $@"
+    sh -c "$PACKAGE_INSTALL $*"
 }
 function remove_packages(){
     # $1 == "1" , use strict mode
@@ -39,10 +39,10 @@ function remove_packages(){
     fi
     # delete $1
     shift 
-    sh -c "$FUNC_REMOVE_PACKAGE $@"
+    sh -c "$FUNC_REMOVE_PACKAGE $*"
 }
 function update_packages(){
-    sh -c "$PACKAGE_UPDATE $@"
+    sh -c "$PACKAGE_UPDATE $*"
 }
 
 change_pkg_manager_by_sys

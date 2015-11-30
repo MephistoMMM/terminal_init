@@ -19,11 +19,11 @@
 # Email mephistommm@gmail.com
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
-[ $1 == "" ] && export INIT_USER="root" || export INIT_USER=$1
+[ $# -lt 1 ] && export INIT_USER="root" || export INIT_USER=$1
 [ $INIT_USER == "root" ] && export INIT_HOME=/root || export INIT_HOME=/home/$INIT_USER
 
 #check user 
-if [ $(cut -d ':' -f1 /etc/passwd | grep `$INIT_USER` ) == "" ];then
+if [ $(cut -d ':' -f1 /etc/passwd | grep "$INIT_USER" ) == "" ];then
     echo -e "User $INIT_USER don't exist!"
     exit 1
 fi
@@ -44,8 +44,8 @@ update_packages
 install_packages git wget curl
 
 for init_script in $GENPATH/init.d/*.sh; do
-    if [ -x $GENPATH/init.d/$init_script ]; then
-        $GENPATH/init.d/$init_script
+    if [ -x $init_script ]; then
+        $init_script
     fi
 done
 
