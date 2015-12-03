@@ -36,7 +36,7 @@ wget -O $VIM_PATH/$VIM_TAR https://github.com/vim/vim/archive/$VIM_TAR \
     && make \
     && make install 
 
-test -e $INIT_HOME/.vim && -rf $INIT_HOME/.vim
+test -e $INIT_HOME/.vim && rm -rf $INIT_HOME/.vim
 mkdir $INIT_HOME/.vim\
     && cp $GENPATH/src/vimrc $INIT_HOME/.vim/vimrc \
     && git clone https://github.com/VundleVim/Vundle.vim.git $INIT_HOME/.vim/bundle/Vundle.vim \
