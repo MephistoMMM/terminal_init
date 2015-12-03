@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # The script init vim!
 # I install vim from source for I need more powerful vim

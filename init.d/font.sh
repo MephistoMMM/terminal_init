@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # The script init powerlinefonts!
 # for my vim plugins
