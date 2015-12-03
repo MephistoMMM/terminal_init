@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # This is a script to init a linux sys's base env
 #
 # You should put your init script in ./init.d
