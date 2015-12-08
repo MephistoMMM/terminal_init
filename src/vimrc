@@ -56,8 +56,8 @@ set showcmd  " 右下角显示已输入的命令
 
 " Search Option
 set hlsearch  " Highlight search things
-set ignorecase " search时忽略大小写
-set smartcase  " search时，如果搜索命令中有大写，则记入大小写
+"set ignorecase " search时忽略大小写
+"set smartcase  " search时，如果搜索命令中有大写，则记入大小写
           
 "set fenc=cp936
 " English messages only
@@ -121,7 +121,19 @@ Plugin 'dgryski/vim-godef'
 " Plugin 'klen/python-mode'
 " |-------------------------------------------------|
 "
+" |-------------------docker------------------------|
+" dockerfile syntax
+Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+" |-------------------------------------------------|
+"
+" |-------------------nginx-------------------------|
+" nginx syntax 
+Plugin 'evanmiller/nginx-vim-syntax'
+" |-------------------------------------------------|
+"
 " |-------------------comman------------------------|
+" molokai
+Plugin 'MephistoMMM/molokai'
 " neocomplete
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'Shougo/neosnippet'
@@ -281,6 +293,12 @@ map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
 let g:EasyMotion_smartcase = 1
 " ------------------------for easymotion ------------------------------------"
+"  
+" ------------------------for vim colorscheme-----------------------------------"
+set background=dark
+let g:molokai_original = 1
+colorscheme molokai
+" ------------------------for tomorrow theme------------------------------------"
 "
 " ------------------------for auto close preview--------------------------------"
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
