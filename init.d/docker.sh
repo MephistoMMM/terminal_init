@@ -18,7 +18,7 @@ else
     wget -qO- https://get.docker.com/ | sh
 fi
 
-usermod -aG docker $INIT_USER
+gpasswd -a $INIT_USER docker
     
 
 
