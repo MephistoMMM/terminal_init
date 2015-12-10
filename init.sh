@@ -58,7 +58,8 @@ if [ $# -eq 0 ]; then
 else
     for mode in $@; do
         mode_path=$GENPATH/init.d/$mode.sh
-        if [ -e $mode_path -a -x $mode_path]; then
+        if [ -e $mode_path -a -x $mode_path ]; then
+            echo -e $mode_path
             $mode_path
         fi
     done
