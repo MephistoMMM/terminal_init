@@ -12,24 +12,24 @@ autocmd FileType python setlocal et sta sw=4 sts=4
 autocmd FileType javascript setlocal et sta sw=2 sts=2
 
 set autoread
-"set guifont=Sauce\ Code\ Powerline\ Light:h18
 
 set nocompatible        " Use Vim defaults instead of 100% vi compatibility
 set backspace=2         " more powerful backspacing
 
 set mouse=a " allow mouse
 set scrolloff=10 " 光标在屏幕倒数10行时自动向下移
+set cursorline
 
-" 代码着色
+" syntax color
 syntax enable
 syntax on
 
-" 标签页
+" tag page
 set tabpagemax=9
 set showtabline=2
 
 
-" 制表符
+" tab setting
 set tabstop=4
 set expandtab
 set smarttab
