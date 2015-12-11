@@ -40,6 +40,7 @@ test -e $INIT_HOME/.vim && rm -rf $INIT_HOME/.vim
 mkdir $INIT_HOME/.vim\
     && cp $GENPATH/src/vimrc $INIT_HOME/.vim/vimrc \
     && git clone https://github.com/VundleVim/Vundle.vim.git $INIT_HOME/.vim/bundle/Vundle.vim \
+    && git clone https://github.com/MephistoMMM/molokai.git  $INIT_HOME/.vim/bundle/molokai \
     && chown -R $INIT_USER:$INIT_USER $INIT_HOME/.vim \
     && vim +source$INIT_HOME/.vim/vimrc +PluginInstall +qall
 
