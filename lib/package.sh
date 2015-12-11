@@ -15,10 +15,16 @@ export PACKAGE_INSTALL="apt-get install -y"
 export PACKAGE_REMOVE="apt-get remove -y"
 export PACKAGE_REMOVE_STRICT="apt-get remove --purge -y"
 
+function is_archlinux(){
+    uname -r  | grep "ARCH"
+    return $?;
+}
+
 function change_pkg_manager_by_sys(){ 
     #other sys use other package manager
 
-    if [ $(uname -r | grep 'ARCH') != "" ] ; then
+    is_archlinux
+    if [  $? -eq 0 ] ; then
         export PACKAGE_UPDATE="pacman -Syy --noconfirm"
         export PACKAGE_INSTALL="pacman -S --noconfirm"
         export PACKAGE_REMOVE="pacman -R --noconfirm"
