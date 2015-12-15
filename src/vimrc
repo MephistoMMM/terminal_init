@@ -326,7 +326,7 @@ omap / <Plug>(easymotion-tn)
 " " different highlight method and have some other features )
 map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
-let g:EasyMotion_smartcase = 1
+let g:EasyMotion_smartcase = 0
 " ------------------------for easymotion ------------------------------------"
 "
 " ------------------------for undotree------------------------------------"
