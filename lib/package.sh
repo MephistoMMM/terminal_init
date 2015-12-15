@@ -14,6 +14,7 @@ export PACKAGE_UPDATE="apt-get update"
 export PACKAGE_INSTALL="apt-get install -y"
 export PACKAGE_REMOVE="apt-get remove -y"
 export PACKAGE_REMOVE_STRICT="apt-get remove --purge -y"
+export IS_ARCHLINUX="0"
 
 function is_archlinux(){
     uname -r  | grep "ARCH"
@@ -29,6 +30,7 @@ function change_pkg_manager_by_sys(){
         export PACKAGE_INSTALL="pacman -S --noconfirm"
         export PACKAGE_REMOVE="pacman -R --noconfirm"
         export PACKAGE_REMOVE_STRICT="pacman -Rnc --noconfirm"
+        export IS_ARCHLINUX="1"
     fi
 
 }
