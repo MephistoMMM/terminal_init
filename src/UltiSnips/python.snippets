@@ -1,0 +1,22 @@
+# from ... import ... as
+snippet fia "from ... import ... as " 
+from $1 import $2 as $3
+endsnippet
+
+# from ... import ... but has no as 
+# I think it is more useful
+snippet fina "from ... import ... " 
+from $1 import $2 
+endsnippet
+
+# init python
+snippet ipy "init python3 file" 
+#!/usr/bin/env python3
+"""
+${1:description}
+
+Author: Mephis Pheies
+Email: mephistommm@gmail.com
+"""
+
+endsnippet

@@ -1,0 +1,21 @@
+# This file define the snipets used at all type files
+#
+# Index:
+#	inheart ----------------- The statement in The Son of God
+#	date    ----------------- date.dot(format: dd.mm.YYYY)
+#	
+
+
+# b means this snippet is used while cursor at the beginning of line 
+#snippet Tab_trigger "Description" b
+#endsnippet
+
+snippet inheart "for every one ... be abased" 
+For every one that exalteth himself shall be abased.
+endsnippet
+
+# date (format: dd.mm.YYYY)
+snippet date.dot "dd.mm.YYYY"
+${1:`date +%d`}.${2:`date +%m`}.`date +%Y`
+endsnippet
+

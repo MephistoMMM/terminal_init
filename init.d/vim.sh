@@ -30,7 +30,6 @@ wget -O $VIM_PATH/$VIM_TAR https://github.com/vim/vim/archive/$VIM_TAR \
         --enable-rubyinterp \
         --enable-cscope \
         --enable-python3interp \
-        --enable-pythoninterp \
         --enable-luainterp \
         --with-luajit \
     && make \
@@ -43,14 +42,23 @@ else
 fi
 
 test -e $INIT_HOME/.vim && rm -rf $INIT_HOME/.vim
-mkdir $INIT_HOME/.vim \
-    && cp $GENPATH/src/vimrc $INIT_HOME/.vim/vimrc \
-    && git clone https://github.com/VundleVim/Vundle.vim.git $INIT_HOME/.vim/bundle/Vundle.vim \
-    && git clone https://github.com/MephistoMMM/molokai.git  $INIT_HOME/.vim/bundle/molokai \
-    && mkdir $INIT_HOME/.vim/undodir \
-    && touch $INIT_HOME/.vim/.NERDTreeBookmarks \
-    && chown -R $INIT_USER:$INIT_USER $INIT_HOME/.vim \
-    && vim +source$INIT_HOME/.vim/vimrc +PluginInstall +qall
+mkdir $INIT_HOME/.vim 
+cp $GENPATH/src/vimrc $INIT_HOME/.vim/vimrc 
+git clone https://github.com/VundleVim/Vundle.vim.git $INIT_HOME/.vim/bundle/Vundle.vim 
+
+# for my color
+git clone https://github.com/MephistoMMM/molokai.git  $INIT_HOME/.vim/bundle/molokai 
+
+#for undotree and nerdtree
+mkdir $INIT_HOME/.vim/undodir 
+touch $INIT_HOME/.vim/.NERDTreeBookmarks 
+
+#for ultisnips
+cp -R $GENPATH/src/UltiSnips $INIT_HOME/.vim
+
+#change mod
+chown -R $INIT_USER:$INIT_USER $INIT_HOME/.vim 
+vim +source$INIT_HOME/.vim/vimrc +PluginInstall +qall
 
 rm -rf $VIM_PATH
 

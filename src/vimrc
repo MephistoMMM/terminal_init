@@ -1,10 +1,10 @@
-filetype on
 " Don't write backup file if vim is being called by "crontab -e"
 au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
 " Don't write backup file if vim is being called by "chpass"
 au BufWrite /private/etc/pw.* set nowritebackup nobackup
 " set .rs file is rust
 au BufNewFile,BufWrite,BufRead *.rs set filetype=rust
+au BufNewFile,BufWrite,BufRead *.snippets set filetype=snippets
 au BufRead,BufNewFile *.asd set filetype=lisp
 
 " autocmd 系列
@@ -73,7 +73,7 @@ set fencs=utf-8,gbk,chinese,latin1
 set formatoptions+=mM
 set encoding=utf-8
 
-" ----------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
 " -----------------------------Key Shortcut-----------------------------------
 " ----------------------------------------------------------------------------
 "
@@ -91,6 +91,14 @@ nnoremap <silent> <C-g>   :UndotreeToggle<cr>
 " -----------------------------Insert-------------------------------"
 inoremap <C-j> <ESC>o
 " -----------------------------Insert-------------------------------"
+"
+" -----------------------------Visual-------------------------------"
+" paset cover a visual region
+vnoremap P dp
+" -----------------------------Visual-------------------------------"
+"
+" -----------------------------Exec-------------------------------"
+" -----------------------------Exec-------------------------------"
 
 
 " edit .vimrc file conveniently , <leader>e to edit .vimrc
@@ -99,7 +107,8 @@ map <silent> <leader>e :e $HOME/.vim/vimrc<cr>
 autocmd! bufwritepost .vimrc source $HOME/.vim/.vimrc
 
 
-
+"for ultisnips
+filetype off
 " ------------------------------------------------------------------------------
 " ---------------------------------Plugin Manager-------------------------------
 " ------------------------------------------------------------------------------
@@ -144,10 +153,8 @@ Plugin 'evanmiller/nginx-vim-syntax'
 Plugin 'MephistoMMM/molokai'
 " neocomplete
 Plugin 'Shougo/neocomplete.vim'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
 " Track the engine.
-"Plugin 'SirVer/ultisnips'
+Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
 " 注释
@@ -196,7 +203,7 @@ Plugin 'plasticboy/vim-markdown'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " " To ignore plugin indent changes, instead use:
-" "filetype plugin on
+" filetype plugin on
 " "
 " " Brief help
 " " :PluginList       - lists configured plugins
@@ -256,44 +263,68 @@ let g:AutoPairsShortcutJump='<C-l>'
 " while file is vim or html ,add '<' complite
 au FileType vim,html let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`','<':'>'}
 " -------------------for auto-pairs-------------------------------"
-"
+"   
 " -------------------for neocomplete------------------------------"
 " https://github.com/Shougo/neocomplete.vim
 let g:neocomplete#enable_at_startup = 1
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  "return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <BS>: close popup and delete backword char.
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
 
 setlocal omnifunc=gocode#Complete
 " -------------------for neocomplete------------------------------"
+"
+" -------------------for ultisnips------------------------------"
+" https://github.com/SirVer/ultisnips
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsUsePythonVersion = 3
+let g:UltiSnipsSnippetDirectories=['UltiSnips']
+let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
+let g:UltiSnipsExpandTrigger="<C-k>"
+let g:UltiSnipsJumpForwardTrigger="<C-k>"
+let g:UltiSnipsJumpBackwardTrigger="<C-;>"
 
-" -------------------for neosnippet------------------------------"
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
- " SuperTab like snippets behavior.
-"imap <expr><TAB>
-"\ pumvisible() ? 
-"\ "\<C-n>" : neosnippet#expandable_or_jumpable() ?
-"\ "\<TAB>": "\<Plug>(neosnippet_expand_or_jump)"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
- " For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-" "
-" -------------------for neosnippet------------------------------"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+nnoremap <leader>us :UltiSnipsEdit<CR>
+" -------------------for ultisnips------------------------------"
 "
 " -------------------------for go ------------------------------"
 " https://github.com/fatih/vim-go
@@ -324,15 +355,15 @@ omap / <Plug>(easymotion-tn)
 " EasyMotion.
 " " Without these mappings, `n` & `N` works fine. (These mappings just provide
 " " different highlight method and have some other features )
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
-let g:EasyMotion_smartcase = 1
+" map  n <Plug>(easymotion-next)
+" map  N <Plug>(easymotion-prev)
+let g:EasyMotion_smartcase = 0
 " ------------------------for easymotion ------------------------------------"
 "
 " ------------------------for undotree------------------------------------"
 " https://github.com/mbbill/undotree
 let g:undotree_SetFocusWhenToggle = 1
-function! s:undotree_CustomMap()
+function! g:Undotree_CustomMap()
     map <buffer> <c-n> J
     map <buffer> <c-p> K
 endfunction
