@@ -58,8 +58,8 @@ touch $INIT_HOME/.vim/.NERDTreeBookmarks
 cp -R $GENPATH/src/UltiSnips $INIT_HOME/.vim
 
 #change mod
-chown -R $INIT_USER:$INIT_USER $INIT_HOME/.vim 
 vim +source$INIT_HOME/.vim/vimrc +PluginInstall +qall
+chown -R $INIT_USER:$INIT_USER $INIT_HOME/.vim 
 
 rm -rf $VIM_PATH
 
