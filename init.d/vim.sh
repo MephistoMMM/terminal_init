@@ -21,7 +21,8 @@ VIM_TAR=v7.4.900.tar.gz
 VIM_SRC_PATH=vim-7.4.900
 
 remove_packages 1 vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common
-install_packages libncurses5-dev liblua5.1-dev luajit libluajit-5.1 
+install_packages libncurses5-dev liblua5.1-dev libluajit-5.1 
+install_packages luajit
 
 wget -O $VIM_PATH/$VIM_TAR https://github.com/vim/vim/archive/$VIM_TAR \
     && tar -xzv -f $VIM_PATH/$VIM_TAR -C $VIM_PATH\
@@ -57,9 +58,8 @@ touch $INIT_HOME/.vim/.NERDTreeBookmarks
 git clone https://github.com/MephistoMMM/USlibrary.git $INIT_HOME/.vim/UltiSnips
 
 #change mod
-chown -R $INIT_USER:$INIT_USER $INIT_HOME/.vim 
-
 vim +source$INIT_HOME/.vim/vimrc +PluginInstall +qall
+chown -R $INIT_USER:$INIT_USER $INIT_HOME/.vim 
 
 rm -rf $VIM_PATH
 
