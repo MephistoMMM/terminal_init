@@ -54,10 +54,11 @@ mkdir $INIT_HOME/.vim/undodir
 touch $INIT_HOME/.vim/.NERDTreeBookmarks 
 
 #for ultisnips
-cp -R $GENPATH/src/UltiSnips $INIT_HOME/.vim
+git clone https://github.com/MephistoMMM/USlibrary.git $INIT_HOME/.vim/UltiSnips
 
 #change mod
 chown -R $INIT_USER:$INIT_USER $INIT_HOME/.vim 
+
 vim +source$INIT_HOME/.vim/vimrc +PluginInstall +qall
 
 rm -rf $VIM_PATH
