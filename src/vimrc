@@ -73,6 +73,7 @@ set fencs=utf-8,gbk,chinese,latin1
 set formatoptions+=mM
 set encoding=utf-8
 
+let mapleader=','
 " ------------------------------------------------------------------------------
 " -----------------------------Key Shortcut-----------------------------------
 " ----------------------------------------------------------------------------
@@ -149,6 +150,14 @@ Plugin 'evanmiller/nginx-vim-syntax'
 " |-------------------------------------------------|
 "
 " |-------------------comman------------------------|
+" auto mkdir
+" https://github.com/vim-scripts/auto_mkdir
+Plugin 'vim-scripts/auto_mkdir'
+" https://github.com/tpope/vim-abolish
+" :Abolish 
+" :Subvert(or just :S) more powerful than s
+" map  cr(s|c|u|m|...)
+Plugin 'tpope/vim-abolish'
 " molokai
 Plugin 'MephistoMMM/molokai'
 " neocomplete
@@ -301,7 +310,7 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=python3complete#Complete
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
@@ -379,13 +388,13 @@ endif
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_error_symbol             = '✗'
+let g:syntastic_warning_symbol           = '⚠'
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_auto_jump = 3
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_auto_loc_list            = 1
+let g:syntastic_auto_jump                = 3
+let g:syntastic_check_on_open            = 0
+let g:syntastic_check_on_wq              = 0
 " for python
 au FileType python let g:syntastic_python_pylint_post_args = '--msg-template="{path}:{line}:{column}:{C}: [{symbol} {msg_id}] {msg}"'
 " Syntastic check
@@ -426,6 +435,12 @@ set background=dark
 let g:molokai_original = 1
 colorscheme molokai
 " ------------------------for vim colorscheme-----------------------------------"
+"
+" ------------------------for tabular-----------------------------------"
+"  https://github.com/godlygeek/tabular
+nnoremap <Leader>a :Tabularize 
+vnoremap <Leader>a :Tabularize 
+" ------------------------for tabular-----------------------------------"
 "
 " ------------------------for auto close preview--------------------------------"
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
