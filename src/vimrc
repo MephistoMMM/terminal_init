@@ -180,6 +180,7 @@ Plugin 'tpope/vim-surround'
 " rename {new name}
 Plugin 'danro/rename.vim'
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'easymotion/vim-easymotion'
 " 括号
 Plugin 'jiangmiao/auto-pairs'
