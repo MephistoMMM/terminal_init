@@ -1,83 +1,84 @@
-" Don't write backup file if vim is being called by "crontab -e"
-au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
-" Don't write backup file if vim is being called by "chpass"
-au BufWrite /private/etc/pw.* set nowritebackup nobackup
-" set .rs file is rust
-au BufNewFile,BufWrite,BufRead *.rs set filetype=rust
-au BufNewFile,BufWrite,BufRead *.snippets set filetype=snippets
-au BufRead,BufNewFile *.asd set filetype=lisp
-
-" autocmd 系列
-autocmd FileType python setlocal et sta sw=4 sts=4
-autocmd FileType javascript setlocal et sta sw=2 sts=2
-autocmd FileType yaml setlocal et sta sw=2 sts=2
-
 " TODO: function list
-"       useful snippets
-"       <html>
-"       mark manage
-"       js syntastic
-
-set autoread
-
-set nocompatible        " Use Vim defaults instead of 100% vi compatibility
-set backspace=2         " more powerful backspacing
-
-set mouse=a " allow mouse
-set scrolloff=10 " 光标在屏幕倒数10行时自动向下移
-set cursorline
-
-" syntax color
-syntax enable
-syntax on
-
-" tag page
-set tabpagemax=9
-set showtabline=2
 
 
-" tab setting
-set tabstop=4
-set expandtab
+" Space&Tabs-----------------------------------
+set tabstop=4  " tab setting
+set expandtab   " Tabs are spaces
 set smarttab
 set shiftwidth=4
 set softtabstop=4
-
-" 缩进
-set autoindent
+set autoindent 
 set smartindent
+autocmd FileType python setlocal et sta sw=4 sts=4
+autocmd FileType html,css,javascript setlocal et sta sw=2 sts=2
+autocmd FileType yaml setlocal et sta sw=2 sts=2
 
-" 代码折叠
-"set foldmethod=marker
 
-" 行号和标尺
+" UI Config-----------------------------------
 set number
+set relativenumber
 set ruler
 set rulerformat=%15(%c%V\ %p%%%)
-
 " 命令行于状态行
 set ch=2
 set ls=2 " 始终显示状态行
 set wildmenu " 命令补全， 显示补全菜单
 set showcmd  " 右下角显示已输入的命令
+" tag page
+set tabpagemax=9
+set showtabline=2
+set cursorline " highlight the line which cursor on
 
-" Search Option
+
+" FileType-----------------------------------
+" set .rs file is rust
+au BufNewFile,BufWrite,BufRead *.rs set filetype=rust
+au BufNewFile,BufWrite,BufRead *.snippets set filetype=snippets
+au BufRead,BufNewFile *.asd set filetype=lisp
+
+
+" Special--------------------
+set autoread    " When a file has been detected to have been changed outside of Vim , automatically read it again.
+set nocompatible  " Use Vim defaults instead of 100% vi compatibility
+set backspace=2   " more powerful backspacing
+set mouse=a     " allow mouse
+set scrolloff=10 " 光标在屏幕倒数10行时自动向下移
+"set clipboard=unnamed " Can command v to other place
+set noerrorbells " No noisy error bell
+set visualbell
+set vb t_vb=
+set tm=500
+let mapleader=','
+
+
+" Folding-----------------------------------
+set foldenable " Enable folding
+set foldlevelstart=10 " Open most folds by default
+set foldmethod=syntax " Fold based on syntax level
+set foldnestmax=10 " 10 folds max
+
+
+" Search------------------------------------
 set hlsearch  " Highlight search things
 "set ignorecase " search时忽略大小写
 "set smartcase  " search时，如果搜索命令中有大写，则记入大小写
+
+
+" No backup--------------------
+set nobackup
+set nowb
+" set noswapfile
+
           
-"set fenc=cp936
+" Encoding--------------------
 " English messages only
 "language messages zh_CN.utf-8
 set fencs=utf-8,gbk,chinese,latin1
 set formatoptions+=mM
 set encoding=utf-8
 
-let mapleader=','
-" ------------------------------------------------------------------------------
-" -----------------------------Key Shortcut-----------------------------------
-" ----------------------------------------------------------------------------
-"
+
+" Key Shortcut-----------------------------------
 " -----------------------------Normal-------------------------------"
 nnoremap <C-t>   :tabnew<cr>
 nnoremap <C-p>   :tabprevious<cr>
@@ -311,7 +312,7 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType python setlocal omnifunc=python3complete#Complete
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
@@ -432,9 +433,7 @@ let g:expand_region_text_objects = {
 " ------------------------for vim-expand-region----------------------------------"
 "
 " ------------------------for vim colorscheme-----------------------------------"
-set background=dark
 let g:molokai_original = 1
-colorscheme molokai
 " ------------------------for vim colorscheme-----------------------------------"
 "
 " ------------------------for tabular-----------------------------------"
@@ -448,3 +447,9 @@ autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 " ------------------------for auto close preview--------------------------------"
 "
+
+" Colors-----------------------------------
+syntax on
+syntax enable " syntax color
+set background=dark
+colorscheme molokai
