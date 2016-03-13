@@ -1,4 +1,9 @@
-" TODO: function list
+" TODO: 
+"   - source insight mode(like taglist)
+" Dependencies: 
+"   - Interface: python3 , Lua
+"   - util: ctags , cscope
+"   - plugin: MephistoMMM/molokai
 
 
 " Space&Tabs-----------------------------------
@@ -11,23 +16,7 @@ set autoindent
 set smartindent
 autocmd FileType python setlocal et sta sw=4 sts=4
 autocmd FileType html,css,javascript setlocal et sta sw=2 sts=2
-autocmd FileType yaml setlocal et sta sw=2 sts=2
-
-
-" UI Config-----------------------------------
-set number
-set relativenumber
-set ruler
-set rulerformat=%15(%c%V\ %p%%%)
-" 命令行于状态行
-set ch=2
-set ls=2 " 始终显示状态行
-set wildmenu " 命令补全， 显示补全菜单
-set showcmd  " 右下角显示已输入的命令
-" tag page
-set tabpagemax=9
-set showtabline=2
-set cursorline " highlight the line which cursor on
+autocmd FileType yaml,snippets setlocal et sta sw=2 sts=2
 
 
 " FileType-----------------------------------
@@ -49,6 +38,7 @@ set visualbell
 set vb t_vb=
 set tm=500
 let mapleader=','
+set tags=tags " while save tag file
 
 
 " Folding-----------------------------------
@@ -78,8 +68,27 @@ set formatoptions+=mM
 set encoding=utf-8
 
 
+" UI Config-----------------------------------
+set number
+set relativenumber
+set ruler
+set rulerformat=%15(%c%V\ %p%%%)
+" 命令行于状态行
+set ch=2
+set ls=2 " 始终显示状态行
+set wildmenu " 命令补全， 显示补全菜单
+set showcmd  " 右下角显示已输入的命令
+" tag page
+set tabpagemax=9
+set showtabline=2
+set cursorline " highlight the line which cursor on
+
+
+
+
 " Key Shortcut-----------------------------------
 " -----------------------------Normal-------------------------------"
+"  <C-]> to jump among files
 nnoremap <C-t>   :tabnew<cr>
 nnoremap <C-p>   :tabprevious<cr>
 nnoremap <C-n>   :tabnext<cr>
@@ -87,7 +96,13 @@ nnoremap <C-c>   :close<cr>
 nnoremap <C-b>   :vsp<cr>
 nnoremap <C-h>   :sp<cr>
 nnoremap <silent> <C-f>   :NERDTree<cr>
-nnoremap <silent> <C-g>   :UndotreeToggle<cr>
+"nnoremap <silent> <C-g>   :UndotreeToggle<cr>
+nnoremap <silent> <C-g>   :TagbarToggle<cr>
+" go into source insight mode
+nnoremap <silent> <leader>ts :! ctags -R && cscope -Rbq<cr>
+" go into source insight mode Plus
+map <leader>th  :sp tags<CR>:%s/^\([^	:]*:\)\=\([^	]*\).*/syntax keyword Tag \2/<CR>:wq! tags.vim<CR>:noh<CR>:so tags.vim<CR>
+map <leader>tl  :so tags.vim<CR>
 " -----------------------------Normal-------------------------------"
 "
 " -----------------------------Insert-------------------------------"
@@ -151,6 +166,9 @@ Plugin 'evanmiller/nginx-vim-syntax'
 " |-------------------------------------------------|
 "
 " |-------------------comman------------------------|
+" tags bar
+" https://github.com/majutsushi/tagbar
+Plugin 'majutsushi/tagbar'
 " auto mkdir
 " https://github.com/vim-scripts/auto_mkdir
 Plugin 'vim-scripts/auto_mkdir'
@@ -169,8 +187,6 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 " 注释
 Plugin 'scrooloose/nerdcommenter'
-" 代码提示
-Plugin 'vim-scripts/AutoComplPop'
 " 文件树
 Plugin 'scrooloose/nerdtree'
 " add surrounding char for a word
@@ -186,7 +202,7 @@ Plugin 'easymotion/vim-easymotion'
 " 括号
 Plugin 'jiangmiao/auto-pairs'
 " undotree
-Plugin 'mbbill/undotree'
+" Plugin 'mbbill/undotree'
 " check code syntax
 Plugin 'scrooloose/syntastic'
 " airline to find git branch

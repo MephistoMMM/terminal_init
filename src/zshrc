@@ -103,7 +103,7 @@ export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 # use node4.0.0 default
-eval "nvm use 5.0.0"
+eval "nvm use 5.7.1"
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.

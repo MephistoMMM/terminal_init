@@ -16,6 +16,7 @@ export PACKAGE_REMOVE="apt-get remove -y"
 export PACKAGE_REMOVE_STRICT="apt-get remove --purge -y"
 export IS_ARCHLINUX="0"
 
+# true return 0, false 1
 function is_archlinux(){
     uname -r  | grep "ARCH"
     return $?;

@@ -37,9 +37,9 @@ wget -O $VIM_PATH/$VIM_TAR https://github.com/vim/vim/archive/$VIM_TAR \
     && make install 
 
 if [ $IS_ARCHLINUX == "1" ] ; then 
-    install_packages python-pylint
+    install_packages python-pylint exuberant-ctags cscope
 else
-    install_packages pylint
+    install_packages pylint ctags cscope
 fi
 
 test -e $INIT_HOME/.vim && rm -rf $INIT_HOME/.vim
