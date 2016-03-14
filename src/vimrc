@@ -1,7 +1,7 @@
 " TODO: 
 "   - source insight mode(like taglist)
 " Dependencies: 
-"   - Interface: python3 , Lua
+"   - Interface: python3 , Lua , pylint
 "   - util: ctags , cscope
 "   - plugin: MephistoMMM/molokai
 
@@ -37,8 +37,8 @@ set noerrorbells " No noisy error bell
 set visualbell
 set vb t_vb=
 set tm=500
-let mapleader=','
 set tags=tags " while save tag file
+let mapleader = "\<cr>"
 
 
 " Folding-----------------------------------
@@ -85,17 +85,32 @@ set cursorline " highlight the line which cursor on
 
 
 
-
 " Key Shortcut-----------------------------------
+map k gk
+map j gj
 " -----------------------------Normal-------------------------------"
 "  <C-]> to jump among files
 nnoremap <C-t>   :tabnew<cr>
-nnoremap <C-p>   :tabprevious<cr>
-nnoremap <C-n>   :tabnext<cr>
+nnoremap <C-p>   :tabp<cr>
+nnoremap <C-n>   :tabn<cr>
 nnoremap <C-c>   :close<cr>
-nnoremap <C-b>   :vsp<cr>
-nnoremap <C-h>   :sp<cr>
-nnoremap <silent> <C-f>   :NERDTree<cr>
+nnoremap <leader>bd   :bd<cr>
+nnoremap <leader>bn   :bn<cr>
+nnoremap <leader>bp   :bp<cr>
+"nnoremap <C-p> :bp<cr>
+"nnoremap <C-n> :bn<cr>
+"nnoremap <C-c> :bd<cr>
+" jump among windows
+nnoremap <C-j>   <C-W>j
+nnoremap <C-k>   <C-W>k
+nnoremap <C-l>   <C-W>l
+nnoremap <C-h>   <C-W>h
+" split window
+nnoremap <silent> <leader>wv   :vsp<cr>
+nnoremap <silent> <leader>wh   :sp<cr>
+" no height
+nnoremap <silent> <leader>nh   :noh<cr>     
+nnoremap <silent> <C-f>   :NERDTreeToggle<cr>
 "nnoremap <silent> <C-g>   :UndotreeToggle<cr>
 nnoremap <silent> <C-g>   :TagbarToggle<cr>
 " go into source insight mode
@@ -200,7 +215,7 @@ Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'easymotion/vim-easymotion'
 " 括号
-Plugin 'jiangmiao/auto-pairs'
+Plugin 'MephistoMMM/auto-pairs'
 " undotree
 " Plugin 'mbbill/undotree'
 " check code syntax
@@ -277,6 +292,7 @@ let NERDTreeMouseMode=2
 let NERDTreeBookmarksSort=1
 let NERDTreeShowBookmarks=1
 let NERDTreeBookmarksFile='~/.vim/.NERDTreeBookmarks'
+let NERDTreeWinSize=30
 " start nerdtree when vim startup if no file is open
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -389,16 +405,16 @@ let g:EasyMotion_smartcase = 0
 "
 " ------------------------for undotree------------------------------------"
 " https://github.com/mbbill/undotree
-let g:undotree_SetFocusWhenToggle = 1
-function! g:Undotree_CustomMap()
-    map <buffer> <c-n> J
-    map <buffer> <c-p> K
-endfunction
-if has("persistent_undo")
-    set undodir=~/.vim/undodir/
-    set undofile
-    set undolevels=10000
-endif
+"let g:undotree_SetFocusWhenToggle = 1
+"function! g:Undotree_CustomMap()
+    "map <buffer> <c-n> J
+    "map <buffer> <c-p> K
+"endfunction
+"if has("persistent_undo")
+    "set undodir=~/.vim/undodir/
+    "set undofile
+    "set undolevels=10000
+"endif
 " ------------------------for undotree------------------------------------"
 "
 " ------------------------for syntastic--------------------------------------"
