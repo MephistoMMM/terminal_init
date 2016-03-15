@@ -90,18 +90,6 @@ map k gk
 map j gj
 " -----------------------------Normal-------------------------------"
 "  <C-]> to jump among files
-nnoremap <C-t>   :tabnew<cr>
-nnoremap <C-p>   :tabp<cr>
-nnoremap <C-n>   :tabn<cr>
-nnoremap <C-c>   :close<cr>
-nnoremap <leader>bd   :bd<cr>
-nnoremap <leader>bn   :bn<cr>
-nnoremap <leader>bp   :bp<cr>
-"nnoremap <C-p> :bp<cr>
-"nnoremap <C-n> :bn<cr>
- ""close tag
-"nnoremap <C-c> :close<cr>
-"nnoremap <C-c> :bd<cr>
 " jump among windows
 nnoremap <C-j>   <C-W>j
 nnoremap <C-k>   <C-W>k
@@ -184,7 +172,7 @@ Plugin 'evanmiller/nginx-vim-syntax'
 "
 " |-------------------comman------------------------|
 " buffer plus
-"Plugin 'MephistoMMM/buffer-plus'
+Plugin 'MephistoMMM/buffer-plus'
 " tags bar
 " https://github.com/majutsushi/tagbar
 Plugin 'majutsushi/tagbar'
@@ -275,7 +263,7 @@ let g:airline#extensions#default#layout = [
       \ [ 'x', 'y', 'z', 'warning' ]
   \ ]
 function! AirlineInit()
-    let g:airline_section_a = airline#section#create(['mode', '❀  ', 'branch'])
+    let g:airline_section_a = airline#section#create(['mode', '❀ ','%{BufferPlusModeString()} ','branch'])
     let g:airline_section_b = airline#section#create_left(['%{getcwd()}'])
     let g:airline_section_c = airline#section#create_left(['file'])
 endfunction
