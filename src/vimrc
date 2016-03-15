@@ -188,6 +188,7 @@ Plugin 'tpope/vim-abolish'
 Plugin 'MephistoMMM/molokai'
 " neocomplete
 Plugin 'Shougo/neocomplete.vim'
+Plugin 'Konfekt/FastFold'
 " Track the engine.
 Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
