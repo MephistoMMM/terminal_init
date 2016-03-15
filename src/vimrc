@@ -90,15 +90,17 @@ map k gk
 map j gj
 " -----------------------------Normal-------------------------------"
 "  <C-]> to jump among files
-nnoremap <C-t>   :tabnew<cr>
-nnoremap <C-p>   :tabp<cr>
-nnoremap <C-n>   :tabn<cr>
-nnoremap <C-c>   :close<cr>
-nnoremap <leader>bd   :bd<cr>
-nnoremap <leader>bn   :bn<cr>
-nnoremap <leader>bp   :bp<cr>
-"nnoremap <C-p> :bp<cr>
-"nnoremap <C-n> :bn<cr>
+"nnoremap <C-t>   :tabnew<cr>
+"nnoremap <C-p>   :tabp<cr>
+"nnoremap <C-n>   :tabn<cr>
+"nnoremap <C-c>   :close<cr>
+"nnoremap <leader>bd   :bd<cr>
+"nnoremap <leader>bn   :bn<cr>
+"nnoremap <leader>bp   :bp<cr>
+nnoremap <C-p> :bp<cr>
+nnoremap <C-n> :bn<cr>
+" close tag
+nnoremap <C-c> :close<cr>
 "nnoremap <C-c> :bd<cr>
 " jump among windows
 nnoremap <C-j>   <C-W>j
@@ -181,6 +183,8 @@ Plugin 'evanmiller/nginx-vim-syntax'
 " |-------------------------------------------------|
 "
 " |-------------------comman------------------------|
+" buffer plus
+Plugin 'MephistoMMM/buffer-plus'
 " tags bar
 " https://github.com/majutsushi/tagbar
 Plugin 'majutsushi/tagbar'
@@ -479,6 +483,12 @@ autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 " ------------------------for auto close preview--------------------------------"
 "
+" ------------------------for buffer plus-----------------------------------"
+"  close buffer
+let g:BufferPlusSafeCloseMap = "<C-b>"
+" new buffer
+let g:BufferPlusNewBufferMap = "<C-t>"
+" ------------------------for buffer plus-----------------------------------"
 
 " Colors-----------------------------------
 syntax on
