@@ -1,7 +1,6 @@
 # Path to your oh-my-zsh installation.
 # font color (237,204,56)
 export ZSH=~/.oh-my-zsh
-export ARCAN=/usr/local/share/arcanist
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -53,10 +52,9 @@ ZSH_THEME="af-magic"
 # Add wisely, as too many plugins slow down shell startup.
 #
 # colored-man-pages : make man doc colorful
-# cp :          show a bar as the %
 # vi-mode:      start vi mode in zsh, but default is insert mode;
 # Z :           jump to you frequent dir : z zsh plugins z
-plugins=(git colored-man-pages cp vi-mode Z zsh-syntax-highlighting)
+plugins=(git colored-man-pages vi-mode Z zsh-syntax-highlighting)
 
 # User configuration
 # go work path
@@ -65,21 +63,23 @@ export GOPATH="$HOME/Desktop/work/go"
 export GOBIN="$GOPATH/bin"
 export GOPATH="$GOPATH/lib:$GOPATH"
 
+# python work path
 # python3 pack pythonPath
-export PYTHONPATH="$HOME/pypack"
+export PYTHONPATH="$HOME/Desktop/work/py/pkg"
+export PYBIN="$HOME/Desktop/work/py/bin"
 
 # set convenient path
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
-# set for arcanist
-export PATH="$PATH:$ARCAN/arcanist/bin"
-#path for go
-export PATH="$PATH:$GOROOT/bin"
-export PATH="$PATH:$GOBIN"
+# path for go
+export PATH="$PATH:$GOROOT/bin:$GOBIN"
+# path for py
+export PATH="$PATH:$PYBIN"
+
+export CWORKPATH="$HOME/Desktop/work/c"
 
 
 source $ZSH/oh-my-zsh.sh
 #set up tab completion for arcanist
-source $ARCAN/arcanist/resources/shell/bash-completion
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -112,6 +112,8 @@ eval "nvm use 5.7.1"
 # Example aliases
 alias p3='python3'
 alias netpart='sudo netstat -an | grep'
+alias vimrc='vim ~/.vim/vimrc'
+alias zshrc='vim ~/.zshrc'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
