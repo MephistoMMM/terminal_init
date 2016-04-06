@@ -23,6 +23,7 @@ VIM_SRC_PATH=vim-7.4.900
 remove_packages 1 vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common
 install_packages libncurses5-dev liblua5.1-dev libluajit-5.1 
 install_packages luajit
+install_packages gcc make
 
 wget -O $VIM_PATH/$VIM_TAR https://github.com/vim/vim/archive/$VIM_TAR \
     && tar -xzv -f $VIM_PATH/$VIM_TAR -C $VIM_PATH\
@@ -37,9 +38,9 @@ wget -O $VIM_PATH/$VIM_TAR https://github.com/vim/vim/archive/$VIM_TAR \
     && make install 
 
 if [ $IS_ARCHLINUX == "1" ] ; then 
-    install_packages python-pylint exuberant-ctags cscope
+    install_packages pylint exuberant-ctags cscope
 else
-    install_packages pylint ctags cscope
+    install_packages python-pylint ctags cscope
 fi
 
 test -e $INIT_HOME/.vim && rm -rf $INIT_HOME/.vim
