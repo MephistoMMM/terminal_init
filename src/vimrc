@@ -127,7 +127,7 @@ vnoremap P dp
 " edit .vimrc file conveniently , <leader>e to edit .vimrc
 map <silent> <leader>e :e $HOME/.vim/vimrc<cr>
 " auto source .vimrc after writing the buffer
-autocmd! bufwritepost vimrc source $HOME/.vim/vimrc
+"autocmd! bufwritepost vimrc source $HOME/.vim/vimrc
 
 
 "for ultisnips
@@ -423,8 +423,10 @@ let g:syntastic_auto_loc_list            = 1
 let g:syntastic_auto_jump                = 3
 let g:syntastic_check_on_open            = 0
 let g:syntastic_check_on_wq              = 0
+let g:syntastic_python_checkers = ['pylint']
 " for python
 au FileType python let g:syntastic_python_pylint_post_args = '--msg-template="{path}:{line}:{column}:{C}: [{symbol} {msg_id}] {msg}"'
+au FileType python let g:syntastic_python_pylint_args = '--disable=C0303,'
 " Syntastic check
 nnoremap <leader>sc :SyntasticCheck<CR>
 " turns off all error notifiers
