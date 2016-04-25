@@ -3,7 +3,7 @@
 " Dependencies: 
 "   - Interface: python3 , Lua , pylint
 "   - util: ctags , cscope
-"   - plugin: MephistoMMM/molokai
+"   - plugin: MephistoMMM/gruvbox
 
 
 " Space&Tabs-----------------------------------
@@ -186,7 +186,9 @@ Plugin 'vim-scripts/auto_mkdir'
 " map  cr(s|c|u|m|...)
 Plugin 'tpope/vim-abolish'
 " molokai
-Plugin 'MephistoMMM/molokai'
+"Plugin 'MephistoMMM/molokai'
+" gruvbox
+Plugin 'MephistoMMM/gruvbox'
 " neocomplete
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'Konfekt/FastFold'
@@ -206,7 +208,7 @@ Plugin 'tpope/vim-surround'
 " rename {new name}
 Plugin 'danro/rename.vim'
 Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plugin 'MephistoMMM/vim-airline-themes'
 Plugin 'easymotion/vim-easymotion'
 " 括号
 Plugin 'MephistoMMM/auto-pairs'
@@ -255,7 +257,8 @@ filetype plugin indent on    " required
 
 " -------------------for airline------------------------------"
 let g:airline_powerline_fonts = 1
-let g:airline_theme = "murmur"
+"let g:airline_theme = "murmur"
+let g:airline_theme = "tomorrow"
 let g:airline#extensions#branch#enabled=1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
@@ -474,6 +477,11 @@ vnoremap <Leader>a :Tabularize
 let g:tagbar_width = 30
 " ------------------------for tagbar------------------------------------"
 "
+" ------------------------for gruvbox------------------------------------"
+" https://github.com/morhetz/gruvbox
+let g:gruvbox_contrast_dark = "hard"
+" ------------------------for gruvbox------------------------------------"
+"
 " ------------------------for auto close preview--------------------------------"
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
@@ -484,4 +492,5 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 syntax on
 syntax enable " syntax color
 set background=dark
-colorscheme molokai
+"colorscheme molokai
+colorscheme gruvbox

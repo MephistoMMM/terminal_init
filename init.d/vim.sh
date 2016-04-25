@@ -49,7 +49,7 @@ cp $GENPATH/src/vimrc $INIT_HOME/.vim/vimrc
 git clone https://github.com/VundleVim/Vundle.vim.git $INIT_HOME/.vim/bundle/Vundle.vim 
 
 # for my color
-git clone https://github.com/MephistoMMM/molokai.git  $INIT_HOME/.vim/bundle/molokai 
+git clone https://github.com/MephistoMMM/gruvbox.git  $INIT_HOME/.vim/bundle/gruvbox 
 
 #for undotree and nerdtree
 mkdir $INIT_HOME/.vim/undodir 
