@@ -38,9 +38,9 @@ wget -O $VIM_PATH/$VIM_TAR https://github.com/vim/vim/archive/$VIM_TAR \
     && make install 
 
 if [ $IS_ARCHLINUX == "1" ] ; then 
-    install_packages pylint exuberant-ctags cscope
-else
     install_packages python-pylint ctags cscope
+else
+    install_packages pylint exuberant-ctags cscope
 fi
 
 test -e $INIT_HOME/.vim && rm -rf $INIT_HOME/.vim
@@ -63,4 +63,7 @@ vim +source$INIT_HOME/.vim/vimrc +PluginInstall +qall
 chown -R $INIT_USER:$INIT_USER $INIT_HOME/.vim 
 
 rm -rf $VIM_PATH
+
+echo "If you want to support js syntastic, you should install eslint_d"
+echo "  sudo npm install -g eslint_d"
 
