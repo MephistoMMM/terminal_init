@@ -1,8 +1,8 @@
 " TODO: 
 "   - source insight mode(like taglist)
 " Dependencies: 
-"   - Interface: python3 , Lua , pylint
-"   - util: ctags , cscope
+"   - Interface: python3 , Lua ,
+"   - util: ctags , cscope, pylint, eslint_d
 "   - plugin: MephistoMMM/gruvbox
 
 
@@ -104,6 +104,10 @@ nnoremap <silent> <C-f>   :NERDTreeToggle<cr>
 "nnoremap <silent> <C-g>   :UndotreeToggle<cr>
 nnoremap <silent> <C-g>   :TagbarToggle<cr>
 nnoremap <leader>bb :ls<cr>:buffer
+"show hexadecimal coding(hex coding) 
+nnoremap <leader>sh  :%!xxd<cr>
+"show normal code
+nnoremap <leader>sn  :$!xxd -r<cr>
 "go into source insight mode
 nnoremap <silent> <leader>ts :! ctags -R && cscope -Rbq<cr>
 " go into source insight mode Plus
@@ -163,7 +167,7 @@ Plugin 'dgryski/vim-godef'
 "
 " |-------------------docker------------------------|
 " dockerfile syntax
-Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+Plugin 'ekalinin/Dockerfile.vim'
 " |-------------------------------------------------|
 "
 " |-------------------nginx-------------------------|
@@ -207,8 +211,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 " rename {new name}
 Plugin 'danro/rename.vim'
-Plugin 'bling/vim-airline'
-Plugin 'MephistoMMM/vim-airline-themes'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'easymotion/vim-easymotion'
 " 括号
 Plugin 'MephistoMMM/auto-pairs'
@@ -426,10 +430,14 @@ let g:syntastic_auto_loc_list            = 1
 let g:syntastic_auto_jump                = 3
 let g:syntastic_check_on_open            = 0
 let g:syntastic_check_on_wq              = 0
-let g:syntastic_python_checkers = ['pylint']
 " for python
-au FileType python let g:syntastic_python_pylint_post_args = '--msg-template="{path}:{line}:{column}:{C}: [{symbol} {msg_id}] {msg}"'
-au FileType python let g:syntastic_python_pylint_args = '--disable=C0303,'
+let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_python_pylint_post_args = '--msg-template="{path}:{line}:{column}:{C}: [{symbol} {msg_id}] {msg}"'
+let g:syntastic_python_pylint_args = '--disable=C0303,'
+" for js
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = 'eslint_d'
+let g:syntastic_javascript_eslint_args = '--ignore-path=.gitignore'
 " Syntastic check
 nnoremap <leader>sc :SyntasticCheck<CR>
 " turns off all error notifiers
