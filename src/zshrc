@@ -64,7 +64,7 @@ ZSH_THEME="mephis-magic"
 # colored-man-pages : make man doc colorful
 # vi-mode:      start vi mode in zsh, but default is insert mode;
 # Z :           jump to you frequent dir : z zsh plugins z
-plugins=(git colored-man-pages vi-mode Z zsh-syntax-highlighting)
+plugins=(git colored-man-pages vi-mode z zsh-syntax-highlighting)
 
 # User configuration
 # go work path
