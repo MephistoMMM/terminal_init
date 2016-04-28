@@ -83,8 +83,6 @@ set tabpagemax=9
 set showtabline=2
 set cursorline " highlight the line which cursor on
 
-
-
 " Key Shortcut-----------------------------------
 map k gk
 map j gj
@@ -165,11 +163,6 @@ Plugin 'dgryski/vim-godef'
 " Plugin 'klen/python-mode'
 " |-------------------------------------------------|
 "
-" |-------------------docker------------------------|
-" dockerfile syntax
-Plugin 'ekalinin/Dockerfile.vim'
-" |-------------------------------------------------|
-"
 " |-------------------nginx-------------------------|
 " nginx syntax 
 Plugin 'evanmiller/nginx-vim-syntax'
@@ -200,9 +193,9 @@ Plugin 'Konfekt/FastFold'
 Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
-" 注释
+" comment
 Plugin 'scrooloose/nerdcommenter'
-" 文件树
+" file tree
 Plugin 'scrooloose/nerdtree'
 " add surrounding char for a word
 " ys -> create surround  + range [iw, aw, i], i), i", i', ip] + sigal
@@ -214,7 +207,7 @@ Plugin 'danro/rename.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'easymotion/vim-easymotion'
-" 括号
+" pairs
 Plugin 'MephistoMMM/auto-pairs'
 " undotree
 " Plugin 'mbbill/undotree'
@@ -231,7 +224,7 @@ Plugin 'terryma/vim-expand-region'
 " jsfmt :
 "   it dependence: npm install -g jsfmt
 "Plugin 'mephux/vim-jsfmt'
-" js更漂亮
+" js syntax define
 Plugin 'pangloss/vim-javascript'
 " |-------------------------------------------------|
 " 
@@ -269,7 +262,7 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#default#layout = [
       \ [ 'a', 'b', 'c' ],
-      \ [ 'x', 'y', 'z', 'warning' ]
+      \ [ 'x', 'y', 'z' ]
   \ ]
 function! AirlineInit()
     let g:airline_section_a = airline#section#create(['mode', '❀ ','%{BufferPlusModeString()} ','branch'])

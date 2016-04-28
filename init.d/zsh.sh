@@ -14,11 +14,11 @@ install_packages zsh
 test -e $INIT_HOME/.oh-my-zsh && rm -rf $INIT_HOME/.oh-my-zsh
 test -e $INIT_HOME/.zshrc && rm $INIT_HOME/.zshrc
 
-#git clone https://github.com/robbyrussell/oh-my-zsh.git $INIT_HOME/.oh-my-zsh
+git clone https://github.com/robbyrussell/oh-my-zsh.git $INIT_HOME/.oh-my-zsh
 git clone git://github.com/zsh-users/zsh-syntax-highlighting.git $INIT_HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 cp ./src/zshrc.linux $INIT_HOME/.zshrc\
+    && cp ./src/af-magic.zsh-theme $INIT_HOME/.oh-my-zsh/themes/ \
     && chown $INIT_USER:$INIT_USER $INIT_HOME/.zshrc \
     && chown -R $INIT_USER:$INIT_USER $INIT_HOME/.oh-my-zsh \
     && chsh -s /bin/zsh $INIT_USER

@@ -4,6 +4,7 @@
 # red        (251,73,52)
 # green      (121,187,38)
 # yellow     (250,189,47)
+# blue       (81,153,240) #5199f0
 # cyan       (131,165,152)
 # purple     (211,134,155)
 # aqua       (142,192,124)
@@ -14,7 +15,7 @@ export ZSH=~/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="af-magic"
+ZSH_THEME="mephis-magic"
 
 
 # Uncomment the following line to use case-sensitive completion.

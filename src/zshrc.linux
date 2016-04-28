@@ -1,12 +1,22 @@
 # Path to your oh-my-zsh installation.
-# font color (237,204,56)
+# font color (255,223,95)
+# background color (18,18,18)
+# red        (251,73,52)
+# green      (121,187,38)
+# yellow     (250,189,47)
+# blue       (81,153,240) #5199f0
+# cyan       (131,165,152)
+# purple     (211,134,155)
+# aqua       (142,192,124)
+# orange     (254,128,25)
 export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="af-magic"
+ZSH_THEME="mephis-magic"
+
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -58,22 +68,28 @@ plugins=(git colored-man-pages vi-mode Z zsh-syntax-highlighting)
 
 # User configuration
 # go work path
-export GOROOT="/usr/lib/go"
+export GOROOT="/usr/local/go"
 export GOPATH="$HOME/Desktop/work/go"
 export GOBIN="$GOPATH/bin"
 export GOPATH="$GOPATH/lib:$GOPATH"
 
+# python work path
 # python3 pack pythonPath
-export PYTHONPATH="$HOME/pypack"
+export PYTHONPATH="$HOME/Desktop/work/py/pkg"
+export PYBIN="$HOME/Desktop/work/py/bin"
 
 # set convenient path
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
-#path for go
-export PATH="$PATH:$GOROOT/bin"
-export PATH="$PATH:$GOBIN"
+# path for go
+export PATH="$PATH:$GOROOT/bin:$GOBIN"
+# path for py
+export PATH="$PATH:$PYBIN"
+
+export CWORKPATH="$HOME/Desktop/work/c"
 
 
 source $ZSH/oh-my-zsh.sh
+#set up tab completion for arcanist
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -92,19 +108,23 @@ source $ZSH/oh-my-zsh.sh
 export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # run while zsh init
-# export MANPATH="/usr/local/man:$MANPATH"
+#source ~/.oh-my-zsh/gruvbox_256palette_osx.sh
+source ~/.oh-my-zsh/gruvbox_256palette.sh
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
+#
 # Example aliases
 alias p3='python3'
-alias netsgrep='sudo netstat -anp | grep'
-alias netsocks='sudo netstat -atulnp'
+alias netpart='sudo netstat -an | grep'
 alias vimrc='vim ~/.vim/vimrc'
 alias zshrc='vim ~/.zshrc'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 #. ~/.vim/bundle/powerline/powerline/bindings/zsh/powerline.zsh
+#
+#this just for django mysql 
