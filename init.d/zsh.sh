@@ -14,6 +14,10 @@ install_packages zsh
 test -e $INIT_HOME/.oh-my-zsh && rm -rf $INIT_HOME/.oh-my-zsh
 test -e $INIT_HOME/.zshrc && rm $INIT_HOME/.zshrc
 
+# cope gruvbox/gruvbox_256palette.sh
+test -e $INIT_HOME/.vim/bundle/gruvbox && \
+    cp $INIT_HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh $INIT_HOME/.oh-my-zsh/
+
 git clone https://github.com/robbyrussell/oh-my-zsh.git $INIT_HOME/.oh-my-zsh
 git clone git://github.com/zsh-users/zsh-syntax-highlighting.git $INIT_HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
