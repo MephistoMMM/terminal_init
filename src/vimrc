@@ -1,5 +1,3 @@
-" TODO: 
-"   - source insight mode(like taglist)
 " Dependencies: 
 "   - Interface: python3 , Lua ,
 "   - util: ctags , cscope, pylint, eslint_d
@@ -38,7 +36,7 @@ set visualbell
 set vb t_vb=
 set tm=500
 set tags=tags " while save tag file
-let mapleader = "\<cr>"
+let mapleader = "\<SPACE>"
 
 
 " Folding-----------------------------------
@@ -89,19 +87,24 @@ map j gj
 " -----------------------------Normal-------------------------------"
 "  <C-]> to jump among files
 " jump among windows
-nnoremap <C-j>   <C-W>j
-nnoremap <C-k>   <C-W>k
-nnoremap <C-l>   <C-W>l
-nnoremap <C-h>   <C-W>h
-" split window
+"nnoremap <C-j>   <C-W>j
+"nnoremap <C-k>   <C-W>k
+"nnoremap <C-l>   <C-W>l
+"nnoremap <C-h>   <C-W>h
+map <C-g> <C-[>
+"split window
 nnoremap <silent> <leader>wv   :vsp<cr>
 nnoremap <silent> <leader>wh   :sp<cr>
+nnoremap <leader>wc            :close<cr>
 " no height
 nnoremap <silent> <leader>nh   :noh<cr>     
-nnoremap <silent> <C-f>   :NERDTreeToggle<cr>
+" search file
+nnoremap <leader>ff :CtrlP 
+" search buffer
+nnoremap <leader>bb :CtrlPBuffer<cr>
+"nnoremap <silent> <C-f>   :NERDTreeToggle<cr>
 "nnoremap <silent> <C-g>   :UndotreeToggle<cr>
-nnoremap <silent> <C-g>   :TagbarToggle<cr>
-nnoremap <leader>bb :ls<cr>:buffer
+nnoremap <silent> <leader>tb  :TagbarToggle<cr>
 "show hexadecimal coding(hex coding) 
 nnoremap <leader>sh  :%!xxd<cr>
 "show normal code
@@ -196,7 +199,7 @@ Plugin 'honza/vim-snippets'
 " comment
 Plugin 'scrooloose/nerdcommenter'
 " file tree
-Plugin 'scrooloose/nerdtree'
+Plugin 'ctrlpvim/ctrlp.vim'
 " add surrounding char for a word
 " ys -> create surround  + range [iw, aw, i], i), i", i', ip] + sigal
 " cs -> change surround  + origin_sigal + new_sigal
@@ -281,19 +284,32 @@ au FileType markdown let g:vim_markdown_frontmatter=1
 " -------------------for nerdtree------------------------------"
 " https://github.com/scrooloose/nerdtree
 "
-let NERDTreeShowLineNumbers=1
-let NERDTreeMouseMode=2
-let NERDTreeBookmarksSort=1
-let NERDTreeShowBookmarks=1
-let NERDTreeBookmarksFile='~/.vim/.NERDTreeBookmarks'
-let NERDTreeWinSize=30
-" start nerdtree when vim startup if no file is open
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-"
-" close nerdtree if nerdtree is the only window in vim
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"let NERDTreeShowLineNumbers=1
+"let NERDTreeMouseMode=2
+"let NERDTreeBookmarksSort=1
+"let NERDTreeShowBookmarks=1
+"let NERDTreeBookmarksFile='~/.vim/.NERDTreeBookmarks'
+"let NERDTreeWinSize=30
+"" start nerdtree when vim startup if no file is open
+""autocmd StdinReadPre * let s:std_in=1
+""autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+""
+"" close nerdtree if nerdtree is the only window in vim
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " -------------------for nerdtree------------------------------"
+"
+" -------------------for ctrlp------------------------------------"
+"  https://github.com/ctrlpvim/ctrlp.vim
+"  Use <c-j>, <c-k> or the arrow keys to navigate the result list.
+"  Use <c-t> or <c-v>, <c-x> to open the selected entry in a new tab or in a new split.
+"  Use <c-z> to mark/unmark multiple files and <c-o> to open them.
+let g:ctrlp_map = '<C-f>'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$'
+ \ }
+let g:ctrlp_regexp = 1
+" -------------------for ctrlp------------------------------------"
 "
 " -------------------for auto-pairs-------------------------------"
 let g:AutoPairsShortcutJump='<C-l>'
@@ -444,7 +460,7 @@ nnoremap <leader>lp :lprevious<CR>
 " ------------------------for vim-expand-region----------------------------------"
 " https://github.com/terryma/vim-expand-region
 " This selects the next closest text object.
-map <SPACE> <Plug>(expand_region_expand)
+map <CR> <Plug>(expand_region_expand)
 " This selects the previous closest text object.
 vmap <BS> <Plug>(expand_region_shrink)
 let g:expand_region_text_objects = {
@@ -477,6 +493,12 @@ vnoremap <Leader>a :Tabularize
 " ------------------------for tagbar------------------------------------"
 let g:tagbar_width = 30
 " ------------------------for tagbar------------------------------------"
+"
+" ------------------------for bufferplus--------------------------------"
+let g:BufferPlusDefaultMode = 1
+let g:BufferPlusPerf = "buffer"
+let g:BufferPlusCloseMap = "<leader>bd"
+" ------------------------for bufferplus--------------------------------"
 "
 " ------------------------for gruvbox------------------------------------"
 " https://github.com/morhetz/gruvbox

@@ -135,3 +135,23 @@ alias zshrc='vim ~/.zshrc'
 #. ~/.vim/bundle/powerline/powerline/bindings/zsh/powerline.zsh
 #
 #this just for django mysql 
+#
+# for emacs
+alias emacsd='emacs --daemon'
+#alias e='emacsclient -t'
+alias ec='emacsclient -c'
+
+# add kill emacs function
+function kill-emacs_directly(){
+    emacs_pid=$(ps aux | grep -v 'awk' | awk '/emacs --daemon/{print $2}')
+    if [[ -n "${emacs_pid}" ]];then
+        kill -9 "${emacs_pid}"
+    fi
+}
+function kill-emacs(){
+    emacsclient -e "(kill-emacs)"
+    kill-emacs_directly
+}
+# run emacs daemon if it not exist
+ ps aux | grep 'emacs --daemon' | grep -v 'grep' > /dev/null || emacsd
+
