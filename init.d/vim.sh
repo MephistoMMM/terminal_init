@@ -18,7 +18,7 @@ fi
 
 # vim and vimrc and vundle
 VIM_TAR=v7.4.900.tar.gz
-VIM_SRC_PATH=vim-7.4.900
+VIM_SRC_PATH=vim-7.4.1815
 
 remove_packages 1 vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common
 install_packages libncurses5-dev liblua5.1-dev libluajit-5.1 
