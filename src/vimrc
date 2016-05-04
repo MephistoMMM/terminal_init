@@ -14,7 +14,7 @@ set autoindent
 set smartindent
 autocmd FileType python setlocal et sta sw=4 sts=4
 autocmd FileType html,css,javascript setlocal et sta sw=2 sts=2
-autocmd FileType yaml,snippets setlocal et sta sw=2 sts=2
+autocmd FileType yaml,vim,snippets setlocal et sta sw=2 sts=2
 
 
 " FileType-----------------------------------
@@ -34,7 +34,7 @@ set scrolloff=10 " 光标在屏幕倒数10行时自动向下移
 set noerrorbells " No noisy error bell
 set visualbell
 set vb t_vb=
-set tm=500
+set tm=1000
 set tags=tags " while save tag file
 let mapleader = "\<SPACE>"
 
@@ -48,8 +48,10 @@ set foldnestmax=10 " 10 folds max
 
 " Search------------------------------------
 set hlsearch  " Highlight search things
-"set ignorecase " search时忽略大小写
-"set smartcase  " search时，如果搜索命令中有大写，则记入大小写
+"set ignorecase " search ignoring case
+" search with case if the searched command contains up case, otherwise
+" ignoring case
+"set smartcase  
 
 
 " No backup--------------------
@@ -71,11 +73,11 @@ set number
 set relativenumber
 set ruler
 set rulerformat=%15(%c%V\ %p%%%)
-" 命令行于状态行
-set ch=2
-set ls=2 " 始终显示状态行
-set wildmenu " 命令补全， 显示补全菜单
-set showcmd  " 右下角显示已输入的命令
+" command line and status line
+set ch=1  " command height
+set ls=2  " always show status
+set wildmenu " show command complite menu
+set showcmd  " show command in lower right corner
 " tag page
 set tabpagemax=9
 set showtabline=2
@@ -172,8 +174,7 @@ Plugin 'evanmiller/nginx-vim-syntax'
 " |-------------------------------------------------|
 "
 " |-------------------comman------------------------|
-" buffer plus
-Plugin 'MephistoMMM/buffer-plus'
+Plugin 'MephistoMMM/buf-circular-kill'
 " tags bar
 " https://github.com/majutsushi/tagbar
 Plugin 'majutsushi/tagbar'
@@ -268,7 +269,7 @@ let g:airline#extensions#default#layout = [
       \ [ 'x', 'y', 'z' ]
   \ ]
 function! AirlineInit()
-    let g:airline_section_a = airline#section#create(['mode', '❀ ','%{BufferPlusModeString()} ','branch'])
+    let g:airline_section_a = airline#section#create(['mode', '❀ ','%{winnr()} ','branch'])
     let g:airline_section_b = airline#section#create_left(['%{getcwd()}'])
     let g:airline_section_c = airline#section#create_left(['file'])
 endfunction
@@ -460,7 +461,8 @@ nnoremap <leader>lp :lprevious<CR>
 " ------------------------for vim-expand-region----------------------------------"
 " https://github.com/terryma/vim-expand-region
 " This selects the next closest text object.
-map <CR> <Plug>(expand_region_expand)
+nmap e <Plug>(expand_region_expand)
+vmap e <Plug>(expand_region_expand)
 " This selects the previous closest text object.
 vmap <BS> <Plug>(expand_region_shrink)
 let g:expand_region_text_objects = {
