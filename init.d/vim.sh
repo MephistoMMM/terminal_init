@@ -17,7 +17,7 @@ if [ ! -e $VIM_PATH ]; then
 fi
 
 # vim and vimrc and vundle
-VIM_TAR=v7.4.900.tar.gz
+VIM_TAR=v7.4.1815.tar.gz
 VIM_SRC_PATH=vim-7.4.1815
 
 remove_packages 1 vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common

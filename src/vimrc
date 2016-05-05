@@ -1,8 +1,13 @@
+" vimrc
+" Maintainer: Mephis Pheies ( MephistoMMM )	
+" Email: mephistommm@gmail.com
+" Version:	0.1.0
+" Last Change: 04 05 2016	
+" Introduction:  myself vim config
 " Dependencies: 
 "   - Interface: python3 , Lua ,
-"   - util: ctags , cscope, pylint, eslint_d
-"   - plugin: MephistoMMM/gruvbox
-
+"   - utils: ctags , cscope, pylint, eslint_d
+"   - theme: MephistoMMM/gruvbox
 
 " Space&Tabs-----------------------------------
 set tabstop=4  " tab setting
@@ -16,28 +21,30 @@ autocmd FileType python setlocal et sta sw=4 sts=4
 autocmd FileType html,css,javascript setlocal et sta sw=2 sts=2
 autocmd FileType yaml,vim,snippets setlocal et sta sw=2 sts=2
 
-
 " FileType-----------------------------------
 " set .rs file is rust
 au BufNewFile,BufWrite,BufRead *.rs set filetype=rust
 au BufNewFile,BufWrite,BufRead *.snippets set filetype=snippets
 au BufRead,BufNewFile *.asd set filetype=lisp
 
-
 " Special--------------------
-set autoread    " When a file has been detected to have been changed outside of Vim , automatically read it again.
-set nocompatible  " Use Vim defaults instead of 100% vi compatibility
-set backspace=2   " more powerful backspacing
-set mouse=a     " allow mouse
-set scrolloff=10 " 光标在屏幕倒数10行时自动向下移
-"set clipboard=unnamed " Can command v to other place
-set noerrorbells " No noisy error bell
+" When a file has been detected to have been changed outside of Vim , 
+" automatically read it again.
+set autoread    
+" more powerful backspacing
+set backspace=2   
+" allow mouse
+set mouse=a     
+" scroll will move down while cursor at the last 10 line
+set scrolloff=10 
+"set clipboard=unnamed 
+" No noisy error bell
+set noerrorbells 
 set visualbell
-set vb t_vb=
 set tm=1000
-set tags=tags " while save tag file
+" while save tag file
+set tags=tags 
 let mapleader = "\<SPACE>"
-
 
 " Folding-----------------------------------
 set foldenable " Enable folding
@@ -45,28 +52,25 @@ set foldlevelstart=10 " Open most folds by default
 set foldmethod=syntax " Fold based on syntax level
 set foldnestmax=10 " 10 folds max
 
-
 " Search------------------------------------
-set hlsearch  " Highlight search things
-"set ignorecase " search ignoring case
-" search with case if the searched command contains up case, otherwise
-" ignoring case
+" Highlight search things
+set hlsearch  
+" search ignoring case
+"set ignorecase 
+"" search with case if the searched command contains up case, otherwise
+"" ignoring case
 "set smartcase  
-
 
 " No backup--------------------
 set nobackup
 set nowb
 " set noswapfile
-
           
 " Encoding--------------------
 " English messages only
-"language messages zh_CN.utf-8
-set fencs=utf-8,gbk,chinese,latin1
+set fencs=utf-8,gbk
 set formatoptions+=mM
 set encoding=utf-8
-
 
 " UI Config-----------------------------------
 set number
@@ -74,187 +78,160 @@ set relativenumber
 set ruler
 set rulerformat=%15(%c%V\ %p%%%)
 " command line and status line
-set ch=1  " command height
-set ls=2  " always show status
-set wildmenu " show command complite menu
-set showcmd  " show command in lower right corner
+" always show status
+set ls=2  
+" show command complite menu
+set wildmenu 
+" show command in lower right corner
+set showcmd  
 " tag page
 set tabpagemax=9
 set showtabline=2
-set cursorline " highlight the line which cursor on
+" highlight the line which cursor on
+set cursorline 
 
 " Key Shortcut-----------------------------------
 map k gk
 map j gj
+
 " -----------------------------Normal-------------------------------"
 "  <C-]> to jump among files
-" jump among windows
-"nnoremap <C-j>   <C-W>j
-"nnoremap <C-k>   <C-W>k
-"nnoremap <C-l>   <C-W>l
-"nnoremap <C-h>   <C-W>h
 map <C-g> <C-[>
 "split window
-nnoremap <silent> <leader>wv   :vsp<cr>
-nnoremap <silent> <leader>wh   :sp<cr>
+nnoremap <leader>wv            :vsp<cr>
+nnoremap <leader>wh            :sp<cr>
 nnoremap <leader>wc            :close<cr>
 " no height
-nnoremap <silent> <leader>nh   :noh<cr>     
+nnoremap <leader>nh            :noh<cr>     
 " search file
-nnoremap <leader>ff :CtrlP 
+nnoremap <leader>ff            :CtrlP 
 " search buffer
-nnoremap <leader>bb :CtrlPBuffer<cr>
-"nnoremap <silent> <C-f>   :NERDTreeToggle<cr>
-"nnoremap <silent> <C-g>   :UndotreeToggle<cr>
-nnoremap <silent> <leader>tb  :TagbarToggle<cr>
+nnoremap <leader>bb            :CtrlPBuffer<cr>
+" toggle tagbar
+nnoremap <leader>tb            :TagbarToggle<cr>
+" start to feel zen
+nnoremap <leader>z             :Goyo<cr>
 "show hexadecimal coding(hex coding) 
-nnoremap <leader>sh  :%!xxd<cr>
+nnoremap <leader>sh            :%!xxd<cr>
 "show normal code
-nnoremap <leader>sn  :$!xxd -r<cr>
+nnoremap <leader>sn            :$!xxd -r<cr>
 "go into source insight mode
-nnoremap <silent> <leader>ts :! ctags -R && cscope -Rbq<cr>
+nnoremap <silent> <leader>ts   :! ctags -R && cscope -Rbq<cr>
 " go into source insight mode Plus
 map <leader>th  :sp tags<CR>:%s/^\([^	:]*:\)\=\([^	]*\).*/syntax keyword Tag \2/<CR>:wq! tags.vim<CR>:noh<CR>:so tags.vim<CR>
 map <leader>tl  :so tags.vim<CR>
 " -----------------------------Normal-------------------------------"
-"
+
 " -----------------------------Insert-------------------------------"
 inoremap <C-j> <ESC>o
 " -----------------------------Insert-------------------------------"
-"
+
 " -----------------------------Visual-------------------------------"
 " paset cover a visual region
 vnoremap P dp
 " -----------------------------Visual-------------------------------"
-"
-" -----------------------------Exec-------------------------------"
-" -----------------------------Exec-------------------------------"
 
+" -----------------------------Exec-------------------------------"
+" -----------------------------Exec-------------------------------"
 
 " edit .vimrc file conveniently , <leader>e to edit .vimrc
-map <silent> <leader>e :e $HOME/.vim/vimrc<cr>
-" auto source .vimrc after writing the buffer
-"autocmd! bufwritepost vimrc source $HOME/.vim/vimrc
+nnoremap <silent> <leader>e :e $HOME/.config/nvim/init.vim<cr>
 
-
-"for ultisnips
-filetype off
 " ------------------------------------------------------------------------------
 " ---------------------------------Plugin Manager-------------------------------
 " ------------------------------------------------------------------------------
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" " alternatively, pass a path where Vundle should install plugins
-" "call vundle#begin('~/some/path/here')
-" " let Vundle manage Vundle, required
-" Plugin Manager
-Plugin 'gmarik/Vundle.vim'
-" commonlisp
-" Plugin 'kovisoft/slimv'
-" rust
-" Plugin 'rust-lang/rust.vim'
+filetype off
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+
+" Required:
+call plug#begin('~/.config/nvim/plugged')
+
 " |-------------------go----------------------------|
 " go
-Plugin 'fatih/vim-go'
+Plug 'zchee/deoplete-go',{'do': 'make', 'for': 'go'}
 " when your change your GOPATH or start a new project , exec: 
 "   go get -u github.com/nsf/gocode 
-Plugin 'nsf/gocode', {'rtp': 'vim/'}
+Plug 'nsf/gocode', {'rtp': 'vim/', 'for': 'go'}
 " a local func jamp
 "     go get -v code.google.com/p/rog-go/exp/cmd/godef
 "     go install -v code.google.com/p/rog-go/exp/cmd/godef
-Plugin 'dgryski/vim-godef'
-" python
-" Plugin 'klen/python-mode'
+Plug 'dgryski/vim-godef',{'for': 'go'}
 " |-------------------------------------------------|
-"
+
 " |-------------------nginx-------------------------|
 " nginx syntax 
-Plugin 'evanmiller/nginx-vim-syntax'
+Plug 'evanmiller/nginx-vim-syntax' 
 " |-------------------------------------------------|
-"
+
 " |-------------------comman------------------------|
-Plugin 'MephistoMMM/buf-circular-kill'
+" buffer plus
+Plug 'MephistoMMM/buf-circular-kill'
+" rainbow pairs
+Plug 'luochen1990/rainbow'
 " tags bar
 " https://github.com/majutsushi/tagbar
-Plugin 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 " auto mkdir
 " https://github.com/vim-scripts/auto_mkdir
-Plugin 'vim-scripts/auto_mkdir'
+Plug 'vim-scripts/auto_mkdir'
 " https://github.com/tpope/vim-abolish
 " :Abolish 
 " :Subvert(or just :S) more powerful than s
 " map  cr(s|c|u|m|...)
-Plugin 'tpope/vim-abolish'
-" molokai
-"Plugin 'MephistoMMM/molokai'
+Plug 'tpope/vim-abolish'
+" goyo focus your code
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 " gruvbox
-Plugin 'MephistoMMM/gruvbox'
-" neocomplete
-Plugin 'Shougo/neocomplete.vim'
-Plugin 'Konfekt/FastFold'
+Plug 'MephistoMMM/gruvbox'
+" deoplete
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 " Track the engine.
-Plugin 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips', { 'do': function('DoRemote') }
 " Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 " comment
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 " file tree
-Plugin 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 " add surrounding char for a word
 " ys -> create surround  + range [iw, aw, i], i), i", i', ip] + sigal
 " cs -> change surround  + origin_sigal + new_sigal
 " ds -> delete surround  + sigal
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 " rename {new name}
-Plugin 'danro/rename.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'easymotion/vim-easymotion'
+Plug 'danro/rename.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'easymotion/vim-easymotion'
 " pairs
-Plugin 'MephistoMMM/auto-pairs'
-" undotree
-" Plugin 'mbbill/undotree'
+Plug 'MephistoMMM/auto-pairs'
 " check code syntax
-Plugin 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 " airline to find git branch
 " https://github.com/tpope/vim-fugitive
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " select the closest object among a group of candidate
-Plugin 'terryma/vim-expand-region'
+Plug 'terryma/vim-expand-region'
 " |-------------------------------------------------|
-"
+
 " |-------------------------js----------------------|
-" jsfmt :
-"   it dependence: npm install -g jsfmt
-"Plugin 'mephux/vim-jsfmt'
 " js syntax define
-Plugin 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 " |-------------------------------------------------|
-" 
+ 
 " |-------------------------markdown----------------|
 " markdown
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown' , {'for': 'markdown'}
 " |-------------------------------------------------|
-"
-" " All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" " To ignore plugin indent changes, instead use:
-" filetype plugin on
-" "
-" " Brief help
-" " :PluginList       - lists configured plugins
-" " :PluginInstall    - installs plugins; append `!` to update or just
-" :PluginUpdate
-" " :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" " :PluginClean      - confirms removal of unused plugins; append `!` to
-" auto-approve removal
-" "
-" " see :h vundle for more details or wiki for FAQ
-" " Put your non-Plugin stuff after this line
-"
+
+" Required:
+call plug#end()
+filetype plugin indent on
+"End dein Scripts-------------------------
 
 " -------------------for airline------------------------------"
 let g:airline_powerline_fonts = 1
@@ -275,30 +252,13 @@ function! AirlineInit()
 endfunction
 autocmd User AirlineAfterInit call AirlineInit()
 " -------------------for airline------------------------------"
-"
+
 " -------------------for markdown------------------------------"
 au FileType markdown let g:vim_markdown_folding_disabled=1
 au FileType markdown let g:vim_markdown_math=1
 au FileType markdown let g:vim_markdown_frontmatter=1
 " -------------------for markdown------------------------------"
-"
-" -------------------for nerdtree------------------------------"
-" https://github.com/scrooloose/nerdtree
-"
-"let NERDTreeShowLineNumbers=1
-"let NERDTreeMouseMode=2
-"let NERDTreeBookmarksSort=1
-"let NERDTreeShowBookmarks=1
-"let NERDTreeBookmarksFile='~/.vim/.NERDTreeBookmarks'
-"let NERDTreeWinSize=30
-"" start nerdtree when vim startup if no file is open
-""autocmd StdinReadPre * let s:std_in=1
-""autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-""
-"" close nerdtree if nerdtree is the only window in vim
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" -------------------for nerdtree------------------------------"
-"
+
 " -------------------for ctrlp------------------------------------"
 "  https://github.com/ctrlpvim/ctrlp.vim
 "  Use <c-j>, <c-k> or the arrow keys to navigate the result list.
@@ -311,66 +271,54 @@ let g:ctrlp_custom_ignore = {
  \ }
 let g:ctrlp_regexp = 1
 " -------------------for ctrlp------------------------------------"
-"
+
 " -------------------for auto-pairs-------------------------------"
 let g:AutoPairsShortcutJump='<C-l>'
 " while file is vim or html ,add '<' complite
 au FileType vim,html let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`','<':'>'}
 " -------------------for auto-pairs-------------------------------"
-"   
-" -------------------for neocomplete------------------------------"
-" https://github.com/Shougo/neocomplete.vim
-let g:neocomplete#enable_at_startup = 1
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+   
+" -------------------for deomplete------------------------------"
+" https://github.com/Shougo/deomplete.vim
+" deoplete.nvim recommend
+set completeopt+=noselect
+let g:deoplete#enable_at_startup = 1
 " Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-" Recommended key-mappings.
+let g:deoplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:deoplete#auto_complete_start_length = 3
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  "return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  return pumvisible() ? "\<C-y>" : "\<CR>"
+function! s:my_cr_function() abort
+  return deoplete#mappings#close_popup() . "\<CR>"
 endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <BS>: close popup and delete backword char.
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>  deoplete#mappings#smart_close_popup()."\<C-h>"
+inoremap <silent><expr> <Tab>
+\ pumvisible() ? "\<C-n>" :
+\ deoplete#mappings#manual_complete()
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=python3complete#Complete
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
+autocmd FileType go setlocal omnifunc=gocode#Complete
+
+if !exists('g:deoplete#omni#input_patterns')
+  let g:deoplete#omni#input_patterns = {}
 endif
 
-setlocal omnifunc=gocode#Complete
-" -------------------for neocomplete------------------------------"
-"
+" GO: By default, the classes (const, func, type, var) are not aligned in the popup menu. set align_class to 1 to aligned them.
+let g:deoplete#sources#go#align_class = 1
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+" -------------------for deomplete------------------------------"
+
 " -------------------for ultisnips------------------------------"
 " https://github.com/SirVer/ultisnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsUsePythonVersion = 3
-let g:UltiSnipsSnippetDirectories=['UltiSnips']
-let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
+"let g:UltiSnipsSnippetDirectories=['UltiSnips']
+let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips'
 let g:UltiSnipsExpandTrigger="<C-k>"
 let g:UltiSnipsJumpForwardTrigger="<C-k>"
 let g:UltiSnipsJumpBackwardTrigger="<C-;>"
@@ -379,7 +327,7 @@ let g:UltiSnipsJumpBackwardTrigger="<C-;>"
 let g:UltiSnipsEditSplit="vertical"
 nnoremap <leader>us :UltiSnipsEdit<CR>
 " -------------------for ultisnips------------------------------"
-"
+
 " -------------------------for go ------------------------------"
 " https://github.com/fatih/vim-go
 au FileType go nmap <leader>gr <Plug>(go-run)
@@ -398,8 +346,8 @@ au FileType go let g:go_highlight_build_constraints = 1
 " godef https://github.com/dgryski/vim-godef
 au FileType go let g:godef_split = 2
 " -------------------------for go ------------------------------"
-"
-" ------------------------for easymotion ------------------------------------"
+
+" ------------------------for easymotion -----------------------------------"
 "  https://github.com/easymotion/vim-easymotion
 " Gif config
 map  / <Plug>(easymotion-sn)
@@ -413,21 +361,7 @@ omap / <Plug>(easymotion-tn)
 " map  N <Plug>(easymotion-prev)
 let g:EasyMotion_smartcase = 0
 " ------------------------for easymotion ------------------------------------"
-"
-" ------------------------for undotree------------------------------------"
-" https://github.com/mbbill/undotree
-"let g:undotree_SetFocusWhenToggle = 1
-"function! g:Undotree_CustomMap()
-    "map <buffer> <c-n> J
-    "map <buffer> <c-p> K
-"endfunction
-"if has("persistent_undo")
-    "set undodir=~/.vim/undodir/
-    "set undofile
-    "set undolevels=10000
-"endif
-" ------------------------for undotree------------------------------------"
-"
+
 " ------------------------for syntastic--------------------------------------"
 " https://github.com/scrooloose/syntastic
 set statusline+=%#warningmsg#
@@ -457,8 +391,8 @@ nnoremap <leader>lc :lclose<CR>
 nnoremap <leader>ln :lnext<CR>
 nnoremap <leader>lp :lprevious<CR>
 " ------------------------for syntastic--------------------------------------"
-"
-" ------------------------for vim-expand-region----------------------------------"
+
+" ------------------------for vim-expand-region------------------------------"
 " https://github.com/terryma/vim-expand-region
 " This selects the next closest text object.
 nmap e <Plug>(expand_region_expand)
@@ -480,38 +414,59 @@ let g:expand_region_text_objects = {
       \ 'ip'  :0,
       \ 'ie'  :0 
   \ }
-" ------------------------for vim-expand-region----------------------------------"
-"
-" ------------------------for vim colorscheme-----------------------------------"
+" ------------------------for vim-expand-region------------------------------"
+
+" ------------------------for vim colorscheme--------------------------------"
 let g:molokai_original = 1
-" ------------------------for vim colorscheme-----------------------------------"
-"
+" ------------------------for vim colorscheme--------------------------------"
+
 " ------------------------for tabular-----------------------------------"
 "  https://github.com/godlygeek/tabular
 nnoremap <Leader>a :Tabularize 
 vnoremap <Leader>a :Tabularize 
 " ------------------------for tabular-----------------------------------"
-"
+
 " ------------------------for tagbar------------------------------------"
 let g:tagbar_width = 30
 " ------------------------for tagbar------------------------------------"
-"
+
 " ------------------------for bufferplus--------------------------------"
 let g:BufferPlusDefaultMode = 1
 let g:BufferPlusPerf = "buffer"
 let g:BufferPlusCloseMap = "<leader>bd"
 " ------------------------for bufferplus--------------------------------"
-"
+
 " ------------------------for gruvbox------------------------------------"
 " https://github.com/morhetz/gruvbox
 let g:gruvbox_contrast_dark = "hard"
 " ------------------------for gruvbox------------------------------------"
-"
-" ------------------------for auto close preview--------------------------------"
+
+" ------------------------for goyo----------------------------------------"
+" https://github.com/junegunn/goyo.vim  
+let g:limelight_conceal_ctermfg = 245
+let g:goyo_height = '95%'
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+" ------------------------for goyo----------------------------------------"
+
+" ------------------------for rainbow------------------------------------"
+" https://github.com/luochen1990/rainbow
+let g:rainbow_conf = {
+\   'ctermfgs': [109, 208, 142, 167],
+\   'operators': '_,_',
+\   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+\   'separately': {
+\       '*': {},
+\       'css': 0,
+\   }
+\}
+au VimEnter * RainbowToggle
+" ------------------------for rainbow------------------------------------"
+
+" ------------------------for auto close preview-----------------------------"
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-" ------------------------for auto close preview--------------------------------"
-"
+" ------------------------for auto close preview------------------------------"
 
 " Colors-----------------------------------
 syntax on
@@ -519,3 +474,4 @@ syntax enable " syntax color
 set background=dark
 "colorscheme molokai
 colorscheme gruvbox
+" Don't over 500

@@ -17,6 +17,8 @@ export ZSH=~/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="mephis-magic"
 
+export LANG=en_US.UTF-8
+
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -127,8 +129,10 @@ source ~/.oh-my-zsh/gruvbox_256palette.sh
 # Example aliases
 alias p3='python3'
 alias netpart='sudo netstat -an | grep'
+alias vim='nvim'
 alias vimrc='vim ~/.vim/vimrc'
 alias zshrc='vim ~/.zshrc'
+alias snips='cd ~/.config/nvim/UltiSnips'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
