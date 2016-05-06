@@ -68,7 +68,7 @@ plugins=(git colored-man-pages vi-mode z zsh-syntax-highlighting)
 
 # User configuration
 # go work path
-export GOROOT="/usr/local/go"
+export GOROOT="/usr/lib/go"
 export GOPATH="$HOME/Desktop/work/go"
 export GOBIN="$GOPATH/bin"
 export GOPATH="$GOPATH/lib:$GOPATH"
@@ -120,6 +120,7 @@ source ~/.oh-my-zsh/gruvbox_256palette.sh
 # Example aliases
 alias p3='python3'
 alias netpart='sudo netstat -an | grep'
+alias vim='nvim'
 alias vimrc='vim ~/.vim/vimrc'
 alias zshrc='vim ~/.zshrc'
 # alias zshconfig="mate ~/.zshrc"

@@ -19,38 +19,32 @@ fi
 remove_packages 1 vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common
 
 if [ $IS_ARCHLINUX == "1" ] ; then 
-    install_packages neovim python-neovim
+    install_packages neovim python-neovim xclip
+    pip3 install jedi
     install_packages python-pylint ctags cscope
 else
     install_packages software-properties-common
     add-apt-repository ppa:neovim-ppa/unstable
     update_packages
     install_packages neovim python-dev python-pip python3-dev python3-pip
-    pip3 install neovim
+    pip3 install neovim jedi
     install_packages pylint exuberant-ctags cscope
 fi
 
-test -e $INIT_HOME/.nvim && rm -rf $INIT_HOME/.nvim
-mkdir $INIT_HOME/.nvim 
-cp $GENPATH/src/vimrc $INIT_HOME/.nvim/vimrc 
-curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > $VIM_PATH/installer.sh
- sh $VIM_PATH/installer.sh $INIT_HOME/.nvim
+test -e $INIT_HOME/.config/nvim && rm -rf $INIT_HOME/.config/nvim
+mkdir $INIT_HOME/.config/nvim
 
+cp $GENPATH/src/vimrc $INIT_HOME/.config/nvim/init.vim
+curl -fLo $INIT_HOME/.config/nvim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 # for my color
-git clone https://github.com/MephistoMMM/gruvbox.git  $INIT_HOME/.nvim/bundle/gruvbox 
+git clone https://github.com/MephistoMMM/gruvbox.git  $INIT_HOME/.config/nvim/plugged/gruvbox 
 
 #for ultisnips
-git clone https://github.com/MephistoMMM/USlibrary.git $INIT_HOME/.nvim/UltiSnips
-
-if [ ! -e $INIT_HOME/.config/nvim ]; then
-    mkdir $VIM_PATH/.config/nvim
-fi
-
-ln -s $INIT_HOME/.nvim/vimrc $INIT_HOME/.config/nvim/init.vim
+git clone https://github.com/MephistoMMM/USlibrary.git $INIT_HOME/.config/nvim/UltiSnips
 
 #change mod
-vim +source$INIT_HOME/.nvim/vimrc +PluginInstall +qall
-chown -R $INIT_USER:$INIT_USER $INIT_HOME/.nvim 
+vim +source$INIT_HOME/.config/nvim/init.vim +PlugInstall +qall
 chown -R $INIT_USER:$INIT_USER $INIT_HOME/.config/nvim 
 
 rm -rf $VIM_PATH
