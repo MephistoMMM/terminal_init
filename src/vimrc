@@ -8,6 +8,9 @@
 "   - Interface: python3 , Lua ,
 "   - utils: ctags , cscope, pylint, eslint_d
 "   - theme: MephistoMMM/gruvbox
+" TODO: 
+"   * buffer-circular-kill rewrite by python3
+"   * JavaScript Semantic Completion
 
 " Space&Tabs-----------------------------------
 set tabstop=4  " tab setting
@@ -152,10 +155,10 @@ call plug#begin('~/.config/nvim/plugged')
 
 " |-------------------go----------------------------|
 " go
-Plug 'zchee/deoplete-go',{'do': 'make', 'for': 'go'}
+Plug 'fatih/vim-go'
 " when your change your GOPATH or start a new project , exec: 
 "   go get -u github.com/nsf/gocode 
-Plug 'nsf/gocode', {'rtp': 'vim/', 'for': 'go'}
+Plug 'nsf/gocode', {'rtp': 'nvim/', 'for': 'go'}
 " a local func jamp
 "     go get -v code.google.com/p/rog-go/exp/cmd/godef
 "     go install -v code.google.com/p/rog-go/exp/cmd/godef
@@ -185,10 +188,11 @@ Plug 'vim-scripts/auto_mkdir'
 Plug 'tpope/vim-abolish'
 " goyo focus your code
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 " gruvbox
 Plug 'MephistoMMM/gruvbox'
-" deoplete
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+" you complete me
+Plug 'Valloric/YouCompleteMe', {'do': './install.py --all'}
 " Track the engine.
 Plug 'SirVer/ultisnips', { 'do': function('DoRemote') }
 " Snippets are separated from the engine. Add this if you want them:
@@ -216,11 +220,6 @@ Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
 " select the closest object among a group of candidate
 Plug 'terryma/vim-expand-region'
-" |-------------------------------------------------|
-
-" |---------------------python3---------------------|
-" python3 more powerful completion
-Plug 'junegunn/limelight.vim', {'for': 'python'}
 " |-------------------------------------------------|
 
 " |-------------------------js----------------------|
@@ -284,42 +283,17 @@ let g:AutoPairsShortcutJump='<C-l>'
 au FileType vim,html let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`','<':'>'}
 " -------------------for auto-pairs-------------------------------"
    
-" -------------------for deomplete------------------------------"
-" https://github.com/Shougo/deomplete.vim
-" deoplete.nvim recommend
-set completeopt+=noselect
-let g:deoplete#enable_at_startup = 1
-" Use smartcase.
-let g:deoplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:deoplete#auto_complete_start_length = 3
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function() abort
-  return deoplete#mappings#close_popup() . "\<CR>"
-endfunction
-" <BS>: close popup and delete backword char.
-inoremap <expr><BS>  deoplete#mappings#smart_close_popup()."\<C-h>"
-inoremap <silent><expr> <Tab>
-\ pumvisible() ? "\<C-n>" :
-\ "\<TAB>"
-" Enable omni completion.
+" ------------------for youcompleteme---------------------------"
+"  https://github.com/Valloric/YouCompleteMe
+let g:ycm_min_num_of_chars_for_completion = 3
+let g:ycm_auto_trigger = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_use_ultisnips_completer = 1
+let g:ycm_python_binary_path = '/usr/bin/python'
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=jedi#completions
-autocmd FileType go setlocal omnifunc=gocode#Complete
-
-if !exists('g:deoplete#omni#input_patterns')
-  let g:deoplete#omni#input_patterns = {}
-endif
-
-" GO: By default, the classes (const, func, type, var) are not aligned in the popup menu. set align_class to 1 to aligned them.
-let g:deoplete#sources#go#align_class = 1
-let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
-" Python: show docs in prev window
-let g:deoplete#sources#jedi#show_docstring = 1
-" -------------------for deomplete------------------------------"
+" ------------------for youcompleteme---------------------------"
 
 " -------------------for ultisnips------------------------------"
 " https://github.com/SirVer/ultisnips
@@ -346,13 +320,14 @@ au FileType go nmap <leader>gc <Plug>(go-coverage)
 au FileType go nmap <Leader>gs <Plug>(go-implements)
 au FileType go nmap <Leader>gd <Plug>(go-doc)
 "au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-au FileType go let g:go_highlight_functions = 1
-au FileType go let g:go_highlight_methods = 1
-au FileType go let g:go_highlight_structs = 1
-au FileType go let g:go_highlight_operators = 1
-au FileType go let g:go_highlight_build_constraints = 1 
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1 
 " godef https://github.com/dgryski/vim-godef
-au FileType go let g:godef_split = 2
+let g:godef_split = 2
 " -------------------------for go ------------------------------"
 
 " ------------------------for easymotion -----------------------------------"
@@ -486,8 +461,8 @@ au VimEnter * RainbowToggle
 " ------------------------for rainbow------------------------------------"
 
 " ------------------------for auto close preview-----------------------------"
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+"autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+"autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 " ------------------------for auto close preview------------------------------"
 
 " Colors-----------------------------------
