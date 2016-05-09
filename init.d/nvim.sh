@@ -43,6 +43,9 @@ git clone https://github.com/MephistoMMM/gruvbox.git  $INIT_HOME/.config/nvim/pl
 #for ultisnips
 git clone https://github.com/MephistoMMM/USlibrary.git $INIT_HOME/.config/nvim/UltiSnips
 
+# for undo 
+mkdir $INIT_HOME/.config/nvim/undodir 
+
 #change mod
 vim +source$INIT_HOME/.config/nvim/init.vim +PlugInstall +qall
 chown -R $INIT_USER:$INIT_USER $INIT_HOME/.config/nvim 

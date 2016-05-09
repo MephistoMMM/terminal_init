@@ -8,7 +8,7 @@
 "   - Interface: python3 , Lua ,
 "   - utils: ctags , cscope, pylint, eslint_d
 "   - theme: MephistoMMM/gruvbox
-" TODO: 
+" TODO:
 "   * buffer-circular-kill rewrite by python3
 "   * JavaScript Semantic Completion
 
@@ -48,6 +48,11 @@ set tm=1000
 " while save tag file
 set tags=tags 
 let mapleader = "\<SPACE>"
+" Persistent undo
+set undodir=~/.config/nvim/undodir
+set undofile
+set undolevels=1000 "maximum number of changes that can be undone
+set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 
 " Folding-----------------------------------
 set foldenable " Enable folding
@@ -58,11 +63,6 @@ set foldnestmax=10 " 10 folds max
 " Search------------------------------------
 " Highlight search things
 set hlsearch  
-" search ignoring case
-"set ignorecase 
-"" search with case if the searched command contains up case, otherwise
-"" ignoring case
-"set smartcase  
 
 " No backup--------------------
 set nobackup
@@ -96,10 +96,12 @@ set cursorline
 " Key Shortcut-----------------------------------
 map k gk
 map j gj
+" go into source insight mode Plus
+map <leader>th  :sp tags<CR>:%s/^\([^	:]*:\)\=\([^	]*\).*/syntax keyword Tag \2/<CR>:wq! tags.vim<CR>:noh<CR>:so tags.vim<CR>
+map <leader>tl  :so tags.vim<CR>
 
 " -----------------------------Normal-------------------------------"
 "  <C-]> to jump among files
-map <C-g> <C-[>
 "split window
 nnoremap <leader>wv            :vsp<cr>
 nnoremap <leader>wh            :sp<cr>
@@ -122,9 +124,8 @@ nnoremap <leader>sh            :%!xxd<cr>
 nnoremap <leader>sn            :%!xxd -r<cr>
 "go into source insight mode
 nnoremap <silent> <leader>ts   :! ctags -R && cscope -Rbq<cr>
-" go into source insight mode Plus
-map <leader>th  :sp tags<CR>:%s/^\([^	:]*:\)\=\([^	]*\).*/syntax keyword Tag \2/<CR>:wq! tags.vim<CR>:noh<CR>:so tags.vim<CR>
-map <leader>tl  :so tags.vim<CR>
+" edit .vimrc file conveniently , <leader>e to edit .vimrc
+nnoremap <silent> <leader>e    :e $HOME/.config/nvim/init.vim<cr>
 " -----------------------------Normal-------------------------------"
 
 " -----------------------------Insert-------------------------------"
@@ -135,12 +136,6 @@ inoremap <C-j> <ESC>o
 " paset cover a visual region
 vnoremap P dp
 " -----------------------------Visual-------------------------------"
-
-" -----------------------------Exec-------------------------------"
-" -----------------------------Exec-------------------------------"
-
-" edit .vimrc file conveniently , <leader>e to edit .vimrc
-nnoremap <silent> <leader>e :e $HOME/.config/nvim/init.vim<cr>
 
 " ------------------------------------------------------------------------------
 " ---------------------------------Plugin Manager-------------------------------
@@ -155,7 +150,8 @@ call plug#begin('~/.config/nvim/plugged')
 
 " |-------------------go----------------------------|
 " go
-Plug 'fatih/vim-go'
+Plug 'zchee/deoplete-go',{'do': 'make', 'for': 'go'}
+Plug 'fatih/vim-go', {'for': 'go'}
 " when your change your GOPATH or start a new project , exec: 
 "   go get -u github.com/nsf/gocode 
 Plug 'nsf/gocode', {'rtp': 'nvim/', 'for': 'go'}
@@ -178,9 +174,6 @@ Plug 'luochen1990/rainbow'
 " tags bar
 " https://github.com/majutsushi/tagbar
 Plug 'majutsushi/tagbar'
-" auto mkdir
-" https://github.com/vim-scripts/auto_mkdir
-Plug 'vim-scripts/auto_mkdir'
 " https://github.com/tpope/vim-abolish
 " :Abolish 
 " :Subvert(or just :S) more powerful than s
@@ -191,8 +184,8 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 " gruvbox
 Plug 'MephistoMMM/gruvbox'
-" you complete me
-Plug 'Valloric/YouCompleteMe', {'do': './install.py --all'}
+" deoplete
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 " Track the engine.
 Plug 'SirVer/ultisnips', { 'do': function('DoRemote') }
 " Snippets are separated from the engine. Add this if you want them:
@@ -220,6 +213,11 @@ Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
 " select the closest object among a group of candidate
 Plug 'terryma/vim-expand-region'
+" |-------------------------------------------------|
+
+" |---------------------python3---------------------|
+" python3 more powerful completion
+Plug 'zchee/deoplete-jedi', {'for': 'python'}
 " |-------------------------------------------------|
 
 " |-------------------------js----------------------|
@@ -283,17 +281,42 @@ let g:AutoPairsShortcutJump='<C-l>'
 au FileType vim,html let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`','<':'>'}
 " -------------------for auto-pairs-------------------------------"
    
-" ------------------for youcompleteme---------------------------"
-"  https://github.com/Valloric/YouCompleteMe
-let g:ycm_min_num_of_chars_for_completion = 3
-let g:ycm_auto_trigger = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_use_ultisnips_completer = 1
-let g:ycm_python_binary_path = '/usr/bin/python'
+" -------------------for deomplete------------------------------"
+" https://github.com/Shougo/deomplete.vim
+" deoplete.nvim recommend
+set completeopt+=noselect
+let g:deoplete#enable_at_startup = 1
+" Use smartcase.
+let g:deoplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:deoplete#auto_complete_start_length = 3
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function() abort
+  return deoplete#mappings#close_popup() . "\<CR>"
+endfunction
+" <BS>: close popup and delete backword char.
+inoremap <expr><BS>  deoplete#mappings#smart_close_popup()."\<C-h>"
+inoremap <silent><expr> <Tab>
+\ pumvisible() ? "\<C-n>" :
+\ "\<TAB>"
+" Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" ------------------for youcompleteme---------------------------"
+autocmd FileType python setlocal omnifunc=jedi#completions
+autocmd FileType go setlocal omnifunc=gocode#Complete
+
+if !exists('g:deoplete#omni#input_patterns')
+  let g:deoplete#omni#input_patterns = {}
+endif
+
+" GO: By default, the classes (const, func, type, var) are not aligned in the popup menu. set align_class to 1 to aligned them.
+let g:deoplete#sources#go#align_class = 1
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+" Python: show docs in prev window
+let g:deoplete#sources#jedi#show_docstring = 1
+" -------------------for deomplete------------------------------"
 
 " -------------------for ultisnips------------------------------"
 " https://github.com/SirVer/ultisnips
@@ -322,7 +345,6 @@ au FileType go nmap <Leader>gd <Plug>(go-doc)
 "au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
-let g:go_highlight_interfaces = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1 
@@ -335,7 +357,6 @@ let g:godef_split = 2
 " Gif config
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
-"
 " " These `n` & `N` mappings are options. You do not have to map `n` & `N` to
 " EasyMotion.
 " " Without these mappings, `n` & `N` works fine. (These mappings just provide
@@ -365,6 +386,8 @@ let g:syntastic_python_pylint_args = '--disable=C0303,'
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = 'eslint_d'
 let g:syntastic_javascript_eslint_args = '--ignore-path=.gitignore'
+" for go 
+"let g:syntastic_go_checkers = ['errcheck']
 " Syntastic check
 nnoremap <leader>sc :SyntasticCheck<CR>
 " turns off all error notifiers
@@ -461,8 +484,8 @@ au VimEnter * RainbowToggle
 " ------------------------for rainbow------------------------------------"
 
 " ------------------------for auto close preview-----------------------------"
-"autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-"autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 " ------------------------for auto close preview------------------------------"
 
 " Colors-----------------------------------
