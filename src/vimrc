@@ -1,4 +1,4 @@
-" vimrc
+" init.vim
 " Maintainer: Mephis Pheies ( MephistoMMM )	
 " Email: mephistommm@gmail.com
 " Version:	0.1.0
@@ -93,6 +93,10 @@ set showtabline=2
 " highlight the line which cursor on
 set cursorline 
 
+" Abbreviate-----------------------------------
+iabbrev lambda λ
+autocmd FileType python unabbreviate lambda
+
 " Key Shortcut-----------------------------------
 map k gk
 map j gj
@@ -133,8 +137,6 @@ inoremap <C-j> <ESC>o
 " -----------------------------Insert-------------------------------"
 
 " -----------------------------Visual-------------------------------"
-" paset cover a visual region
-vnoremap P dp
 " -----------------------------Visual-------------------------------"
 
 " ------------------------------------------------------------------------------
@@ -224,6 +226,11 @@ Plug 'zchee/deoplete-jedi', {'for': 'python'}
 " js syntax define
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 " |-------------------------------------------------|
+
+" |---------------------haskell---------------------|
+" haskell 
+Plug 'neovimhaskell/haskell-vim'
+" |-------------------------------------------------|
  
 " |-------------------------markdown----------------|
 " markdown
@@ -264,6 +271,7 @@ au FileType markdown let g:vim_markdown_frontmatter=1
 
 " -------------------for ctrlp------------------------------------"
 "  https://github.com/ctrlpvim/ctrlp.vim
+"  Use <c-f>, <c-b> to change mode
 "  Use <c-j>, <c-k> or the arrow keys to navigate the result list.
 "  Use <c-t> or <c-v>, <c-x> to open the selected entry in a new tab or in a new split.
 "  Use <c-z> to mark/unmark multiple files and <c-o> to open them.
@@ -327,9 +335,9 @@ let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips'
 let g:UltiSnipsExpandTrigger="<C-k>"
 let g:UltiSnipsJumpForwardTrigger="<C-k>"
 let g:UltiSnipsJumpBackwardTrigger="<C-;>"
-
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+au FileType c UltiSnipsAddFiletypes c.cpp
 nnoremap <leader>us :UltiSnipsEdit<CR>
 " -------------------for ultisnips------------------------------"
 
@@ -385,9 +393,6 @@ let g:syntastic_python_pylint_args = '--disable=C0303,'
 " for js
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = 'eslint_d'
-let g:syntastic_javascript_eslint_args = '--ignore-path=.gitignore'
-" for go 
-"let g:syntastic_go_checkers = ['errcheck']
 " Syntastic check
 nnoremap <leader>sc :SyntasticCheck<CR>
 " turns off all error notifiers
@@ -450,12 +455,6 @@ let g:tagbar_type_go = {
     \ 'ctagsargs' : '-sort -silent'}
 " ------------------------for tagbar------------------------------------"
 
-" ------------------------for bufferplus--------------------------------"
-let g:BufferPlusDefaultMode = 1
-let g:BufferPlusPerf = "buffer"
-let g:BufferPlusCloseMap = "<leader>bd"
-" ------------------------for bufferplus--------------------------------"
-
 " ------------------------for gruvbox------------------------------------"
 " https://github.com/morhetz/gruvbox
 let g:gruvbox_contrast_dark = "hard"
@@ -480,7 +479,8 @@ let g:rainbow_conf = {
 \       'css': 0,
 \   }
 \}
-au VimEnter * RainbowToggle
+let g:rainbow_active = 1
+" au BufRead,BufNewFile * RainbowToggle
 " ------------------------for rainbow------------------------------------"
 
 " ------------------------for auto close preview-----------------------------"
@@ -492,6 +492,5 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 syntax on
 syntax enable " syntax color
 set background=dark
-"colorscheme molokai
 colorscheme gruvbox
 " Don't over 500
