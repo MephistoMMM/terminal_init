@@ -17,12 +17,14 @@ test -e $INIT_HOME/.zshrc && rm $INIT_HOME/.zshrc
 # cope gruvbox/gruvbox_256palette.sh
 test -e $INIT_HOME/.vim/bundle/gruvbox && \
     cp $INIT_HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh $INIT_HOME/.oh-my-zsh/
+test -e $INIT_HOME/.config/nvim/plugged/gruvbox && \
+    cp $INIT_HOME/.config/nvim/plugged/gruvbox/gruvbox_256palette.sh $INIT_HOME/.oh-my-zsh/
 
 git clone https://github.com/robbyrussell/oh-my-zsh.git $INIT_HOME/.oh-my-zsh
 git clone git://github.com/zsh-users/zsh-syntax-highlighting.git $INIT_HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
 cp ./src/zshrc.linux $INIT_HOME/.zshrc\
-    && cp ./src/af-magic.zsh-theme $INIT_HOME/.oh-my-zsh/themes/ \
+    && cp ./src/mephis-magic.zsh-theme $INIT_HOME/.oh-my-zsh/themes/ \
     && chown $INIT_USER:$INIT_USER $INIT_HOME/.zshrc \
     && chown -R $INIT_USER:$INIT_USER $INIT_HOME/.oh-my-zsh \
     && chsh -s /bin/zsh $INIT_USER

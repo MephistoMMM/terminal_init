@@ -94,8 +94,7 @@ set showtabline=2
 set cursorline 
 
 " Abbreviate-----------------------------------
-iabbrev lambda λ
-autocmd FileType python unabbreviate lambda
+iabbrev lbd λ
 
 " Key Shortcut-----------------------------------
 map k gk
@@ -389,7 +388,7 @@ let g:syntastic_check_on_wq              = 0
 " for python
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_python_pylint_post_args = '--msg-template="{path}:{line}:{column}:{C}: [{symbol} {msg_id}] {msg}"'
-let g:syntastic_python_pylint_args = '--disable=C0303,'
+let g:syntastic_python_pylint_args = '--disable=C0303,W0141,'
 " for js
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = 'eslint_d'

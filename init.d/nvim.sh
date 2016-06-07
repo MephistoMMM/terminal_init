@@ -34,7 +34,6 @@ fi
 test -e $INIT_HOME/.config/nvim && rm -rf $INIT_HOME/.config/nvim
 mkdir $INIT_HOME/.config/nvim
 
-cp $GENPATH/src/vimrc $INIT_HOME/.config/nvim/init.vim
 curl -fLo $INIT_HOME/.config/nvim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 # for my color
@@ -46,8 +45,9 @@ git clone https://github.com/MephistoMMM/USlibrary.git $INIT_HOME/.config/nvim/U
 # for undo 
 mkdir $INIT_HOME/.config/nvim/undodir 
 
-#change mod
+cp $GENPATH/src/vimrc $INIT_HOME/.config/nvim/init.vim
 vim +source$INIT_HOME/.config/nvim/init.vim +PlugInstall +qall
+#change mod
 chown -R $INIT_USER:$INIT_USER $INIT_HOME/.config/nvim 
 
 rm -rf $VIM_PATH
