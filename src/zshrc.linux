@@ -1,14 +1,15 @@
 # Path to your oh-my-zsh installation.
-# font color (255,223,95)
-# background color (18,18,18)
-# red        (251,73,52)
-# green      (121,187,38)
-# yellow     (250,189,47)
-# blue       (81,153,240) #5199f0
-# cyan       (131,165,152)
-# purple     (211,134,155)
+# font color (239,225,191) #efe1bf Bold (255,227,145) #ffe391
+# background color (18,18,18) #121212
+# red        (254,97,67) #fe6143
+# green      (138,197,50) #8ac532
+# yellow     (252,199,60) #fcc73c
+# blue       (97,171,243) #61abf3
+# cyan       (148,179,168) #94b3a8
+# megenta    (221,154,171) #dd9aab
 # aqua       (142,192,124)
 # orange     (254,128,25)
+# white      (199,199,199) #c7c7c7
 export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load.
