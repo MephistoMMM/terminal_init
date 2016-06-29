@@ -119,8 +119,6 @@ nnoremap <leader>bb            :CtrlPBuffer<cr>
 nnoremap <leader>tb            :TagbarToggle<cr>
 " toggle rainbow
 nnoremap <leader>tr            :RainbowToggle<cr>
-" start to feel zen
-nnoremap <leader>z             :Goyo<cr>
 "show hexadecimal coding(hex coding) 
 nnoremap <leader>sh            :%!xxd<cr>
 "show normal code
@@ -172,6 +170,8 @@ Plug 'evanmiller/nginx-vim-syntax'
 Plug 'MephistoMMM/buf-circular-kill'
 " rainbow pairs
 Plug 'luochen1990/rainbow'
+" indentline
+Plug 'Yggdroot/indentLine'
 " tags bar
 " https://github.com/majutsushi/tagbar
 Plug 'majutsushi/tagbar'
@@ -180,9 +180,6 @@ Plug 'majutsushi/tagbar'
 " :Subvert(or just :S) more powerful than s
 " map  cr(s|c|u|m|...)
 Plug 'tpope/vim-abolish'
-" goyo focus your code
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
 " gruvbox
 Plug 'MephistoMMM/gruvbox'
 " deoplete
@@ -420,10 +417,6 @@ let g:expand_region_text_objects = {
   \ }
 " ------------------------for vim-expand-region------------------------------"
 
-" ------------------------for vim colorscheme--------------------------------"
-let g:molokai_original = 1
-" ------------------------for vim colorscheme--------------------------------"
-
 " ------------------------for tabular-----------------------------------"
 "  https://github.com/godlygeek/tabular
 nnoremap <Leader>a :Tabularize 
@@ -459,14 +452,6 @@ let g:tagbar_type_go = {
 let g:gruvbox_contrast_dark = "hard"
 " ------------------------for gruvbox------------------------------------"
 
-" ------------------------for goyo----------------------------------------"
-" https://github.com/junegunn/goyo.vim  
-let g:limelight_conceal_ctermfg = 245
-let g:goyo_height = '95%'
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
-" ------------------------for goyo----------------------------------------"
-
 " ------------------------for rainbow------------------------------------"
 " https://github.com/luochen1990/rainbow
 let g:rainbow_conf = {
@@ -481,6 +466,11 @@ let g:rainbow_conf = {
 let g:rainbow_active = 1
 " au BufRead,BufNewFile * RainbowToggle
 " ------------------------for rainbow------------------------------------"
+
+" ------------------------for indentLine---------------------------------"
+" https://github.com/Yggdroot/indentLine
+let g:indentLine_char = '¦'
+" ------------------------for indentLine---------------------------------"
 
 " ------------------------for auto close preview-----------------------------"
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
