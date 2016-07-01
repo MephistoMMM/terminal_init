@@ -153,6 +153,7 @@ Plug 'zchee/deoplete-go',{'do': 'make', 'for': 'go'}
 Plug 'fatih/vim-go', {'for': 'go'}
 " when your change your GOPATH or start a new project , exec: 
 "   go get -u github.com/nsf/gocode 
+"   or :GoInstallBinaries
 Plug 'nsf/gocode', {'rtp': 'nvim/', 'for': 'go'}
 " a local func jamp
 "     go get -v code.google.com/p/rog-go/exp/cmd/godef
@@ -389,6 +390,8 @@ let g:syntastic_python_pylint_args = '--disable=C0303,W0141,'
 " for js
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = 'eslint_d'
+" for go
+let g:syntastic_go_checkers = ['golint']
 " Syntastic check
 nnoremap <leader>sc :SyntasticCheck<CR>
 " turns off all error notifiers

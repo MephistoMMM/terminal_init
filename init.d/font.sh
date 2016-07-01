@@ -16,6 +16,6 @@ fi
 
 git clone https://github.com/powerline/fonts.git $FONTS_PATH/powerlinefonts \
         && $FONTS_PATH/powerlinefonts/install.sh \
-        && chmod -R $INIT_USER:$INIT_USER $INIT_HOME/.fonts
+        && chown -R $INIT_USER:$INIT_USER $INIT_HOME/.fonts
 
 rm -rf $FONTS_PATH/powerlinefonts
