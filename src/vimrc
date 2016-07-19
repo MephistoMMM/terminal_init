@@ -391,7 +391,7 @@ let g:syntastic_python_pylint_args = '--disable=C0303,W0141,'
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = 'eslint_d'
 " for go
-let g:syntastic_go_checkers = ['golint']
+let g:syntastic_go_checkers = ['golint', 'go']
 " Syntastic check
 nnoremap <leader>sc :SyntasticCheck<CR>
 " turns off all error notifiers
@@ -412,6 +412,7 @@ vmap <BS> <Plug>(expand_region_shrink)
 let g:expand_region_text_objects = {
       \ 'i"'  :0,  'a"'  :0,
       \ 'i''' :0,  'a''' :0,
+      \ 'i`'  :0,  'a`'  :0,
       \ 'i]'  :1,  'a]'  :1, 
       \ 'ib'  :1,  'ab'  :1, 
       \ 'iB'  :1,  'aB'  :1, 
