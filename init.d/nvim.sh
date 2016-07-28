@@ -19,8 +19,8 @@ fi
 remove_packages 1 vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common
 
 if [ $IS_ARCHLINUX == "1" ] ; then 
-    install_packages neovim python-neovim xclip
-    pip3 install jedi
+    install_packages neovim python-neovim xclip python-pip
+    pip install jedi
     install_packages python-pylint ctags cscope
 else
     install_packages software-properties-common
@@ -45,10 +45,11 @@ git clone https://github.com/MephistoMMM/USlibrary.git $INIT_HOME/.config/nvim/U
 # for undo 
 mkdir $INIT_HOME/.config/nvim/undodir 
 
+chown -R $INIT_USER:$INIT_USER $INIT_HOME/.config
 cp $GENPATH/src/vimrc $INIT_HOME/.config/nvim/init.vim
-vim +source$INIT_HOME/.config/nvim/init.vim +PlugInstall +qall
+nvim +source$INIT_HOME/.config/nvim/init.vim +PlugInstall +qall
 #change mod
-chown -R $INIT_USER:$INIT_USER $INIT_HOME/.config/nvim 
+chown -R $INIT_USER:$INIT_USER $INIT_HOME/.config
 
 rm -rf $VIM_PATH
 
