@@ -18,6 +18,8 @@ export ZSH=~/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="mephis-magic"
 
+export LANG=en_US.UTF-8
+
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -65,7 +67,7 @@ ZSH_THEME="mephis-magic"
 # colored-man-pages : make man doc colorful
 # vi-mode:      start vi mode in zsh, but default is insert mode;
 # Z :           jump to you frequent dir : z zsh plugins z
-plugins=(git colored-man-pages vi-mode z zsh-syntax-highlighting)
+plugins=(git colored-man-pages vi-mode z history-substring-search zsh-syntax-highlighting)
 
 # User configuration
 # go work path
@@ -109,6 +111,7 @@ source $ZSH/oh-my-zsh.sh
 export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # run while zsh init
+# add more color for item
 #source ~/.oh-my-zsh/gruvbox_256palette_osx.sh
 source ~/.oh-my-zsh/gruvbox_256palette.sh
 
@@ -124,9 +127,9 @@ alias netpart='sudo netstat -an | grep'
 alias vim='nvim'
 alias vimrc='vim ~/.vim/vimrc'
 alias zshrc='vim ~/.zshrc'
+alias snips='cd ~/.config/nvim/UltiSnips'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-#. ~/.vim/bundle/powerline/powerline/bindings/zsh/powerline.zsh
-#
-#this just for django mysql 
+# for Emacs
+alias emacsp='ps aux | grep \\'emacs --daemon\\''

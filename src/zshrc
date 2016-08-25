@@ -67,7 +67,7 @@ export LANG=en_US.UTF-8
 # colored-man-pages : make man doc colorful
 # vi-mode:      start vi mode in zsh, but default is insert mode;
 # Z :           jump to you frequent dir : z zsh plugins z
-plugins=(git colored-man-pages vi-mode z zsh-syntax-highlighting)
+plugins=(git colored-man-pages vi-mode z history-substring-search zsh-syntax-highlighting)
 
 # User configuration
 # go work path
@@ -111,12 +111,6 @@ source $ZSH/oh-my-zsh.sh
 export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # run while zsh init
-# node manager
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
-# export MANPATH="/usr/local/man:$MANPATH"
-# use node4.0.0 default
-eval "nvm use 5.7.1"
 # add more color for item
 #source ~/.oh-my-zsh/gruvbox_256palette_osx.sh
 source ~/.oh-my-zsh/gruvbox_256palette.sh
@@ -137,26 +131,6 @@ alias snips='cd ~/.config/nvim/UltiSnips'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-#. ~/.vim/bundle/powerline/powerline/bindings/zsh/powerline.zsh
-#
-#this just for django mysql 
-#
-# for emacs
-alias emacsd='emacs --daemon'
-#alias e='emacsclient -t'
-alias ec='emacsclient -c'
-
-# add kill emacs function
-function kill-emacs_directly(){
-    emacs_pid=$(ps aux | grep -v 'awk' | awk '/emacs --daemon/{print $2}')
-    if [[ -n "${emacs_pid}" ]];then
-        kill -9 "${emacs_pid}"
-    fi
-}
-function kill-emacs(){
-    emacsclient -e "(kill-emacs)"
-    kill-emacs_directly
-}
-# run emacs daemon if it not exist
- ps aux | grep 'emacs --daemon' | grep -v 'grep' > /dev/null || emacsd
-
+# for Emacs
+alias emacsp='ps aux | grep \\'Emacs --daemon\\''
+alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
