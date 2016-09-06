@@ -24,6 +24,7 @@ git clone https://github.com/robbyrussell/oh-my-zsh.git $INIT_HOME/.oh-my-zsh
 git clone git://github.com/zsh-users/zsh-syntax-highlighting.git $INIT_HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
 cp ./src/zshrc $INIT_HOME/.zshrc\
+    && cp ./src/zshenv $INIT_HOME/.zshenv\
     && cp ./src/mephis-magic.zsh-theme $INIT_HOME/.oh-my-zsh/themes/ \
     && chown $INIT_USER:$INIT_USER $INIT_HOME/.zshrc \
     && chown -R $INIT_USER:$INIT_USER $INIT_HOME/.oh-my-zsh \
