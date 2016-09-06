@@ -1,0 +1,31 @@
+#!/bin/env zsh
+#This file used to define emacs env, emacs will not load zshrc...
+# Environment variables should be set in .profile or .zshenv rather than
+# .bashrc or .zshrc.
+
+# User configuration
+# go work path
+if [ $? = 0 ]; then
+    export GOROOT="/usr/local/opt/go/libexec"
+else
+    export GOROOT="/usr/lib/go"
+fi
+export GOPATH="$HOME/Desktop/work/go"
+export GOBIN="$GOPATH/bin"
+export GOPATH="$GOPATH/lib:$GOPATH"
+
+# python work path
+# python3 pack pythonPath
+export PYTHONPATH="$HOME/Desktop/work/py/pkg"
+export PYBIN="$HOME/Desktop/work/py/bin"
+
+# set convenient path
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+# path for go
+export PATH="$PATH:$GOROOT/bin:$GOBIN"
+# path for py
+export PATH="$PATH:$PYBIN"
+
+export CWORKPATH="$HOME/Desktop/work/c"
+# ssh
+export SSH_KEY_PATH="~/.ssh/dsa_id"

@@ -69,27 +69,9 @@ export LANG=en_US.UTF-8
 # Z :           jump to you frequent dir : z zsh plugins z
 plugins=(git colored-man-pages vi-mode z history-substring-search zsh-syntax-highlighting)
 
-# User configuration
-# go work path
-export GOROOT="/usr/local/go"
-export GOPATH="$HOME/Desktop/work/go"
-export GOBIN="$GOPATH/bin"
-export GOPATH="$GOPATH/lib:$GOPATH"
 
-# python work path
-# python3 pack pythonPath
-export PYTHONPATH="$HOME/Desktop/work/py/pkg"
-export PYBIN="$HOME/Desktop/work/py/bin"
-
-# set convenient path
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
-# path for go
-export PATH="$PATH:$GOROOT/bin:$GOBIN"
-# path for py
-export PATH="$PATH:$PYBIN"
-
-export CWORKPATH="$HOME/Desktop/work/c"
-
+#source other env
+source ~/.zshenv
 
 source $ZSH/oh-my-zsh.sh
 #set up tab completion for arcanist
@@ -106,9 +88,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
-# ssh
-export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # run while zsh init
 # add more color for item
