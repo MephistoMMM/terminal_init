@@ -5,6 +5,7 @@
 
 # User configuration
 # go work path
+uname -a | grep 'Darwin' > /dev/null
 if [ $? = 0 ]; then
     export GOROOT="/usr/local/opt/go/libexec"
 else
