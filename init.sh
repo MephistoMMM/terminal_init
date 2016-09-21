@@ -14,6 +14,9 @@
 # this init script init things for a user, so we need a parament to expact username
 # if you do this, the INIT_USER=username , INIT_HOME=/home/username
 #
+# Whenever run this script, it will update pkg manager resource. But it just install base packages
+# only once. If you want to reinstall base packages, please remove ./tmp/status.sh.
+#
 # Usage: 
 #      init.sh  username  [mode1, mode2 ...]
 #
@@ -46,7 +49,20 @@ fi
 source $GENPATH/lib/package.sh
 
 update_packages
-install_packages git wget curl
+
+#if status.sh is not exist, install base packages and create init status file.
+#it avoids installing base packages whenever run this script.
+#if user want to reinstall them, just remove ./tmp/status.sh.
+#
+#INIT_STATUS could be used to control the status of init script and other script
+#under the ./init.d
+if [ ! -e $GENPATH/tmp/status.sh ]; then
+    install_packages git wget curl
+    export INIT_STATUS=1
+    echo "export INIT_STATUS=$INIT_STATUS" > $GENPATH/tmp/status.sh
+else
+    source $GENPATH/tmp/status.sh
+fi
 
 #while parament number(after shifting username) is 0 , init all mode
 if [ $# -eq 0 ]; then
@@ -63,5 +79,7 @@ else
         fi
     done
 fi
+
+chown -R $INIT_USER:$INIT_USER $INIT_HOME/.local
 
 echo -e "Congratulation!"; exit 0

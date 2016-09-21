@@ -17,6 +17,9 @@ The dir lib include common function file.
 
 The INIT\_USER=username , INIT\_HOME=/home/username.
 
+Whenever run this script, it will update pkg manager resource. But it just install base packages
+only once. If you want to reinstall base packages, please remove ./tmp/status.sh.
+
 ####Usage: 
 
       init.sh  username  [mode1, mode2 ...]
