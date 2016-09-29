@@ -2,14 +2,13 @@
 " Maintainer: Mephis Pheies ( MephistoMMM )	
 " Email: mephistommm@gmail.com
 " Version:	0.1.0
-" Last Change: 04 05 2016	
+" Last Change: 29 09 2016	
 " Introduction:  myself vim config
 " Dependencies: 
 "   - Interface: python3 , Lua ,
 "   - utils: ctags , cscope, pylint, eslint_d
 "   - theme: MephistoMMM/gruvbox
 " TODO:
-"   * buffer-circular-kill rewrite by python3
 "   * JavaScript Semantic Completion
 
 " Space&Tabs-----------------------------------
@@ -44,7 +43,7 @@ set scrolloff=10
 " No noisy error bell
 set noerrorbells 
 set visualbell
-set tm=1000
+set tm=10000
 " while save tag file
 set tags=tags 
 let mapleader = "\<SPACE>"
@@ -106,6 +105,7 @@ map <leader>tl  :so tags.vim<CR>
 " -----------------------------Normal-------------------------------"
 "  <C-]> to jump among files
 "split window
+nnoremap <C-g>                 <C-[>
 nnoremap <leader>wv            :vsp<cr>
 nnoremap <leader>wh            :sp<cr>
 nnoremap <leader>wc            :close<cr>
@@ -135,6 +135,7 @@ inoremap <C-k>                 <C-p>
 " -----------------------------Insert-------------------------------"
 
 " -----------------------------Visual-------------------------------"
+vnoremap <C-g>                 <C-[>
 " -----------------------------Visual-------------------------------"
 
 " ------------------------------------------------------------------------------

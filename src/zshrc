@@ -102,14 +102,14 @@ source ~/.oh-my-zsh/gruvbox_256palette.sh
 #
 # Example aliases
 alias p3='python3'
-alias netpart='sudo netstat -an | grep'
 alias vim='nvim'
-alias vimrc='vim ~/.vim/vimrc'
+alias vimrc='vim ~/.config/nvim/init.vim'
 alias zshrc='vim ~/.zshrc'
+alias zshenv='vim ~/.zshenv'
 alias snips='cd ~/.config/nvim/UltiSnips'
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 # for Emacs
-alias emacsp='ps aux | grep \\'Emacs --daemon\\''
+alias emacspd='ps aux | grep \\'Emacs --daemon\\''
+alias emacspc='ps aux | grep emacs'
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
+alias emacst='/usr/local/bin/emacs'
