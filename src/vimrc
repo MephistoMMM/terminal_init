@@ -108,7 +108,7 @@ map <leader>tl  :so tags.vim<CR>
 nnoremap <C-g>                 <C-[>
 nnoremap <leader>wv            :vsp<cr>
 nnoremap <leader>wh            :sp<cr>
-nnoremap <leader>wc            :close<cr>
+nnoremap <leader>wd            :close<cr>
 " no height
 nnoremap <leader>nh            :noh<cr>     
 " search file
