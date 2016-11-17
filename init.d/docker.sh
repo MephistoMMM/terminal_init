@@ -14,8 +14,7 @@ is_archlinux
 if [ $? -eq 0 ]; then
     install_packages docker
 else
-    wget -qO- https://get.docker.com/gpg | sudo apt-key add -
-    wget -qO- https://get.docker.com/ | sh
+    curl -sSL https://get.daocloud.io/docker | sh
 fi
 
 gpasswd -a $INIT_USER docker
