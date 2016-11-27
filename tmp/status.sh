@@ -1,1 +1,0 @@
-export INIT_STATUS=1
