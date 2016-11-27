@@ -6,7 +6,7 @@
 # python-pip
 # python3-pip
 # w3m
-# nodejs 6.x
+# nodejs 7.x
 # ----------
 #
 # CreateDate: 2015/11/30
@@ -16,13 +16,19 @@
 
 source $GENPATH/lib/package.sh
 
-install_packages python3 
-install_packages python3-pip python-pip
-install_packages w3m
+if [ $SYSTYPE != 2 ] ; then
+    install_packages python3 
+    install_packages python3-pip python-pip
+    install_packages w3m
 
-if [ $IS_ARCHLINUX == "1" ] ; then
-    install_packages nodejs npm
+    if [ $SYSTYPE == 1 ] ; then
+        install_packages nodejs npm
+    else
+        curl -sL https://deb.nodesource.com/setup_7.x | /bin/bash -c -
+        install_packages nodejs
+    fi
 else
-    curl -sL https://deb.nodesource.com/setup_6.x | /bin/bash -c -
-    install_packages nodejs
+    ./centos_python3.sh
+    curl --silent --location https://rpm.nodesource.com/setup_7.x | bash -
+    install_packages nodejs w3m
 fi

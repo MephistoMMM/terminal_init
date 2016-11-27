@@ -18,11 +18,19 @@ fi
 
 remove_packages 1 vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common
 
-if [ $IS_ARCHLINUX == "1" ] ; then 
+if [ $SYSTYPE == 1 ] ; then 
     install_packages neovim python-neovim xclip python-pip
     pip install jedi
     install_packages python-pylint ctags cscope
-else
+fi
+if [ $SYSTYPE == 2 ] ; then 
+    ./centos_python3.sh
+    install_packages epel-release
+    curl -o /etc/yum.repos.d/dperson-neovim-epel-7.repo https://copr.fedorainfracloud.org/coprs/dperson/neovim/repo/epel-7/dperson-neovim-epel-7.repo 
+    install_packages neovim pylint ctags cscope
+    pip3 install jedi neovim
+fi
+if [ $SYSTYPE == 0 ] ; then 
     install_packages software-properties-common
     add-apt-repository ppa:neovim-ppa/unstable
     update_packages
