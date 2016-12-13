@@ -30,3 +30,6 @@ export PATH="$PATH:$PYBIN"
 export CWORKPATH="$HOME/Desktop/work/c"
 # ssh
 export SSH_KEY_PATH="~/.ssh/dsa_id"
+## for magit
+#export GIT_EDITOR="/Applications/Emacs.app/Contents/MacOS/Emacs"
+

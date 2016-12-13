@@ -27,7 +27,7 @@ autocmd FileType yaml,vim,snippets setlocal et sta sw=2 sts=2
 " set .rs file is rust
 au BufNewFile,BufWrite,BufRead *.rs set filetype=rust
 au BufNewFile,BufWrite,BufRead *.snippets set filetype=snippets
-au BufRead,BufNewFile *.asd set filetype=lisp
+au BufRead,BufNewFile .spacemacs set filetype=lisp
 
 " Special--------------------
 " When a file has been detected to have been changed outside of Vim , 
@@ -390,8 +390,8 @@ let g:syntastic_warning_symbol           = '⚠'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list            = 1
 let g:syntastic_auto_jump                = 3
-let g:syntastic_check_on_open            = 0
 let g:syntastic_check_on_wq              = 0
+let g:syntastic_check_on_open            = 0
 " for python
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_python_pylint_post_args = '--msg-template="{path}:{line}:{column}:{C}: [{symbol} {msg_id}] {msg}"'
@@ -405,6 +405,7 @@ let g:syntastic_go_checkers = ['golint', 'go']
 nnoremap <leader>sc :SyntasticCheck<CR>
 " turns off all error notifiers
 nnoremap <leader>sr :SyntasticReset<CR>
+nnoremap <leader>el :SyntasticReset<CR>
 nnoremap <leader>se :Error<CR>
 nnoremap <leader>lc :lclose<CR>
 nnoremap <leader>ln :lnext<CR>
