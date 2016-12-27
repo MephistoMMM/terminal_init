@@ -1,0 +1,9 @@
+[user]
+	name = mpsss\n
+	email = mephistommm@gmail.com\n
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
+[core]
+    excludesfile = ~/.gitignore_global

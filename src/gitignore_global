@@ -1,0 +1,10 @@
+# ignore emacs tmp file
+.#*
+# ignore vim tmp file
+.swp
+# ignore macOs file
+.DS_Store 
+.DS_Store? 
+.Trashes
+Icon?
+
