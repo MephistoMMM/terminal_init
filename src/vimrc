@@ -23,6 +23,27 @@ autocmd FileType python setlocal et sta sw=4 sts=4
 autocmd FileType html,css,javascript setlocal et sta sw=2 sts=2
 autocmd FileType yaml,vim,snippets setlocal et sta sw=2 sts=2
 
+" Open Large File
+augroup LargeFile
+        let g:large_file = 3106576 " 3MB
+
+        " Set options:
+        "   eventignore+=FileType (no syntax highlighting etc
+        "   assumes FileType always on)
+        "   noswapfile (save copy of file)
+        "   bufhidden=unload (save memory when other file is viewed)
+        "   buftype=nowritefile (is read-only)
+        "   undolevels=-1 (no undo possible)
+        au BufReadPre *
+                \ let f=expand("<afile>") |
+                \ if getfsize(f) > g:large_file |
+                        \ set eventignore+=FileType |
+                        \ setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1 |
+                \ else |
+                        \ set eventignore-=FileType |
+                \ endif
+augroup END
+
 " FileType-----------------------------------
 " set .rs file is rust
 au BufNewFile,BufWrite,BufRead *.rs set filetype=rust
@@ -92,6 +113,10 @@ set showtabline=2
 " highlight the line which cursor on
 set cursorline 
 
+function! AutoPairsJump()
+  call search('["\]''>)}]','W')
+endfunction
+
 " Abbreviate-----------------------------------
 iabbrev lbd λ
 
@@ -127,9 +152,12 @@ nnoremap <leader>sn            :%!xxd -r<cr>
 nnoremap <silent> <leader>ts   :! ctags -R && cscope -Rbq<cr>
 " edit .vimrc file conveniently , <leader>e to edit .vimrc
 nnoremap <silent> <leader>e    :e $HOME/.config/nvim/init.vim<cr>
+" failed to map
+"noremap <buffer> <silent> <C-'> :call AutoPairsJump()<CR>
 " -----------------------------Normal-------------------------------"
 
 " -----------------------------Insert-------------------------------"
+"inoremap <buffer> <silent> <C-'> <ESC>:call AutoPairsJump()<CR>a
 inoremap <C-j>                 <C-n>
 inoremap <C-k>                 <C-p>
 " -----------------------------Insert-------------------------------"
@@ -191,6 +219,8 @@ Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'SirVer/ultisnips', { 'do': function('DoRemote') }
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
+" auto-pair
+Plug 'jiangmiao/auto-pairs'
 " comment
 Plug 'scrooloose/nerdcommenter'
 " file tree
@@ -205,8 +235,6 @@ Plug 'danro/rename.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'easymotion/vim-easymotion'
-" pairs
-Plug 'MephistoMMM/auto-pairs'
 " check code syntax
 Plug 'scrooloose/syntastic'
 " airline to find git branch
@@ -286,11 +314,6 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_regexp = 1
 " -------------------for ctrlp------------------------------------"
 
-" -------------------for auto-pairs-------------------------------"
-" while file is vim or html ,add '<' complite
-au FileType vim,html let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`','<':'>'}
-" -------------------for auto-pairs-------------------------------"
-   
 " -------------------for deomplete------------------------------"
 " https://github.com/Shougo/deomplete.vim
 " deoplete.nvim recommend
@@ -460,6 +483,11 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'}
 " ------------------------for tagbar------------------------------------"
+
+" -------------------for auto-pairs-------------------------------"
+" while file is vim or html ,add '<' complite
+au FileType vim,html let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`','<':'>'}
+" -------------------for auto-pairs-------------------------------"
 
 " ------------------------for gruvbox------------------------------------"
 " https://github.com/morhetz/gruvbox

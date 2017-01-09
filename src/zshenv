@@ -21,7 +21,7 @@ export PYTHONPATH="$HOME/Desktop/work/py/pkg"
 export PYBIN="$HOME/Desktop/work/py/bin"
 
 # set convenient path
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 # path for go
 export PATH="$PATH:$GOROOT/bin:$GOBIN"
 # path for py
