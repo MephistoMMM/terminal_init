@@ -151,7 +151,7 @@ nnoremap <leader>sn            :%!xxd -r<cr>
 "go into source insight mode
 nnoremap <silent> <leader>ts   :! ctags -R && cscope -Rbq<cr>
 " edit .vimrc file conveniently , <leader>e to edit .vimrc
-nnoremap <silent> <leader>e    :e $HOME/.config/nvim/init.vim<cr>
+nnoremap <silent> <leader>v    :e $HOME/.config/nvim/init.vim<cr>
 " failed to map
 "noremap <buffer> <silent> <C-'> :call AutoPairsJump()<CR>
 " -----------------------------Normal-------------------------------"
