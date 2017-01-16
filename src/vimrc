@@ -8,8 +8,7 @@
 "   - Interface: python3 , Lua ,
 "   - utils: ctags , cscope, pylint, eslint_d
 "   - theme: MephistoMMM/gruvbox
-" TODO:
-"   * JavaScript Semantic Completion
+"   - item2 keys: ^' -> send escape sequece Esc+ [15;2~
 
 " Space&Tabs-----------------------------------
 set tabstop=4  " tab setting
@@ -123,6 +122,7 @@ iabbrev lbd λ
 " Key Shortcut-----------------------------------
 map k gk
 map j gj
+map <C-g> <ESC>
 " go into source insight mode Plus
 map <leader>th  :sp tags<CR>:%s/^\([^	:]*:\)\=\([^	]*\).*/syntax keyword Tag \2/<CR>:wq! tags.vim<CR>:noh<CR>:so tags.vim<CR>
 map <leader>tl  :so tags.vim<CR>
@@ -130,7 +130,6 @@ map <leader>tl  :so tags.vim<CR>
 " -----------------------------Normal-------------------------------"
 "  <C-]> to jump among files
 "split window
-nnoremap <C-g>                 <C-[>
 nnoremap <leader>wv            :vsp<cr>
 nnoremap <leader>wh            :sp<cr>
 nnoremap <leader>wd            :close<cr>
@@ -152,18 +151,14 @@ nnoremap <leader>sn            :%!xxd -r<cr>
 nnoremap <silent> <leader>ts   :! ctags -R && cscope -Rbq<cr>
 " edit .vimrc file conveniently , <leader>e to edit .vimrc
 nnoremap <silent> <leader>v    :e $HOME/.config/nvim/init.vim<cr>
-" failed to map
-"noremap <buffer> <silent> <C-'> :call AutoPairsJump()<CR>
 " -----------------------------Normal-------------------------------"
 
 " -----------------------------Insert-------------------------------"
-"inoremap <buffer> <silent> <C-'> <ESC>:call AutoPairsJump()<CR>a
 inoremap <C-j>                 <C-n>
 inoremap <C-k>                 <C-p>
 " -----------------------------Insert-------------------------------"
 
 " -----------------------------Visual-------------------------------"
-vnoremap <C-g>                 <C-[>
 " -----------------------------Visual-------------------------------"
 
 " ------------------------------------------------------------------------------
@@ -487,6 +482,7 @@ let g:tagbar_type_go = {
 " -------------------for auto-pairs-------------------------------"
 " while file is vim or html ,add '<' complite
 au FileType vim,html let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`','<':'>'}
+let g:AutoPairsShortcutJump = '<F17>'
 " -------------------for auto-pairs-------------------------------"
 
 " ------------------------for gruvbox------------------------------------"
