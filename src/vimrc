@@ -229,7 +229,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'easymotion/vim-easymotion'
 " check code syntax
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 " airline to find git branch
 " https://github.com/tpope/vim-fugitive
 Plug 'tpope/vim-fugitive'
@@ -381,34 +381,34 @@ let g:EasyMotion_smartcase = 0
 
 " ------------------------for syntastic--------------------------------------"
 " https://github.com/scrooloose/syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_error_symbol             = '✗'
-let g:syntastic_warning_symbol           = '⚠'
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list            = 1
-let g:syntastic_auto_jump                = 3
-let g:syntastic_check_on_wq              = 0
-let g:syntastic_check_on_open            = 0
-" for python
-let g:syntastic_python_checkers = ['pylint']
-let g:syntastic_python_pylint_post_args = '--msg-template="{path}:{line}:{column}:{C}: [{symbol} {msg_id}] {msg}"'
-let g:syntastic_python_pylint_args = '--disable=C0303,W0141,'
-" for js
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exec = 'eslint_d'
-" for go
-let g:syntastic_go_checkers = ['golint', 'go']
-" Syntastic check
-nnoremap <leader>sc :SyntasticCheck<CR>
-" turns off all error notifiers
-nnoremap <leader>sr :SyntasticReset<CR>
-nnoremap <leader>el :SyntasticReset<CR>
-nnoremap <leader>se :Error<CR>
-nnoremap <leader>lc :lclose<CR>
-nnoremap <leader>ln :lnext<CR>
-nnoremap <leader>lp :lprevious<CR>
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_error_symbol             = '✗'
+"let g:syntastic_warning_symbol           = '⚠'
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list            = 1
+"let g:syntastic_auto_jump                = 3
+"let g:syntastic_check_on_wq              = 0
+"let g:syntastic_check_on_open            = 0
+"" for python
+"let g:syntastic_python_checkers = ['pylint']
+"let g:syntastic_python_pylint_post_args = '--msg-template="{path}:{line}:{column}:{C}: [{symbol} {msg_id}] {msg}"'
+"let g:syntastic_python_pylint_args = '--disable=C0303,W0141,'
+"" for js
+"let g:syntastic_javascript_checkers = ['eslint']
+"let g:syntastic_javascript_eslint_exec = 'eslint_d'
+"" for go
+"let g:syntastic_go_checkers = ['golint', 'go']
+"" Syntastic check
+"nnoremap <leader>sc :SyntasticCheck<CR>
+"" turns off all error notifiers
+"nnoremap <leader>sr :SyntasticReset<CR>
+"nnoremap <leader>el :SyntasticReset<CR>
+"nnoremap <leader>se :Error<CR>
+"nnoremap <leader>lc :lclose<CR>
+"nnoremap <leader>ln :lnext<CR>
+"nnoremap <leader>lp :lprevious<CR>
 " ------------------------for syntastic--------------------------------------"
 
 " ------------------------for vim-expand-region------------------------------"
