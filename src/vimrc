@@ -24,7 +24,7 @@ autocmd FileType yaml,vim,snippets setlocal et sta sw=2 sts=2
 
 " Open Large File
 augroup LargeFile
-        let g:large_file = 3106576 " 3MB
+        let g:large_file = 2106576 " 2MB
 
         " Set options:
         "   eventignore+=FileType (no syntax highlighting etc
@@ -225,8 +225,6 @@ Plug 'ctrlpvim/ctrlp.vim'
 " cs -> change surround  + origin_sigal + new_sigal
 " ds -> delete surround  + sigal
 Plug 'tpope/vim-surround'
-" rename {new name}
-Plug 'danro/rename.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'easymotion/vim-easymotion'
@@ -253,17 +251,6 @@ Plug 'posva/vim-vue'
 Plug 'mxw/vim-jsx'
 " |-------------------------------------------------|
 
-" |---------------------haskell---------------------|
-" haskell 
-Plug 'neovimhaskell/haskell-vim'
-" |-------------------------------------------------|
- 
-" |-------------------------markdown----------------|
-" markdown
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown' , {'for': 'markdown'}
-" |-------------------------------------------------|
-
 " Required:
 call plug#end()
 filetype plugin indent on
@@ -288,12 +275,6 @@ function! AirlineInit()
 endfunction
 autocmd User AirlineAfterInit call AirlineInit()
 " -------------------for airline------------------------------"
-
-" -------------------for markdown------------------------------"
-au FileType markdown let g:vim_markdown_folding_disabled=1
-au FileType markdown let g:vim_markdown_math=1
-au FileType markdown let g:vim_markdown_frontmatter=1
-" -------------------for markdown------------------------------"
 
 " -------------------for ctrlp------------------------------------"
 "  https://github.com/ctrlpvim/ctrlp.vim
@@ -448,12 +429,6 @@ let g:expand_region_text_objects = {
       \ 'ie'  :0 
   \ }
 " ------------------------for vim-expand-region------------------------------"
-
-" ------------------------for tabular-----------------------------------"
-"  https://github.com/godlygeek/tabular
-nnoremap <Leader>a :Tabularize 
-vnoremap <Leader>a :Tabularize 
-" ------------------------for tabular-----------------------------------"
 
 " ------------------------for tagbar------------------------------------"
 " https://github.com/majutsushi/tagbar
