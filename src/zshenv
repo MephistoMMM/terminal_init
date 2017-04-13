@@ -26,6 +26,9 @@ export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/
 export PATH="$PATH:$GOROOT/bin:$GOBIN"
 # path for py
 export PATH="$PATH:$PYBIN"
+# path for emacs
+export PATH="$PATH:/usr/local/Cellar/emacs-plus/25.1/bin"
+
 
 export CWORKPATH="$HOME/Desktop/work/c"
 # ssh
@@ -33,3 +36,7 @@ export SSH_KEY_PATH="~/.ssh/dsa_id"
 ## for magit
 #export GIT_EDITOR="/Applications/Emacs.app/Contents/MacOS/Emacs"
 
+# Path Extra
+# path for opencv3
+export PATH="$PATH:/usr/local/opt/opencv3/bin"
+export PYTHONPATH="$PYTHONPATH:/usr/local/opt/opencv3/lib/python3.6/site-packages"

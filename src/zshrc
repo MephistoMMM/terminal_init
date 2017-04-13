@@ -20,6 +20,8 @@ ZSH_THEME="mephis-magic"
 
 export LANG=en_US.UTF-8
 
+export GIT_EDITOR=/usr/local/Cellar/emacs-plus/25.1/bin/emacsclient
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -106,9 +108,8 @@ alias vimrc='vim ~/.config/nvim/init.vim'
 alias zshrc='vim ~/.zshrc'
 alias zshenv='vim ~/.zshenv'
 alias snips='cd ~/.config/nvim/UltiSnips'
+alias caddy_default='caddy -conf ~/.Caddyfile'
 #
 # for Emacs
 alias emacspd='ps aux | grep \\'Emacs --daemon\\''
 alias emacspc='ps aux | grep emacs'
-alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
-alias emacst='/usr/local/bin/emacs'
