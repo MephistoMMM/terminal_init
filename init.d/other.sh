@@ -24,7 +24,7 @@ if [ $SYSTYPE != 2 ] ; then
     if [ $SYSTYPE == 1 ] ; then
         install_packages nodejs npm
     else
-        curl -sL https://deb.nodesource.com/setup_7.x | /bin/bash -c -
+        curl -sL https://deb.nodesource.com/setup_7.x | /bin/bash -
         install_packages nodejs
     fi
 else

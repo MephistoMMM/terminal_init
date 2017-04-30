@@ -228,8 +228,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'easymotion/vim-easymotion'
-" check code syntax
-"Plug 'scrooloose/syntastic'
+" check code syntax using neomake!!!
 " airline to find git branch
 " https://github.com/tpope/vim-fugitive
 Plug 'tpope/vim-fugitive'
