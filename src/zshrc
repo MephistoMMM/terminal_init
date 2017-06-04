@@ -20,7 +20,7 @@ ZSH_THEME="mephis-magic"
 
 export LANG=en_US.UTF-8
 
-export GIT_EDITOR=/usr/local/Cellar/emacs-plus/25.1/bin/emacsclient
+export GIT_EDITOR=emacs
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

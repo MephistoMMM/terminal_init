@@ -151,6 +151,8 @@ nnoremap <leader>sn            :%!xxd -r<cr>
 nnoremap <silent> <leader>ts   :! ctags -R && cscope -Rbq<cr>
 " edit .vimrc file conveniently , <leader>e to edit .vimrc
 nnoremap <silent> <leader>v    :e $HOME/.config/nvim/init.vim<cr>
+" vinegar with bck 
+nmap -                     <leader>bt<Plug>VinegarUp
 " -----------------------------Normal-------------------------------"
 
 " -----------------------------Insert-------------------------------"
@@ -234,6 +236,8 @@ Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-fugitive'
 " select the closest object among a group of candidate
 Plug 'terryma/vim-expand-region'
+" test
+Plug 'tpope/vim-vinegar'
 " |-------------------------------------------------|
 
 " |---------------------python3---------------------|
