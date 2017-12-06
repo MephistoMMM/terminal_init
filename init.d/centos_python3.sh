@@ -1,5 +1,5 @@
 
-yum install zlib-devel bzip2-devel openssl-devel ncurese-devel
+yum install -y zlib-devel bzip2-devel openssl-devel ncurese-devel
 
 CP_PATH=$GENPATH/tmp/centospython
 if [ -e $CP_PATH ]; then
