@@ -1,0 +1,31 @@
+<settings xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+    <mirrors>
+        <mirror>
+            <id>maven.dev.snaponglobal.com</id>
+            <name>Internal Artifactory Maven repository</name>
+            <url>http://repo1.maven.org/maven2/</url>
+            <mirrorOf>*</mirrorOf>
+        </mirror>
+    </mirrors>
+
+
+    <profiles>
+        <profile>
+            <id>jdk-1.6</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <jdk>1.6</jdk>
+            </activation>
+            <properties>
+                <maven.compiler.source>1.6</maven.compiler.source>
+                <maven.compiler.target>1.6</maven.compiler.target>
+                <maven.compiler.compilerVersion>1.6</maven.compiler.compilerVersion>
+            </properties>
+        </profile>
+    </profiles>
+
+    <activeProfiles>
+        <activeProfile>test</activeProfile>
+    </activeProfiles>
+</settings>

@@ -176,30 +176,25 @@ call plug#begin('~/.config/nvim/plugged')
 
 " |-------------------go----------------------------|
 " go
-Plug 'zchee/deoplete-go',{'do': 'make', 'for': 'go'}
-Plug 'fatih/vim-go', {'for': 'go'}
+"Plug 'zchee/deoplete-go',{'do': 'make', 'for': 'go'}
+"Plug 'fatih/vim-go', {'for': 'go'}
 " when your change your GOPATH or start a new project , exec: 
 "   go get -u github.com/nsf/gocode 
 "   or :GoInstallBinaries
-Plug 'nsf/gocode', {'rtp': 'nvim/', 'for': 'go'}
+"Plug 'nsf/gocode', {'rtp': 'nvim/', 'for': 'go'}
 " a local func jamp
 "     go get -v code.google.com/p/rog-go/exp/cmd/godef
 "     go install -v code.google.com/p/rog-go/exp/cmd/godef
-Plug 'dgryski/vim-godef',{'for': 'go'}
-" |-------------------------------------------------|
-
-" |-------------------nginx-------------------------|
-" nginx syntax 
-Plug 'evanmiller/nginx-vim-syntax' 
+"Plug 'dgryski/vim-godef',{'for': 'go'}
 " |-------------------------------------------------|
 
 " |-------------------comman------------------------|
 " buffer plus
 Plug 'MephistoMMM/buf-circular-kill'
 " rainbow pairs
-Plug 'luochen1990/rainbow'
+"Plug 'luochen1990/rainbow'
 " indentline
-Plug 'Yggdroot/indentLine'
+"Plug 'Yggdroot/indentLine'
 " tags bar
 " https://github.com/majutsushi/tagbar
 Plug 'majutsushi/tagbar'
@@ -210,12 +205,16 @@ Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-abolish'
 " gruvbox
 Plug 'MephistoMMM/gruvbox'
+" lsp
+"Plug 'autozimu/LanguageClient-neovim', {'tag': 'binary-*-x86_64-apple-darwin'}
+" (lsp Optional) Multi-entry selection UI.
+"Plug 'junegunn/fzf'
 " deoplete
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+"Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 " Track the engine.
-Plug 'SirVer/ultisnips', { 'do': function('DoRemote') }
+"Plug 'SirVer/ultisnips', { 'do': function('DoRemote') }
 " Snippets are separated from the engine. Add this if you want them:
-Plug 'honza/vim-snippets'
+"Plug 'honza/vim-snippets'
 " auto-pair
 Plug 'jiangmiao/auto-pairs'
 " comment
@@ -242,16 +241,16 @@ Plug 'tpope/vim-vinegar'
 
 " |---------------------python3---------------------|
 " python3 more powerful completion
-Plug 'zchee/deoplete-jedi', {'for': 'python'}
+"Plug 'zchee/deoplete-jedi', {'for': 'python'}
 " |-------------------------------------------------|
 
 " |-------------------------js----------------------|
 " js syntax define
-Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+"Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 " vue
-Plug 'posva/vim-vue'
+"Plug 'posva/vim-vue'
 " react jsx
-Plug 'mxw/vim-jsx'
+"Plug 'mxw/vim-jsx'
 " |-------------------------------------------------|
 
 " Required:
@@ -326,6 +325,17 @@ autocmd FileType go setlocal omnifunc=gocode#Complete
 if !exists('g:deoplete#omni#input_patterns')
   let g:deoplete#omni#input_patterns = {}
 endif
+set hidden
+
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'javascript': ['javascript-typescript-langserver'],
+    \ 'go': ['go-langserver']
+    \ }
+
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
 " GO: By default, the classes (const, func, type, var) are not aligned in the popup menu. set align_class to 1 to aligned them.
 let g:deoplete#sources#go#align_class = 1
@@ -371,6 +381,10 @@ let g:godef_split = 2
 " ------------------------for easymotion -----------------------------------"
 "  https://github.com/easymotion/vim-easymotion
 " Gif config
+nmap <C-j>j <Plug>(easymotion-overwin-f)
+nmap <C-j>J <Plug>(easymotion-overwin-f2)
+nmap <C-j>l <Plug>(easymotion-overwin-line)
+nmap <C-j>w <Plug>(easymotion-overwin-w)
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 " " These `n` & `N` mappings are options. You do not have to map `n` & `N` to

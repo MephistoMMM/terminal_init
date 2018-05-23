@@ -40,3 +40,7 @@ export SSH_KEY_PATH="~/.ssh/dsa_id"
 # path for opencv3
 export PATH="$PATH:/usr/local/opt/opencv3/bin"
 export PYTHONPATH="$PYTHONPATH:/usr/local/opt/opencv3/lib/python3.6/site-packages"
+
+# java
+# export JAVA_HOME="/Library/Java/Home"
+export CLASSPATH=".:./target/classes"
