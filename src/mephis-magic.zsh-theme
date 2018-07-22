@@ -1,18 +1,23 @@
 # mephis-magic.zsh-theme
-#
-# Changer: Mephis Pheies
-# Email: mephistommm@gmail.com
-#
-# Origin: af-magic.zsh-theme https://github.com/andyfleming/oh-my-zsh/blob/master/themes/af-magic.zsh-theme
+# Repo: https://github.com/MephistoMMM/terminal_init
+# Direct Link: https://github.com/MephistoMMM/terminal_init/blob/master/src/mephis-magic.zsh-theme
 
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
+DIVIDER='$FG[237]------------------------------------------------------------%{$reset_color%}'
+
+if [ -f "$MAGIC_DIVIDER" ]; then
+    MAGIC_IMAGE="\033]1337;File=inline=1;height=1;preserveAspectRatio=0:$(base64 < $MAGIC_DIVIDER)\a\n"
+    DIVIDER='$(printf $MAGIC_IMAGE)'
+fi
+
 # primary prompt
-PROMPT='$FG[237]------------------------------------------------------------%{$reset_color%}
-%{$fg[blue]%}%~\
+PROMPT='%{$fg[blue]%}%~\
 $(git_prompt_info) \
 $FG[105]%(!.#.»)%{$reset_color%} '
+PROMPT="$DIVIDER
+$PROMPT"
 PROMPT2='%{$fg[red]%}\ %{$reset_color%}'
 RPS1='${return_code}'
 
