@@ -44,3 +44,5 @@ export PYTHONPATH="$PYTHONPATH:/usr/local/opt/opencv3/lib/python3.6/site-package
 # java
 # export JAVA_HOME="/Library/Java/Home"
 export CLASSPATH=".:./target/classes"
+
+export MAGIC_DIVIDER="$HOME/.oh-my-zsh/divider.png"
