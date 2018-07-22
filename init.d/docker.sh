@@ -14,14 +14,20 @@ is_archlinux
 if [ $? -eq 0 ]; then
     install_packages docker
 else
-    curl -sSL https://get.daocloud.io/docker | sh
+    remove_package 0 docker docker-engine docker.io
+    # only for ubuntu
+    install_packages apt-transport-https ca-certificates curl software-properties-common
+
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+    update_packages
+
+    install_packages docker-ce
+
+    curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+
+    chmod +x /usr/local/bin/docker-compose
 fi
 
 gpasswd -a $INIT_USER docker
-    
-#to install docker-compose
-curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-
-
-
