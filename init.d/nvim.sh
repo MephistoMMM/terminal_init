@@ -56,6 +56,13 @@ mkdir $INIT_HOME/.config/nvim/undodir
 chown -R $INIT_USER:$INIT_USER $INIT_HOME/.config
 cp $GENPATH/src/vimrc $INIT_HOME/.config/nvim/init.vim
 nvim +source$INIT_HOME/.config/nvim/init.vim +PlugInstall +qall
+
+# copy gruvbox
+if [ -d "$INIT_HOME/.oh-my-zsh" ]; then
+    cp $INIT_HOME/.config/nvim/plugged/gruvbox/gruvbox_256palette.sh\
+       $INIT_HOME/.oh-my-zsh
+fi
+
 #change mod
 chown -R $INIT_USER:$INIT_USER $INIT_HOME/.config
 
