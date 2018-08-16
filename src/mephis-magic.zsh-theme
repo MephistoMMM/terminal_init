@@ -3,7 +3,7 @@
 # Direct Link: https://github.com/MephistoMMM/terminal_init/blob/master/src/mephis-magic.zsh-theme
 
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
-local return_code="%(?..%{$fg[red]%}✗ %?%{$reset_color%})"
+local return_code="%(?..%{$fg[red]%}  ✗ %?%{$reset_color%})"
 
 DIVIDER='$FG[237]------------------------------------------------------------%{$reset_color%}'
 
@@ -27,9 +27,9 @@ eval my_orange='%{$fg[yellow]%}'
 # right prompt
 if type "virtualenv_prompt_info" > /dev/null
 then
-	RPROMPT='$(virtualenv_prompt_info)$my_gray%n@%m%{$reset_color%}%  ${return_code}'
+	RPROMPT='$(virtualenv_prompt_info)$my_gray%n@%m%{$reset_color%}${return_code}%'
 else
-	RPROMPT='$my_gray%n@%m%{$reset_color%}%  ${return_code}'
+	RPROMPT='$my_gray%n@%m%{$reset_color%}${return_code}%'
 fi
 
 # git settings
