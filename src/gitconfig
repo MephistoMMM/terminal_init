@@ -1,5 +1,5 @@
 [user]
-	name = mpsss\n
+	name = Mephis Pheies\n
 	email = mephistommm@gmail.com\n
 [filter "hawser"]
 	clean = git hawser clean %f
