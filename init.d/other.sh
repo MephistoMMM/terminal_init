@@ -24,12 +24,12 @@ if [ $SYSTYPE != 2 ] ; then
     if [ $SYSTYPE == 1 ] ; then
         install_packages nodejs npm
     else
-        curl -sL https://deb.nodesource.com/setup_8.x | /bin/bash -
+        curl -sL https://deb.nodesource.com/setup_10.x | /bin/bash -
         install_packages nodejs
     fi
 else
     ./init.d/centos_python3.sh
-    curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
+    curl --silent --location https://rpm.nodesource.com/setup_10.x | bash -
     install_packages nodejs
 fi
 
