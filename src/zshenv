@@ -11,14 +11,14 @@ if [ $? = 0 ]; then
 else
     export GOROOT="/usr/lib/go"
 fi
-export GOPATH="$HOME/Desktop/work/go"
+export GOPATH="$HOME/Workspace/go"
 export GOBIN="$GOPATH/bin"
 export GOPATH="$GOPATH/lib:$GOPATH"
 
 # python work path
 # python3 pack pythonPath
-export PYTHONPATH="$HOME/Desktop/work/py/pkg"
-export PYBIN="$HOME/Desktop/work/py/bin"
+export PYTHONPATH="$HOME/Workspace/py/pkg"
+export PYBIN="$HOME/Workspace/py/bin"
 
 # set convenient path
 export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
@@ -30,7 +30,7 @@ export PATH="$PATH:$PYBIN"
 export PATH="$PATH:/usr/local/Cellar/emacs-plus/25.1/bin"
 
 
-export CWORKPATH="$HOME/Desktop/work/c"
+export CWORKPATH="$HOME/Workspace/c"
 # ssh
 export SSH_KEY_PATH="~/.ssh/dsa_id"
 ## for magit
@@ -38,8 +38,8 @@ export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # Path Extra
 # path for opencv3
-export PATH="$PATH:/usr/local/opt/opencv3/bin"
-export PYTHONPATH="$PYTHONPATH:/usr/local/opt/opencv3/lib/python3.6/site-packages"
+# export PATH="$PATH:/usr/local/opt/opencv3/bin"
+# export PYTHONPATH="$PYTHONPATH:/usr/local/opt/opencv3/lib/python3.6/site-packages"
 
 # java
 # export JAVA_HOME="/Library/Java/Home"

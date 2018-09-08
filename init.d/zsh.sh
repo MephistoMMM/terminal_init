@@ -35,5 +35,6 @@ if [ -f "$INIT_HOME/.config/nvim/plugged/gruvbox/gruvbox_256palette.sh" ]; then
 fi
 
 chown $INIT_USER:$INIT_USER $INIT_HOME/.zshrc \
+    && chown $INIT_USER:$INIT_USER $INIT_HOME/.zshenv \
     && chown -R $INIT_USER:$INIT_USER $INIT_HOME/.oh-my-zsh \
     && chsh -s /bin/zsh $INIT_USER
