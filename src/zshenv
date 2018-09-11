@@ -45,4 +45,4 @@ export SSH_KEY_PATH="~/.ssh/dsa_id"
 # export JAVA_HOME="/Library/Java/Home"
 export CLASSPATH=".:./target/classes"
 
-export MAGIC_DIVIDER="$HOME/.oh-my-zsh/divider.png"
+# export MAGIC_DIVIDER="$HOME/.oh-my-zsh/divider.png"
