@@ -22,7 +22,7 @@ export LANG=en_US.UTF-8
 export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
 
-export GIT_EDITOR=vim
+export GIT_EDITOR=$([ -x ~/.local/bin/ec ] && echo "ec" || echo "vim")
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -75,8 +75,9 @@ plugins=(git colored-man-pages vi-mode z history-substring-search zsh-syntax-hig
 
 #source other env
 source ~/.zshenv
-
 source $ZSH/oh-my-zsh.sh
+#source functions
+source ~/.zshfunc
 #set up tab completion for arcanist
 
 # You may need to manually set your language environment
@@ -94,8 +95,11 @@ source $ZSH/oh-my-zsh.sh
 
 # run while zsh init
 # add more color for item
-#source ~/.oh-my-zsh/gruvbox_256palette_osx.sh
-source ~/.oh-my-zsh/gruvbox_256palette.sh
+if [[ `is_macOS` == "true" ]]; then
+    source ~/.oh-my-zsh/gruvbox_256palette_osx.sh
+else
+    source ~/.oh-my-zsh/gruvbox_256palette.sh
+fi
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -108,41 +112,7 @@ alias p3='python3'
 alias vim='nvim'
 alias vimrc='vim ~/.config/nvim/init.vim'
 alias zshrc='vim ~/.zshrc'
+alias zshfunc='vim ~/.zshfunc'
 alias zshenv='vim ~/.zshenv'
 alias caddy_default='caddy -conf ~/.caddy/Caddyfile'
 alias caddy_mvn_site='caddy -conf ~/.caddy/mvn_site'
-#
-# for Emacs
-alias emacspd='ps aux | grep \\'Emacs --daemon\\''
-alias emacspc='ps aux | grep emacs'
- 
-# counting code lines in a git project
-# you should install cloc [https://github.com/AlDanial/cloc]
-# brew install cloc
-function codes_count() {
-    git clone --depth 1 "$1" temp-linecount-repo \
-        && printf "('temp-linecount-repo' will be deleted automatically)\n\n\n" \
-        && cloc temp-linecount-repo \
-        && rm -rf temp-linecount-repo
-}
-
-# function for proxy https and http request in terminal
-# you should install shadowsocksX-NG
-# more info: https://github.com/shadowsocks/ShadowsocksX-NG 
-function proxy_status() {
-    if [[ "$http_proxy" == "" ]] ; then
-        echo -e "proxy is off."
-    else
-        echo -e "proxy is on."
-    fi
-}
-
-function proxy_off(){
-    unset http_proxy
-    unset https_proxy
-}
-
-function proxy_on() {
-    export http_proxy=http://127.0.0.1:1087
-    export https_proxy=http://127.0.0.1:1087
-}

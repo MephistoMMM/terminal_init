@@ -1,0 +1,62 @@
+#!/bin/env zsh
+# This file defines function.
+
+# Check if it is on macOS
+function is_macOS() {
+    uname | grep "Darwin" > /dev/null
+    if [[ $? -eq 0 ]]; then
+        echo "true"
+    else
+        echo "false"
+    fi
+}
+
+# counting code lines in a git project
+# you should install cloc [https://github.com/AlDanial/cloc]
+# brew install cloc
+function codes_count() {
+    git clone --depth 1 "$1" temp-linecount-repo \
+        && printf "('temp-linecount-repo' will be deleted automatically)\n\n\n" \
+        && cloc temp-linecount-repo \
+        && rm -rf temp-linecount-repo
+}
+
+# function for proxy https and http request in terminal
+# you should install shadowsocksX-NG
+# more info: https://github.com/shadowsocks/ShadowsocksX-NG
+function proxy_status() {
+    if [[ "$http_proxy" == "" ]] ; then
+        echo -e "proxy is off."
+    else
+        echo -e "proxy is on."
+    fi
+}
+
+function proxy_off(){
+    unset http_proxy
+    unset https_proxy
+}
+
+function proxy_on() {
+    export http_proxy=http://127.0.0.1:1087
+    export https_proxy=http://127.0.0.1:1087
+}
+
+if [[ `is_macOS` == "true" ]];then
+    function modify_mac_address() {
+        # disassociate from any network
+        /System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -z
+        if [[ $? -ne 0 ]]; then
+            return $?
+        fi
+
+        # modify mac address for en0
+        ifconfig en0 ether `openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'`
+        if [[ $? -ne 0 ]]; then
+            return $?
+        fi
+
+        # refresh
+        networksetup -detectnewhardware
+    }
+fi
