@@ -1,7 +1,7 @@
 PY_VERSION=3.7.0
 PY_VERSION_ALIAS=3.7
 
-yum install -y zlib-devel bzip2-devel openssl-devel ncurese-devel libffi-devel
+yum install -y gcc zlib-devel bzip2-devel openssl-devel ncurese-devel libffi-devel
 
 CP_PATH=$GENPATH/tmp/centospython
 if [ -e $CP_PATH ]; then
