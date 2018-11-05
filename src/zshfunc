@@ -43,15 +43,27 @@ function proxy_on() {
 }
 
 if [[ `is_macOS` == "true" ]];then
-    function modify_mac_address() {
+    function mac2origin() {
+        mac2other $ORIGIN_MAC_ADDRESS
+    }
+
+    function mac2fake() {
+        mac2other $FAKE_MAC_ADDRESS
+    }
+
+    function mac2random() {
+        mac2other `openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'`
+    }
+
+    function mac2other() {
         # disassociate from any network
-        /System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -z
+        sudo /System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -z
         if [[ $? -ne 0 ]]; then
             return $?
         fi
 
         # modify mac address for en0
-        ifconfig en0 ether `openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'`
+        sudo ifconfig en0 ether $1
         if [[ $? -ne 0 ]]; then
             return $?
         fi

@@ -46,3 +46,7 @@ export SSH_KEY_PATH="~/.ssh/dsa_id"
 export CLASSPATH=".:./target/classes"
 
 # export MAGIC_DIVIDER="$HOME/.oh-my-zsh/divider.png"
+
+# MAC ADDRESS
+export ORIGIN_MAC_ADDRESS="8c:85:90:49:14:af"
+export FAKE_MAC_ADDRESS="68:b3:ee:a2:45:9e"
