@@ -1,8 +1,7 @@
 #!/bin/bash
 #
 # The script init vim!
-# I install vim from source for I need more powerful vim
-#  
+#
 # CreateDate: 2015/11/30
 # ChangeDate: 2015/11/30
 # Author Mephis Pheies
