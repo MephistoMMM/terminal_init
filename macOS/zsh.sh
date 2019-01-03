@@ -12,7 +12,7 @@ if type brew > /dev/null ; then
     echo "Brew installed."
 else
     echo "Install brew..."
-    sh ./brew.sh
+    sh ./brew.sh || exit 1
 fi
 
 brew install zsh
@@ -24,7 +24,7 @@ test -e $HOME/.zshrc && rm $HOME/.zshrc
 git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
 git clone git://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
-cp ./src/zshrc $HOME/.zshrc\
+cp $GENPATH/src/zshrc $HOME/.zshrc\
     && cp $GENPATH/src/zshenv $HOME/.zshenv\
     && cp $GENPATH/src/zshenv $HOME/.zshfunc\
     && cp $GENPATH/src/mephis-magic.zsh-theme $HOME/.oh-my-zsh/themes/ \

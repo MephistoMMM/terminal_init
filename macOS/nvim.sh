@@ -12,7 +12,7 @@ if type brew > /dev/null ; then
     echo "Brew installed."
 else
     echo "Install brew..."
-    sh ./brew.sh
+    sh ./brew.sh || exit 1
 fi
 
 test -e $HOME/.config/nvim && rm -rf $HOME/.config/nvim

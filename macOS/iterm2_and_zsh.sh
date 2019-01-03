@@ -15,7 +15,7 @@ if type brew > /dev/null ; then
     echo "Brew installed."
 else
     echo "Install brew..."
-    sh ./brew.sh
+    sh ./brew.sh || exit 1
 fi
 
 if [[ ! -d $TMP_DIR ]]; then

@@ -11,3 +11,7 @@
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 brew install wget
+if [[ ! $? -eq 0 ]]; then
+    echo "Brew Install Failed!"
+    exit 1
+fi
