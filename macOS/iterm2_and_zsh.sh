@@ -21,11 +21,14 @@ fi
 if [[ ! -d $TMP_DIR ]]; then
     mkdir $TMP_DIR
 fi
-# download item2
-wget $ITERM_URL -O $TMP_DIR/iTerm2.zip
-unzip $TMP_DIR/iTerm2.zip
-mv $TMP_DIR/iTerm2.app /Applications/iTerm2.app
-chown $USER:staff /Applications/iTerm2.app
+if [[ ! -d /Applications/iTerm.app ]] && [[ ! -d /Applications/iTerm2.app ]]
+then
+    # download item2
+    wget $ITERM_URL -O $TMP_DIR/iTerm2.zip
+    unzip $TMP_DIR/iTerm2.zip
+    mv $TMP_DIR/iTerm.app /Applications/iTerm.app
+    chown $USER:staff /Applications/iTerm.app
+fi
 
 # install zsh
 sh ./zsh.sh
