@@ -20,8 +20,8 @@ test -e $INIT_HOME/.vim/bundle/gruvbox && \
 test -e $INIT_HOME/.config/nvim/plugged/gruvbox && \
     cp $INIT_HOME/.config/nvim/plugged/gruvbox/gruvbox_256palette.sh $INIT_HOME/.oh-my-zsh/
 
-git clone https://github.com/robbyrussell/oh-my-zsh.git $INIT_HOME/.oh-my-zsh
-git clone git://github.com/zsh-users/zsh-syntax-highlighting.git $INIT_HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git $INIT_HOME/.oh-my-zsh
+git clone --depth=1 git://github.com/zsh-users/zsh-syntax-highlighting.git $INIT_HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
 cp ./src/zshrc $INIT_HOME/.zshrc\
     && cp ./src/zshenv $INIT_HOME/.zshenv\
