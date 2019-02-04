@@ -25,7 +25,7 @@ git clone --depth=1 git://github.com/zsh-users/zsh-syntax-highlighting.git $INIT
 
 cp ./src/zshrc $INIT_HOME/.zshrc\
     && cp ./src/zshenv $INIT_HOME/.zshenv\
-    && cp ./src/zshenv $INIT_HOME/.zshfunc\
+    && cp ./src/zshfunc $INIT_HOME/.zshfunc\
     && cp ./src/mephis-magic.zsh-theme $INIT_HOME/.oh-my-zsh/themes/ \
     && cp ./src/divider.png $INIT_HOME/.oh-my-zsh/divider.png
 
