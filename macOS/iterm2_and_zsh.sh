@@ -18,6 +18,13 @@ else
     sh ./brew.sh || exit 1
 fi
 
+if type wget > /dev/null ; then
+    echo "Wget installed"
+else
+    echo "Install wget"
+    brew install wget
+fi
+
 if [[ ! -d $TMP_DIR ]]; then
     mkdir $TMP_DIR
 fi
