@@ -6,6 +6,7 @@
 # ChangeDate: 2019/1/2
 # Author Mephis Pheies
 # Email mephistommm@gmail.com
+GENPATH=${PWD%%/macOS}
 ITERM_VERSION=3_2_6
 # https://www.iterm2.com/downloads.html
 ITERM_URL=https://iterm2.com/downloads/stable/iTerm2-$ITERM_VERSION.zip
@@ -32,10 +33,13 @@ if [[ ! -d /Applications/iTerm.app ]] && [[ ! -d /Applications/iTerm2.app ]]
 then
     # download item2
     wget $ITERM_URL -O $TMP_DIR/iTerm2.zip
-    unzip $TMP_DIR/iTerm2.zip
-    mv $TMP_DIR/iTerm.app /Applications/iTerm.app
+    unzip $TMP_DIR/iTerm2.zip -d $TMP_DIR/ && \
+        mv $TMP_DIR/iTerm.app /Applications/iTerm.app
+    if [[ ! $? -eq 0 ]]; then
+        echo "Failed Install iTerm.app"
+    fi
     chown $USER:staff /Applications/iTerm.app
 fi
 
 # install zsh
-sh ./zsh.sh
+sh $GENPATH/macOS/zsh.sh

@@ -26,9 +26,12 @@ git clone git://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zs
 
 cp $GENPATH/src/zshrc $HOME/.zshrc\
     && cp $GENPATH/src/zshenv $HOME/.zshenv\
-    && cp $GENPATH/src/zshenv $HOME/.zshfunc\
+    && cp $GENPATH/src/zshfunc $HOME/.zshfunc\
     && cp $GENPATH/src/mephis-magic.zsh-theme $HOME/.oh-my-zsh/themes/ \
     && cp $GENPATH/src/divider.png $HOME/.oh-my-zsh/divider.png
+if [[ ! $? -eq 0 ]]; then
+    echo "Copy zsh config files error!"
+fi
 
 # copy gruvbox
 if [ -f "$HOME/.config/nvim/plugged/gruvbox/gruvbox_256palette.sh" ]; then
