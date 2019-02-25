@@ -29,7 +29,6 @@ export PATH="$PATH:$PYBIN"
 # path for emacs
 export PATH="$PATH:/usr/local/Cellar/emacs-plus/25.1/bin"
 
-
 export CWORKPATH="$HOME/Workspace/c"
 # ssh
 export SSH_KEY_PATH="~/.ssh/dsa_id"
@@ -50,3 +49,6 @@ export CLASSPATH=".:./target/classes"
 # MAC ADDRESS
 export ORIGIN_MAC_ADDRESS="8c:85:90:49:14:af"
 export FAKE_MAC_ADDRESS="68:b3:ee:a2:45:9e"
+
+# Emacs server name
+export EMACS_SOCKET_NAME="$HOME/.emacs.d/server/server"
