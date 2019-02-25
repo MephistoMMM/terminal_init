@@ -35,10 +35,19 @@ export SSH_KEY_PATH="~/.ssh/dsa_id"
 ## for magit
 #export GIT_EDITOR="/Applications/Emacs.app/Contents/MacOS/Emacs"
 
-# Path Extra
-# path for opencv3
-# export PATH="$PATH:/usr/local/opt/opencv3/bin"
-# export PYTHONPATH="$PYTHONPATH:/usr/local/opt/opencv3/lib/python3.6/site-packages"
+# for qt golang
+export QT_DIR="/usr/local/Cellar/qt/5.12.0"
+export QT_STUB="false"
+export QT_DEBUG="false"
+export QT_QMAKE_DIR=""
+export QT_WEBKIT="false"
+export QT_HOMEBREW="true"
+export QT_MACPORTS="false"
+export QT_NIX="false"
+export XCODE_DIR="/Applications/Xcode.app"
+
+# for latex
+export PATH="$PATH:/usr/local/texlive/2018/bin/x86_64-darwin/"
 
 # java
 # export JAVA_HOME="/Library/Java/Home"
